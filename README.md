@@ -29,7 +29,7 @@ MailChannels Email API integration for Nuxt
 1. Add `nuxt-mailchannels` dependency to your project
 
 ```sh
-pnpm add nuxt-mailchannels -d
+pnpm add nuxt-mailchannels -D
 ```
 
 2. Add the module in your `nuxt.config.ts`
