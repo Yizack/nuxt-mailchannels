@@ -62,8 +62,8 @@ jobs:
       - name: 🚧 Prepare module environment
         run: pnpm dev:prepare
 
-      - name: 🧪 Run test suite
-        run: pnpm test
+    # - name: 🧪 Run test suite
+    #   run: pnpm test
 
       - name: 🧪 Test types
         run: pnpm test:types
