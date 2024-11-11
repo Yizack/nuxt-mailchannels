@@ -1,0 +1,71 @@
+{
+  "name": "nuxt-mailchannels",
+  "version": "0.0.0",
+  "description": "MailChannels Email API integration for nuxt",
+  "keywords": [
+    "nuxt",
+    "mailchannels",
+    "email",
+    "transactional"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yizack/nuxt-mailchannels.git"
+  },
+  "homepage": "https://github.com/Yizack/nuxt-mailchannels",
+  "author": {
+    "name": "Yizack Rangel",
+    "email": "yizackr@gmail.com",
+    "url": "https://yizack.com/"
+  },
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepack": "nuxt-module-build build",
+    "dev": "nuxi dev playground",
+    "dev:build": "nuxi build playground",
+    "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground",
+    "release": "npm run lint && npm run prepack && npm run test && changelogen --release && npm publish && git push --follow-tags",
+    "lint": "eslint .",
+    "test": "vitest run --reporter=verbose",
+    "test:types": "vue-tsc --noEmit",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@nuxt/kit": "^3.14.159",
+    "defu": "^6.1.4"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^1.6.0",
+    "@nuxt/eslint-config": "^0.6.1",
+    "@nuxt/module-builder": "^0.8.4",
+    "@nuxt/schema": "^3.14.159",
+    "@nuxt/test-utils": "^3.14.4",
+    "@types/node": "^22.9.0",
+    "changelogen": "^0.5.7",
+    "eslint": "^9.14.0",
+    "nuxt": "^3.14.159",
+    "vitest": "^2.1.4",
+    "vue-tsc": "^2.1.10"
+  },
+  "packageManager": "pnpm@9.12.3",
+  "changelog": {
+    "repo": {
+      "repo": "Yizack/nuxt-mailchannels",
+      "provider": "github",
+      "domain": "github.com"
+    }
+  }
+}
