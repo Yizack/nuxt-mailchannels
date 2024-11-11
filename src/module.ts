@@ -21,10 +21,6 @@ export default defineNuxtModule<ModuleOptions>({
     // MailChannels settings
     runtimeConfig.mailchannels = defu(runtimeConfig.mailchannels, {
       apiKey: '',
-      from: {
-        name: '',
-        email: '',
-      },
       dkim: {
         domain: '',
         selector: '',
