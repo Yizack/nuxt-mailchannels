@@ -110,6 +110,8 @@ Available options for the `send` method.
 
 ## Examples
 
+Use the `send` method inside your API routes to send emails.
+
 The recipient parameters can be either an email address string or an object with `email` and `name` properties.
 
 ### Using object recipients (recommended)
@@ -131,6 +133,7 @@ export default defineEventHandler(async (event) => {
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
+  return { response }
 })
 ```
 
@@ -148,7 +151,6 @@ export default defineEventHandler(async (event) => {
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
-
   return { response }
 })
 ```
@@ -178,6 +180,7 @@ export default defineEventHandler(async (event) => {
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
+  return { response }
 })
 ```
 
@@ -192,6 +195,7 @@ export default defineEventHandler(async (event) => {
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
+  return { response }
 })
 ```
 
