@@ -22,7 +22,7 @@ MailChannels Email API integration for Nuxt
 - MailChannels Email API key
 
 > [!WARNING]
-> This module only works with a Nuxt server running as it uses server API routes (`nuxt build`). This means that you cannot use this module with `nuxt generate`.
+> This module only works with a Nuxt server running as it uses utils for server API routes (`nuxt build`). This means that you cannot use this module with `nuxt generate`.
 
 ## Quick Setup
 
