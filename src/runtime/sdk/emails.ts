@@ -5,21 +5,36 @@ import type { MailChannelsEmailOptions, MailChannelsEmailSend } from './types/em
 export class Emails {
   constructor(private readonly mailchannels: MailChannels) {}
 
-  async send(payload: MailChannelsEmailOptions, dry = false) {
-    const output = {
-      data: null as string[] | null,
-      error: null as string | null,
-    }
-
+  /**
+   * Send an email using MailChannels Email API
+   * @param payload - The email payload
+   * @param dryRun - When set to true, the message will not be sent. Instead, the fully rendered message will be printed to the console. This can be useful for testing. Defaults to `false`.
+   * @returns Promise<boolean>
+   * @example
+   * ```ts
+   * // Inside an API route handler
+   * export default defineEventHandler(async (event) => {
+   *   const mailchannels = useMailChannels(event)
+   *   await mailchannels.emails.send({
+   *     to: 'to@example.com',
+   *     from: 'from@example.com',
+   *     subject: 'Test',
+   *     html: 'Test',
+   *   })
+   *   return { response }
+   * })
+   * ```
+   */
+  async send(payload: MailChannelsEmailOptions, dryRun = false) {
     const body = JSON.stringify({
       attachments: payload.attachments,
       personalizations: [{
         bcc: payload.bcc ? normalizeRecipients(payload.bcc) : undefined,
         cc: payload.cc ? normalizeRecipients(payload.cc) : undefined,
         to: normalizeRecipients(payload.to),
-        dkim_domain: this.mailchannels.config.dkim.domain || undefined,
-        dkim_private_key: this.mailchannels.config.dkim.privateKey || undefined,
-        dkim_selector: this.mailchannels.config.dkim.selector || undefined,
+        dkim_domain: this.mailchannels['config'].dkim.domain || undefined,
+        dkim_private_key: this.mailchannels['config'].dkim.privateKey || undefined,
+        dkim_selector: this.mailchannels['config'].dkim.selector || undefined,
         dynamic_template_data: payload.mustaches,
       }],
       from: typeof payload.from === 'string' ? { email: payload.from } : payload.from,
@@ -30,24 +45,29 @@ export class Emails {
       }],
     } satisfies MailChannelsEmailSend)
 
-    const response = await $fetch<{ data: string[] }>(`${this.mailchannels.baseUrl}/tx/v1/send`, {
+    return $fetch('/tx/v1/send', {
+      baseURL: this.mailchannels['baseUrl'],
+      headers: this.mailchannels['headers'],
       method: 'POST',
-      headers: this.mailchannels.headers,
-      query: { 'dry-run': dry },
+      query: { 'dry-run': dryRun },
       body,
+      onResponse: async ({ response }) => {
+        if (response.status === 200) {
+          console.info(`[MailChannels] [${response.status}] Send:`, response.statusText)
+          const formattedData = response._data.data.map((item: string) => item.split('\r\n').map(line => line.trim()).join('\n'))
+          formattedData.forEach((item: string) => console.info(`[MailChannels] [response]`, item))
+        }
+      },
       onResponseError: async ({ response }) => {
-        if (response.status !== 500) {
-          output.error = output.error = response._data.message
+        if (response.status !== 500 && response.status !== 502) {
+          console.error(`[MailChannels] [${response.status}] Send:`, response.statusText)
           return
         }
         const body = await response.json() as { errors: string[] }
         if (body && Array.isArray(body.errors)) {
-          output.error = body.errors.join(', ')
+          console.error(`[MailChannels] [${response.status}] Send:`, response.statusText, body.errors.join(', '))
         }
       },
-    }).catch(() => null)
-
-    output.data = response?.data || null
-    return output
+    }).then(() => true).catch(() => false)
   }
 }
