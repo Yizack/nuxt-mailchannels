@@ -15,7 +15,7 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {},
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    addServerImportsDir(resolve('./runtime/server/composables'))
+    addServerImportsDir(resolve('./runtime/server/utils'))
 
     const runtimeConfig = nuxt.options.runtimeConfig
     // MailChannels settings

@@ -1,8 +1,8 @@
-import type { MailChannels } from './mailchannels'
 import { normalizeRecipients } from './helpers'
-import type { MailChannelsEmailOptions, MailChannelsEmailSend } from './types/emails'
+import type { MailChannelsEmailOptions, MailChannelsEmailSend } from './types/email'
+import type { MailChannels } from './index'
 
-export class Emails {
+export class Email {
   constructor(private readonly mailchannels: MailChannels) {}
 
   /**
@@ -15,7 +15,7 @@ export class Emails {
    * // Inside an API route handler
    * export default defineEventHandler(async (event) => {
    *   const mailchannels = useMailChannels(event)
-   *   await mailchannels.emails.send({
+   *   await mailchannels.send({
    *     to: 'to@example.com',
    *     from: 'from@example.com',
    *     subject: 'Test',
@@ -26,6 +26,7 @@ export class Emails {
    * ```
    */
   async send(payload: MailChannelsEmailOptions, dryRun = false) {
+    console.log(this.mailchannels)
     const body = JSON.stringify({
       attachments: payload.attachments,
       personalizations: [{
@@ -37,6 +38,7 @@ export class Emails {
         dkim_selector: this.mailchannels['config'].dkim.selector || undefined,
         dynamic_template_data: payload.mustaches,
       }],
+      reply_to: typeof payload.replyTo === 'string' ? { email: payload.replyTo } : payload.replyTo,
       from: typeof payload.from === 'string' ? { email: payload.from } : payload.from,
       subject: payload.subject,
       content: [{

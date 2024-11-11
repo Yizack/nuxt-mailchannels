@@ -67,7 +67,7 @@ export interface MailChannelsEmailOptions {
    */
   attachments?: MailChannelsEmailAttachment[]
   /**
-   * An array of `bcc` recipient objects, a single recipient object, or a single email address.
+   * The BCC recipients of the email. Can be an array of email addresses or an array of objects with email and name properties or a single email address string or an object with email and name properties.
    * @example
    * bcc: [
    *   { email: 'email1@example.com', name: 'Example1' },
@@ -76,11 +76,13 @@ export interface MailChannelsEmailOptions {
    * @example
    * bcc: { email: 'email@example.com', name: 'Example' }
    * @example
+   * bcc: ['email1@example.com', 'email2@example.com']
+   * @example
    * bcc: 'email@example.com'
    */
   bcc?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string
   /**
-   * An array of `cc` recipient objects, a single recipient object, or a single email address.
+   * The CC recipients of the email. Can be an array of email addresses or an array of objects with email and name properties or a single email address string or an object with email and name properties.
    * @example
    * cc: [
    *   { email: 'email1@example.com', name: 'Example1' },
@@ -89,16 +91,13 @@ export interface MailChannelsEmailOptions {
    * @example
    * cc: { email: 'email@example.com', name: 'Example' }
    * @example
+   * cc: ['email1@example.com', 'email2@example.com']
+   * @example
    * cc: 'email@example.com'
    */
   cc?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string
   /**
-   * An array of `from` recipient objects, a single recipient object, or a single email address.
-   * @example
-   * from: [
-   *   { email: 'email1@example.com', name: 'Example1' },
-   *   { email: 'email2@example.com', name: 'Example2' },
-   * ]
+   * The sender of the email. Can be a string or an object with email and name properties.
    * @example
    * from: { email: 'email@example.com', name: 'Example' }
    * @example
@@ -106,7 +105,7 @@ export interface MailChannelsEmailOptions {
    */
   from: MailChannelsEmailRecipient | string
   /**
-   * An array of `to` recipient objects, a single recipient object, or a single email address.
+   * The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties.
    * @example
    * to: [
    *   { email: 'email1@example.com', name: 'Example1' },
@@ -115,22 +114,19 @@ export interface MailChannelsEmailOptions {
    * @example
    * to: { email: 'email@example.com', name: 'Example' }
    * @example
+   * to: ['email1@example.com', 'email2@example.com']
+   * @example
    * to: 'email@example.com'
    */
-  to: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string
+  to: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string
   /**
-   * An array of `reply_to` recipient objects, a single recipient object, or a single email address.
+   * A single `replyTo` recipient object, or a single email address.
    * @example
-   * reply_to: [
-   *   { email: 'email1@example.com', name: 'Example1' },
-   *   { email: 'email2@example.com', name: 'Example2' },
-   * ]
+   * replyTo: { email: 'email@example.com', name: 'Example' }
    * @example
-   * reply_to: { email: 'email@example.com', name: 'Example' }
-   * @example
-   * reply_to: 'email@example.com'
+   * replyTo: 'email@example.com'
    */
-  reply_to?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string
+  replyTo?: MailChannelsEmailRecipient | string
   /**
    * The subject of the email
    */
