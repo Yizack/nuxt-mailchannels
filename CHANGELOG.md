@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.0.3
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.0.2...v0.0.3)
+
+### 🩹 Fixes
+
+- Mustache template type ([d9bf9ae](https://github.com/Yizack/nuxt-mailchannels/commit/d9bf9ae))
+
+### 📖 Documentation
+
+- Add example using mustaches ([aed7b62](https://github.com/Yizack/nuxt-mailchannels/commit/aed7b62))
+
+### 🏡 Chore
+
+- Body json stringify not needed ([461a29c](https://github.com/Yizack/nuxt-mailchannels/commit/461a29c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.0.2
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.0.1...v0.0.2)
