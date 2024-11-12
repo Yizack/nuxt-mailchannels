@@ -5,7 +5,7 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-MailChannels Email API integration for Nuxt
+Simple MailChannels Email API integration for Nuxt.
 
 - [✨ Release Notes](CHANGELOG.md)
 
@@ -16,11 +16,12 @@ MailChannels Email API integration for Nuxt
 - Exposed server utils
 - Email DKIM signing
 - Default global sender email and name
+- Supports mustache templates
 
 ## Requirements
 
 - Nuxt 3 or higher
-- MailChannels Email API key
+- MailChannels account and Email API key
 
 > [!WARNING]
 > This module only works with a Nuxt server running as it uses utils for server API routes (`nuxt build`). This means that you cannot use this module with `nuxt generate`.
@@ -215,6 +216,28 @@ export default defineEventHandler(async (event) => {
   })
   return { response }
 })
+```
+
+### Using mustache templates
+
+You can use the `mustaches` property to render mustache templates.
+
+```ts
+export default defineEventHandler(async (event) => {
+  const mailchannels = useMailChannels(event)
+  const response = await mailchannels.send({
+    to: 'to@example.com',
+    from: 'from@example.com',
+    subject: 'Mustaches test',
+    html: '<p>Hello {{ world }}</p>',
+    mustaches: {
+      world: 'World',
+    },
+  }, true)
+
+  return { response }
+})
+
 ```
 
 # Development
