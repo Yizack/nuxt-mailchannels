@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.2
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.0.1...v0.0.2)
+
+### 🚀 Enhancements
+
+- Enable global default sender ([5e700bd](https://github.com/Yizack/nuxt-mailchannels/commit/5e700bd))
+
+### 📖 Documentation
+
+- Add mailchannels email api documentation ([09b2751](https://github.com/Yizack/nuxt-mailchannels/commit/09b2751))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.0.1
 
 
