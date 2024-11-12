@@ -45,6 +45,7 @@ export class Email {
       content: [{
         type: 'text/html',
         value: payload.html,
+        template_type: payload.mustaches ? 'mustache' : undefined,
       }],
     } satisfies MailChannelsEmailSend)
 
