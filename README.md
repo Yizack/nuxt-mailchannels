@@ -8,6 +8,7 @@
 Simple MailChannels Email API integration for Nuxt.
 
 - [✨ Release Notes](CHANGELOG.md)
+- [🏀 Online playground](https://stackblitz.com/github/yizack/nuxt-mailchannels?file=playground%2Fserver%27api%27send.t)
 
 ## Contents
 
