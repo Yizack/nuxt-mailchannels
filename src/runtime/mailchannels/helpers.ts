@@ -1,18 +1,6 @@
 import type { MailChannelsEmailRecipient } from './types/email'
 import type { MailChannels } from './index'
 
-export const normalizeArrayRecipients = (recipients: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string | undefined) => {
-  if (!recipients) {
-    return undefined
-  }
-
-  if (typeof recipients === 'string') {
-    return [{ email: recipients }]
-  }
-
-  return Array.isArray(recipients) ? recipients.map(recipient => typeof recipient === 'string' ? { email: recipient } : recipient) : [recipients]
-}
-
 export const normalizeRecipient = (recipient?: Partial<MailChannelsEmailRecipient> | string) => {
   if (typeof recipient === 'string') {
     return { email: recipient }
@@ -23,6 +11,18 @@ export const normalizeRecipient = (recipient?: Partial<MailChannelsEmailRecipien
   }
 
   return undefined
+}
+
+export const normalizeArrayRecipients = (recipients: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string | undefined) => {
+  if (!recipients) {
+    return undefined
+  }
+
+  if (typeof recipients === 'string') {
+    return [{ email: recipients }]
+  }
+
+  return Array.isArray(recipients) ? recipients.map(recipient => normalizeRecipient(recipient)!) : [recipients]
 }
 
 export const ensureToAndFrom = (
