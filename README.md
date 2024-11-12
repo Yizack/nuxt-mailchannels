@@ -15,6 +15,7 @@ MailChannels Email API integration for Nuxt
 - Works on the edge
 - Exposed server utils
 - Email DKIM signing
+- Default sender email and name
 
 ## Requirements
 
@@ -42,12 +43,15 @@ export default defineNuxtConfig({
 })
 ```
 
-## Runtime Config
+## Configuration
 
-You can add the MailChannels **API key** and **DKIM** settings to your runtime config in `nuxt.config.ts` file.
+You can add the MailChannels **API key** and **DKIM** settings to the `runtimeConfig` property in `nuxt.config.ts` file.
+
+If you want to use a default global sender email and name for all your email transactions, you can set it in the `mailchannels` app options property in your `nuxt.config.ts` file.
 
 ```ts
 export default defineNuxtConfig({
+  // Runtime config
   runtimeConfig: {
     mailchannels: {
       apiKey: '',
@@ -58,17 +62,28 @@ export default defineNuxtConfig({
       },
     },
   },
+  // Set the default sender email and name for all your email transactions
+  mailchannels: {
+    from: {
+      email: 'custom@example.com',
+      name: 'Custom Name',
+    },
+  },
 })
 ```
 
-Use the environment variables to set your API key and DKIM settings.
+Use the environment variables to set your API key, DKIM settings and default global sender.
 
 ```sh
+# .env
 NUXT_MAILCHANNELS_API_KEY=
 
 NUXT_MAILCHANNELS_DKIM_DOMAIN=
 NUXT_MAILCHANNELS_DKIM_PRIVATE_KEY=
 NUXT_MAILCHANNELS_DKIM_SELECTOR=
+
+NUXT_MAILCHANNELS_FROM_EMAIL=
+NUXT_MAILCHANNELS_FROM_NAME=
 ```
 
 ## Server utils
@@ -83,6 +98,9 @@ const mailchannels = useMailChannels(event)
 ## Email Send API
 
 The `send` method sends an email using the MailChannels API. It returns a promise that resolves to a boolean indicating the success or failure of the email sending operation.
+
+> [!IMPORTANT]
+> If you set the `from` property in the `send` method, it will override the default global sender email and name set in the `nuxt.config.ts` file.
 
 ### Arguments
 

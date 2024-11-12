@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "webhook-mailchannels-playground",
+  "name": "mailchannels-playground",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",
@@ -8,7 +8,6 @@
     "generate": "nuxi generate"
   },
   "dependencies": {
-    "nuxt": "^3.14.159",
-    "nuxt-webhook-validators": "latest"
+    "nuxt": "^3.14.159"
   }
 }

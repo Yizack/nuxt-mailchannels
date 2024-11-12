@@ -1,4 +1,5 @@
 import type { RuntimeConfig } from '@nuxt/schema'
+import type { NuxtMailChannelsOptions } from '../../types'
 import { Email } from './email'
 
 export class MailChannels {
@@ -8,7 +9,7 @@ export class MailChannels {
   private readonly emailAPI = new Email(this)
   readonly send = this.emailAPI.send.bind(this.emailAPI)
 
-  constructor(protected readonly config: RuntimeConfig['mailchannels']) {
+  constructor(protected readonly config: RuntimeConfig['mailchannels'] & NuxtMailChannelsOptions) {
     if (!this.config.apiKey) throw new Error('Missing MailChannels API key.')
 
     this.headers = {

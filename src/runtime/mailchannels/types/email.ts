@@ -103,7 +103,7 @@ export interface MailChannelsEmailOptions {
    * @example
    * from: 'email@example.com'
    */
-  from: MailChannelsEmailRecipient | string
+  from?: MailChannelsEmailRecipient | string
   /**
    * The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties.
    * @example

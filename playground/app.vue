@@ -1,3 +1,3 @@
 <template>
-  <div>Mailchannels</div>
+  <div>MailChannels</div>
 </template>

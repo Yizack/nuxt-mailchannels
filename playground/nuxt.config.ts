@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   modules: [
-    'nuxt-mailchannels',
+    '../src/module',
   ],
   imports: {
     autoImport: true,
@@ -17,4 +17,9 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2024-11-11',
+  mailchannels: {
+    from: {
+      email: 'custom@example.com',
+    },
+  },
 })

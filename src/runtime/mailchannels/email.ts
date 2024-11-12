@@ -1,4 +1,4 @@
-import { normalizeRecipients } from './helpers'
+import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './helpers'
 import type { MailChannelsEmailOptions, MailChannelsEmailSend } from './types/email'
 import type { MailChannels } from './index'
 
@@ -26,20 +26,21 @@ export class Email {
    * ```
    */
   async send(payload: MailChannelsEmailOptions, dryRun = false) {
-    console.log(this.mailchannels)
+    const { from, to } = ensureToAndFrom(this.mailchannels, payload.from, payload.to)
+
     const body = JSON.stringify({
       attachments: payload.attachments,
       personalizations: [{
-        bcc: payload.bcc ? normalizeRecipients(payload.bcc) : undefined,
-        cc: payload.cc ? normalizeRecipients(payload.cc) : undefined,
-        to: normalizeRecipients(payload.to),
+        bcc: normalizeArrayRecipients(payload.bcc),
+        cc: normalizeArrayRecipients(payload.cc),
+        to,
         dkim_domain: this.mailchannels['config'].dkim.domain || undefined,
         dkim_private_key: this.mailchannels['config'].dkim.privateKey || undefined,
         dkim_selector: this.mailchannels['config'].dkim.selector || undefined,
         dynamic_template_data: payload.mustaches,
       }],
-      reply_to: typeof payload.replyTo === 'string' ? { email: payload.replyTo } : payload.replyTo,
-      from: typeof payload.from === 'string' ? { email: payload.from } : payload.from,
+      reply_to: normalizeRecipient(payload.replyTo),
+      from,
       subject: payload.subject,
       content: [{
         type: 'text/html',

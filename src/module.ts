@@ -1,8 +1,8 @@
 import { defineNuxtModule, createResolver, addServerImportsDir } from '@nuxt/kit'
 import { defu } from 'defu'
+import type { ModuleOptions, NuxtMailChannelsOptions } from './types'
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-export interface ModuleOptions {}
+export type { ModuleOptions, NuxtMailChannelsOptions as RuntimeOptions }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
@@ -12,7 +12,12 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt: '>=3.0.0',
     },
   },
-  defaults: {},
+  defaults: {
+    from: {
+      email: process.env.NUXT_MAILCHANNELS_FROM_EMAIL,
+      name: process.env.NUXT_MAILCHANNELS_FROM_NAME,
+    },
+  },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
     addServerImportsDir(resolve('./runtime/server/utils'))
@@ -27,5 +32,10 @@ export default defineNuxtModule<ModuleOptions>({
         privateKey: '',
       },
     })
+
+    nuxt.options.appConfig.mailchannels = Object.assign(
+      nuxt.options.appConfig.mailchannels || {},
+      options,
+    )
   },
 })
