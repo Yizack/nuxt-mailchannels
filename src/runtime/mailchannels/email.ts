@@ -28,7 +28,7 @@ export class Email {
   async send(payload: MailChannelsEmailOptions, dryRun = false) {
     const { from, to } = ensureToAndFrom(this.mailchannels, payload.from, payload.to)
 
-    const body = JSON.stringify({
+    const body = {
       attachments: payload.attachments,
       personalizations: [{
         bcc: normalizeArrayRecipients(payload.bcc),
@@ -47,7 +47,7 @@ export class Email {
         value: payload.html,
         template_type: payload.mustaches ? 'mustache' : undefined,
       }],
-    } satisfies MailChannelsEmailSend)
+    } satisfies MailChannelsEmailSend
 
     return $fetch('/tx/v1/send', {
       baseURL: this.mailchannels['baseUrl'],
