@@ -11,11 +11,11 @@ MailChannels Email API integration for Nuxt
 
 ## Features
 
-- Send emails using MailChannels API
+- Send emails using [MailChannels Email API](https://docs.mailchannels.net/email-api)
 - Works on the edge
 - Exposed server utils
 - Email DKIM signing
-- Default sender email and name
+- Default global sender email and name
 
 ## Requirements
 
