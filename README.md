@@ -9,6 +9,23 @@ Simple MailChannels Email API integration for Nuxt.
 
 - [✨ Release Notes](CHANGELOG.md)
 
+## Contents
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Quick setup](#quick-setup)
+- [Configuration](#configuration)
+- [Server utils](#server-utils)
+- [Send method](#send-method)
+  - [Arguments](#arguments)
+  - [Options](#options)
+- [Examples](#examples)
+  - [Using object recipients (recommended)](#using-object-recipients-recommended)
+  - [Using string recipients](#using-string-recipients)
+  - [Array of recipients](#array-of-recipients)
+  - [Using mustache templates](#using-mustache-templates)
+  - [Dry run](#dry-run)
+
 ## Features
 
 - Send emails using [MailChannels Email API](https://docs.mailchannels.net/email-api)
@@ -26,7 +43,7 @@ Simple MailChannels Email API integration for Nuxt.
 > [!WARNING]
 > This module only works with a Nuxt server running as it uses utils for server API routes (`nuxt build`). This means that you cannot use this module with `nuxt generate`.
 
-## Quick Setup
+## Quick setup
 
 1. Add `nuxt-mailchannels` dependency to your project
 
@@ -96,7 +113,7 @@ The following helpers are auto-imported in your `server/` directory.
 const mailchannels = useMailChannels(event)
 ```
 
-## Email Send API
+## Send method
 
 The `send` method sends an email using the MailChannels API. It returns a promise that resolves to a boolean indicating the success or failure of the email sending operation.
 
@@ -110,7 +127,7 @@ The `send` method sends an email using the MailChannels API. It returns a promis
 | `options` | [`MailChannelsEmailOptions`](#send-options) | The email options to send |
 | `dryRun` | `boolean` | When set to true, the message will not be sent. Instead, the fully rendered message will be printed to the console. This can be useful for testing. Defaults to `false` |
 
-### Send options
+### Options
 
 Available options for the `send` method.
 
@@ -233,11 +250,28 @@ export default defineEventHandler(async (event) => {
     mustaches: {
       world: 'World',
     },
-  }, true)
+  })
 
   return { response }
 })
+```
 
+### Dry run
+
+You can set the `dryRun` argument to test your email without sending it. It will print the fully rendered message to the console.
+
+```ts
+export default defineEventHandler(async (event) => {
+  const mailchannels = useMailChannels(event)
+  const response = await mailchannels.send({
+    to: 'to@example.com',
+    from: 'from@example.com',
+    subject: 'Test',
+    html: '<p>Test</p>',
+  }, true) // <-- `true` = dryRun enabled
+
+  return { response }
+})
 ```
 
 # Development
