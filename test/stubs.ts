@@ -15,9 +15,7 @@ export const stubSendAPI = () => {
     const response = {
       status: 202,
       statusText: 'Success',
-      _data: {
-        data: [] as string[],
-      },
+      data: undefined as string[] | undefined,
     }
 
     let isError = false
@@ -44,13 +42,15 @@ export const stubSendAPI = () => {
     if (query && query['dry-run']) {
       response.status = 200
       response.statusText = 'OK'
-      response._data.data.push('dry-run response')
+      response.data = ['dry-run response']
     }
 
     if (typeof onResponse === 'function') {
       onResponse({ response } as never)
     }
 
-    return resolve(void 0)
+    return resolve({
+      data: response.data,
+    })
   }))
 }

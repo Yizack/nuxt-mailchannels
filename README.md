@@ -20,6 +20,7 @@ Simple MailChannels Email API integration for Nuxt.
 - [Send method](#send-method)
   - [Arguments](#arguments)
   - [Options](#options)
+  - [Response](#response)
 - [Examples](#examples)
   - [Using object recipients (recommended)](#using-object-recipients-recommended)
   - [Using string recipients](#using-string-recipients)
@@ -114,6 +115,24 @@ The following helpers are auto-imported in your `server/` directory.
 const mailchannels = useMailChannels(event)
 ```
 
+### Simple usage
+
+```ts
+const mailchannels = useMailChannels(event)
+await mailchannels.send({
+  to: {
+    email: 'to@example.com',
+    name: 'Example 1'
+  },
+  from: {
+    email: 'from@example.com',
+    name: 'Example 2'
+  },
+  subject: 'Your subject',
+  html: '<p>Your email content</p>',
+})
+```
+
 ## Send method
 
 The `send` method sends an email using the MailChannels API. It returns a promise that resolves to a boolean indicating the success or failure of the email sending operation.
@@ -125,24 +144,34 @@ The `send` method sends an email using the MailChannels API. It returns a promis
 
 | Argument | Type | Description |
 | --- | --- | --- |
-| `options` | [`MailChannelsEmailOptions`](#send-options) | The email options to send |
-| `dryRun` | `boolean` | When set to true, the message will not be sent. Instead, the fully rendered message will be printed to the console. This can be useful for testing. Defaults to `false` |
+| `options` | [`Options`](#send-options) | The email options to send |
+| `dryRun` | `boolean` | When set to `true`, the message will not be sent. Instead, the fully rendered message will be returned in the `data` property of the response. The default value is `false`. |
 
 ### Options
 
 Available options for the `send` method.
 
-| Property | Description |
-| --- | --- |
-| `attachments` | An array of attachments to add to the email. Each attachment should be an object with `filename`, `content`, and `type` properties. |
-| `bcc` | The BCC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. |
-| `cc` | The CC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. |
-| `to` | The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. |
-| `from` | The sender of the email. Can be a string or an object with `email` and `name` properties. |
-| `replyTo` | The email address to reply to. Can be a string or an object with `email` and `name` properties. |
-| `subject` | The subject of the email. |
-| `html` | The content of the email. |
-| `mustaches` | Data to be used if the email is a mustache template, key-value pairs of variables to set for template rendering. Keys must be strings. |
+| Property | Description | Required |
+| --- | --- | --- |
+| `attachments` | An array of attachments to add to the email. Each attachment should be an object with `filename`, `content`, and `type` properties. | ❌ |
+| `bcc` | The BCC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ❌ |
+| `cc` | The CC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ❌ |
+| `to` | The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ✅ |
+| `from` | The sender of the email. Can be a string or an object with `email` and `name` properties. | ❌ |
+| `replyTo` | The email address to reply to. Can be a string or an object with `email` and `name` properties. | ❌ |
+| `subject` | The subject of the email. | ✅ |
+| `html` | The content of the email. | ✅ |
+| `mustaches` | Data to be used if the email is a mustache template, key-value pairs of variables to set for template rendering. Keys must be strings. | ❌ |
+
+### Response
+
+The `send` method returns a promise that resolves to an object with the following properties.
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `success` | `boolean` | Indicates if the email was sent successfully. |
+| `payload` | `object` | The payload sent to the MailChannels Email API. In production, DKIM data (`dkim_domain`, `dkim_private_key`, `dkim_selector`) is redacted for security reasons. |
+| `data` | `string[]` or `undefined` | The fully rendered message if the `dryRun` argument is set to `true`. |
 
 
 ## Examples
@@ -158,7 +187,7 @@ This is the best way to add names to the recipients.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+  const { success } = await mailchannels.send({
     to: {
       email: 'to@example.com',
       name: 'Example 1'
@@ -170,7 +199,7 @@ export default defineEventHandler(async (event) => {
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
-  return { response }
+  return { success }
 })
 ```
 
@@ -182,13 +211,13 @@ This is the simplest way to send an email.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+  const { success } = await mailchannels.send({
     to: 'to@example.com',
     from: 'from@example.com',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
-  return { response }
+  return { success }
 })
 ```
 
@@ -199,7 +228,7 @@ You can also send an email to multiple recipients.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+  const { success } = await mailchannels.send({
     to: [
       {
         email: 'to1@example.com',
@@ -217,7 +246,7 @@ export default defineEventHandler(async (event) => {
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
-  return { response }
+  return { success }
 })
 ```
 
@@ -226,13 +255,13 @@ or
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+  const { success } = await mailchannels.send({
     to: ['to1@example.com', 'to2@example.com'],
     from: 'from@example.com',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
-  return { response }
+  return { success }
 })
 ```
 
@@ -243,7 +272,7 @@ You can use the `mustaches` property to render mustache templates.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+  const { success } = await mailchannels.send({
     to: 'to@example.com',
     from: 'from@example.com',
     subject: 'Mustaches test',
@@ -253,13 +282,13 @@ export default defineEventHandler(async (event) => {
     },
   })
 
-  return { response }
+  return { success }
 })
 ```
 
 ### Dry run
 
-You can set the `dryRun` argument to test your email without sending it. It will print the fully rendered message to the console.
+You can set the `dryRun` argument to test your email without sending it. It will return the fully rendered message in the `data` property of the response.
 
 ```ts
 export default defineEventHandler(async (event) => {
@@ -271,7 +300,7 @@ export default defineEventHandler(async (event) => {
     html: '<p>Test</p>',
   }, true) // <-- `true` = dryRun enabled
 
-  return { response }
+  return response
 })
 ```
 

@@ -35,7 +35,7 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response).toBe(true)
+    expect(response.success).toBe(true)
   })
 
   it('array recipients', async () => {
@@ -44,7 +44,7 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response).toBe(true)
+    expect(response.success).toBe(true)
   })
 
   it('string recipients', async () => {
@@ -53,7 +53,7 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response).toBe(true)
+    expect(response.success).toBe(true)
   })
 
   it('override from', async () => {
@@ -63,7 +63,9 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response).toBe(true)
+    expect(response.success).toBe(true)
+    expect(response.payload.from).toStrictEqual(fake.from)
+    expect(response.data).toBeUndefined()
   })
 
   it('dr-run', async () => {
@@ -72,6 +74,7 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       html: fake.html,
     }, true)
-    expect(response).toBe(true)
+    expect(response.success).toBe(true)
+    expect(response.data).toStrictEqual(['dry-run response'])
   })
 })

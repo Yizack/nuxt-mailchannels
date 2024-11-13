@@ -15,13 +15,13 @@ export class Email {
    * // Inside an API route handler
    * export default defineEventHandler(async (event) => {
    *   const mailchannels = useMailChannels(event)
-   *   await mailchannels.send({
+   *   const { success } = await mailchannels.send({
    *     to: 'to@example.com',
    *     from: 'from@example.com',
    *     subject: 'Test',
    *     html: 'Test',
    *   })
-   *   return { response }
+   *   return { success }
    * })
    * ```
    */
@@ -49,7 +49,7 @@ export class Email {
       }],
     } satisfies MailChannelsEmailBody
 
-    return $fetch('/tx/v1/send', {
+    const response = await $fetch<{ data: string[] }>('/tx/v1/send', {
       baseURL: this.mailchannels['baseURL'],
       headers: this.mailchannels['headers'],
       method: 'POST',
@@ -58,8 +58,6 @@ export class Email {
       onResponse: ({ response }) => {
         if (response.status === 200) {
           console.info(`[MailChannels] [${response.status}] Send:`, response.statusText)
-          const formattedData = response._data.data.map((item: string) => item.split('\r\n').map(line => line.trim()).join('\n'))
-          formattedData.forEach((item: string) => console.info(`[MailChannels] [response]`, item))
         }
       },
       onResponseError: async ({ response }) => {
@@ -72,6 +70,19 @@ export class Email {
           console.error(`[MailChannels] [${response.status}] Send:`, response.statusText, body.errors.join(', '))
         }
       },
-    }).then(() => true).catch(() => false)
+    }).catch(() => null)
+
+    // Redact DKIM values in production to prevent leaks
+    if (!import.meta.dev && this.mailchannels['config'].dkim) {
+      body.personalizations[0].dkim_domain = 'REDACTED'
+      body.personalizations[0].dkim_private_key = 'REDACTED'
+      body.personalizations[0].dkim_selector = 'REDACTED'
+    }
+
+    return {
+      success: response !== null,
+      payload: body,
+      data: response?.data,
+    }
   }
 }
