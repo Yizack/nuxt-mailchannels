@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.2
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.1...v0.1.2)
+
+### 💅 Refactors
+
+- **types:** Fixes send method jsdoc and improves type generation ([e86ad27](https://github.com/Yizack/nuxt-mailchannels/commit/e86ad27))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.1.1
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.0...v0.1.1)
