@@ -48,6 +48,8 @@ export class Email {
       }],
     }
 
+    let success = true
+
     const response = await $fetch<{ data: string[] }>('/tx/v1/send', {
       baseURL: this.mailchannels['baseURL'],
       headers: this.mailchannels['headers'],
@@ -60,6 +62,7 @@ export class Email {
         }
       },
       onResponseError: async ({ response }) => {
+        success = false
         if (response.status !== 500 && response.status !== 502) {
           console.error(`[MailChannels] [${response.status}] Send:`, response.statusText)
           return
@@ -79,7 +82,7 @@ export class Email {
     }
 
     return {
-      success: response !== null,
+      success,
       payload,
       data: response?.data,
     }
