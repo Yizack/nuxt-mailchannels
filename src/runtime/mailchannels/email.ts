@@ -8,7 +8,7 @@ export class Email {
   /**
    * Send an email using MailChannels Email API
    * @param options - The email options to send
-   * @param dryRun - When set to true, the message will not be sent. Instead, the fully rendered message will be printed to the console. This can be useful for testing. Defaults to `false`.
+   * @param dryRun - When set to `true`, the message will not be sent. Instead, the fully rendered message will be returned in the `data` property of the response. The default value is `false`.
    * @returns Promise<boolean>
    * @example
    * ```ts
