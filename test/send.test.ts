@@ -25,6 +25,12 @@ describe('useMailChannels send', () => {
     },
     subject: 'Test',
     html: '<p>Hello World</p>',
+    mustaches: {
+      html: '<p>Hello {{ world }}</p>',
+      data: {
+        world: 'World',
+      },
+    },
   }
 
   const mailchannels = useMailChannels()
@@ -76,5 +82,16 @@ describe('useMailChannels send', () => {
     }, true)
     expect(response.success).toBe(true)
     expect(response.data).toStrictEqual(['dry-run response'])
+  })
+
+  it('mustaches data', async () => {
+    const response = await mailchannels.send({
+      to: fake.to.string,
+      subject: fake.subject,
+      html: fake.mustaches.html,
+      mustaches: fake.mustaches.data,
+    }, true)
+    expect(response.success).toBe(true)
+    expect(response.data![0]).toContain(fake.mustaches.data.world)
   })
 })

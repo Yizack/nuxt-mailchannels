@@ -42,7 +42,15 @@ export const stubSendAPI = () => {
     if (query && query['dry-run']) {
       response.status = 200
       response.statusText = 'OK'
-      response.data = ['dry-run response']
+      let dryRunResponse = 'dry-run response'
+      if (body.personalizations[0].dynamic_template_data) {
+        const entries = Object.entries(body.personalizations[0].dynamic_template_data)
+        for (const [key, value] of entries) {
+          dryRunResponse = dryRunResponse + ` {{ ${key} }}`
+          dryRunResponse = dryRunResponse.replace(`{{ ${key} }}`, value as string)
+        }
+      }
+      response.data = [dryRunResponse]
     }
 
     if (typeof onResponse === 'function') {
