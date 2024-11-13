@@ -7,7 +7,7 @@ export class Email {
 
   /**
    * Send an email using MailChannels Email API
-   * @param payload - The email payload
+   * @param options - The email options to send
    * @param dryRun - When set to true, the message will not be sent. Instead, the fully rendered message will be printed to the console. This can be useful for testing. Defaults to `false`.
    * @returns Promise<boolean>
    * @example
@@ -25,27 +25,27 @@ export class Email {
    * })
    * ```
    */
-  async send(payload: MailChannelsEmailOptions, dryRun = false) {
-    const { from, to } = ensureToAndFrom(this.mailchannels, payload.from, payload.to)
+  async send(options: MailChannelsEmailOptions, dryRun = false) {
+    const { from, to } = ensureToAndFrom(this.mailchannels, options.from, options.to)
 
     const body = {
-      attachments: payload.attachments,
+      attachments: options.attachments,
       personalizations: [{
-        bcc: normalizeArrayRecipients(payload.bcc),
-        cc: normalizeArrayRecipients(payload.cc),
+        bcc: normalizeArrayRecipients(options.bcc),
+        cc: normalizeArrayRecipients(options.cc),
         to,
         dkim_domain: this.mailchannels['config'].dkim.domain || undefined,
         dkim_private_key: this.mailchannels['config'].dkim.privateKey || undefined,
         dkim_selector: this.mailchannels['config'].dkim.selector || undefined,
-        dynamic_template_data: payload.mustaches,
+        dynamic_template_data: options.mustaches,
       }],
-      reply_to: normalizeRecipient(payload.replyTo),
+      reply_to: normalizeRecipient(options.replyTo),
       from,
-      subject: payload.subject,
+      subject: options.subject,
       content: [{
         type: 'text/html',
-        value: payload.html,
-        template_type: payload.mustaches ? 'mustache' : undefined,
+        value: options.html,
+        template_type: options.mustaches ? 'mustache' : undefined,
       }],
     } satisfies MailChannelsEmailBody
 
