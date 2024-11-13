@@ -2,7 +2,7 @@ import { defineNuxtModule, createResolver, addServerImportsDir } from '@nuxt/kit
 import { defu } from 'defu'
 import type { ModuleOptions, NuxtMailChannelsOptions } from './types'
 
-export type { ModuleOptions, NuxtMailChannelsOptions as RuntimeOptions }
+export type { ModuleOptions, NuxtMailChannelsOptions }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
