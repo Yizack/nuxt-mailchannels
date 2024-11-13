@@ -49,7 +49,7 @@ export interface MailChannelsEmailTrackingSettings {
   open_tracking?: boolean
 }
 
-export interface MailChannelsEmailSend {
+export interface MailChannelsEmailBody {
   attachments?: MailChannelsEmailAttachment[]
   content: MailChannelsEmailContent[]
   from: MailChannelsEmailRecipient
@@ -57,7 +57,7 @@ export interface MailChannelsEmailSend {
   mailfrom?: MailChannelsEmailRecipient
   personalizations: MailChannelsEmailPersonalization[]
   reply_to?: MailChannelsEmailRecipient
-  subject?: string
+  subject: string
   tracking_settings?: MailChannelsEmailTrackingSettings
 }
 

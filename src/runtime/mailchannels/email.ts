@@ -1,5 +1,5 @@
 import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './helpers'
-import type { MailChannelsEmailOptions, MailChannelsEmailSend } from './types/email'
+import type { MailChannelsEmailOptions, MailChannelsEmailBody } from './types/email'
 import type { MailChannels } from './index'
 
 export class Email {
@@ -47,15 +47,15 @@ export class Email {
         value: payload.html,
         template_type: payload.mustaches ? 'mustache' : undefined,
       }],
-    } satisfies MailChannelsEmailSend
+    } satisfies MailChannelsEmailBody
 
     return $fetch('/tx/v1/send', {
-      baseURL: this.mailchannels['baseUrl'],
+      baseURL: this.mailchannels['baseURL'],
       headers: this.mailchannels['headers'],
       method: 'POST',
       query: { 'dry-run': dryRun },
       body,
-      onResponse: async ({ response }) => {
+      onResponse: ({ response }) => {
         if (response.status === 200) {
           console.info(`[MailChannels] [${response.status}] Send:`, response.statusText)
           const formattedData = response._data.data.map((item: string) => item.split('\r\n').map(line => line.trim()).join('\n'))
