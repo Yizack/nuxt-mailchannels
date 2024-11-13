@@ -1,6 +1,27 @@
 # Changelog
 
 
+## v0.1.3
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.2...v0.1.3)
+
+### 🩹 Fixes
+
+- Success response ([e20f68c](https://github.com/Yizack/nuxt-mailchannels/commit/e20f68c))
+
+### 📖 Documentation
+
+- Add social card ([0d9864f](https://github.com/Yizack/nuxt-mailchannels/commit/0d9864f))
+- Fix send method info ([802a0e9](https://github.com/Yizack/nuxt-mailchannels/commit/802a0e9))
+
+### 🏡 Chore
+
+- Satisfies operator not needed ([7287279](https://github.com/Yizack/nuxt-mailchannels/commit/7287279))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.1.2
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.1...v0.1.2)
