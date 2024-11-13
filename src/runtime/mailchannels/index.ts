@@ -7,7 +7,7 @@ export class MailChannels {
   protected readonly baseURL = 'https://api.mailchannels.net'
 
   private readonly emailAPI = new Email(this)
-  readonly send = this.emailAPI.send.bind(this.emailAPI)
+  readonly send: Email['send'] = this.emailAPI.send.bind(this.emailAPI)
 
   constructor(protected readonly config: RuntimeConfig['mailchannels'] & NuxtMailChannelsOptions) {
     if (!this.config.apiKey) throw new Error('Missing MailChannels API key.')

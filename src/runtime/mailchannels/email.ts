@@ -1,5 +1,5 @@
 import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './helpers'
-import type { MailChannelsEmailOptions, MailChannelsEmailBody } from './types/email'
+import type { MailChannelsEmailOptions, MailChannelsEmailPayload } from './types/email'
 import type { MailChannels } from './index'
 
 export class Email {
@@ -9,7 +9,6 @@ export class Email {
    * Send an email using MailChannels Email API
    * @param options - The email options to send
    * @param dryRun - When set to `true`, the message will not be sent. Instead, the fully rendered message will be returned in the `data` property of the response. The default value is `false`.
-   * @returns Promise<boolean>
    * @example
    * ```ts
    * // Inside an API route handler
@@ -28,7 +27,7 @@ export class Email {
   async send(options: MailChannelsEmailOptions, dryRun = false) {
     const { from, to } = ensureToAndFrom(this.mailchannels, options.from, options.to)
 
-    const body = {
+    const payload: MailChannelsEmailPayload = {
       attachments: options.attachments,
       personalizations: [{
         bcc: normalizeArrayRecipients(options.bcc),
@@ -47,14 +46,14 @@ export class Email {
         value: options.html,
         template_type: options.mustaches ? 'mustache' : undefined,
       }],
-    } satisfies MailChannelsEmailBody
+    } satisfies MailChannelsEmailPayload
 
     const response = await $fetch<{ data: string[] }>('/tx/v1/send', {
       baseURL: this.mailchannels['baseURL'],
       headers: this.mailchannels['headers'],
       method: 'POST',
       query: { 'dry-run': dryRun },
-      body,
+      body: payload,
       onResponse: ({ response }) => {
         if (response.status === 200) {
           console.info(`[MailChannels] [${response.status}] Send:`, response.statusText)
@@ -74,14 +73,14 @@ export class Email {
 
     // Redact DKIM values in production to prevent leaks
     if (!import.meta.dev && this.mailchannels['config'].dkim) {
-      body.personalizations[0].dkim_domain = 'REDACTED'
-      body.personalizations[0].dkim_private_key = 'REDACTED'
-      body.personalizations[0].dkim_selector = 'REDACTED'
+      payload.personalizations[0].dkim_domain = 'REDACTED'
+      payload.personalizations[0].dkim_private_key = 'REDACTED'
+      payload.personalizations[0].dkim_selector = 'REDACTED'
     }
 
     return {
       success: response !== null,
-      payload: body,
+      payload,
       data: response?.data,
     }
   }

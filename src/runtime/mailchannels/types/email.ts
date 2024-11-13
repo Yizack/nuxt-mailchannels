@@ -49,7 +49,7 @@ export interface MailChannelsEmailTrackingSettings {
   open_tracking?: boolean
 }
 
-export interface MailChannelsEmailBody {
+export interface MailChannelsEmailPayload {
   attachments?: MailChannelsEmailAttachment[]
   content: MailChannelsEmailContent[]
   from: MailChannelsEmailRecipient

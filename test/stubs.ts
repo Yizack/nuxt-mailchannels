@@ -1,11 +1,11 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions, ResponseType } from 'ofetch'
-import type { MailChannelsEmailBody } from '../src/runtime/mailchannels/types/email'
+import type { MailChannelsEmailPayload } from '../src/runtime/mailchannels/types/email'
 
 export const stubSendAPI = () => {
   vi.stubGlobal('$fetch', (url: FetchRequest, options: FetchOptions<Partial<ResponseType>, 'json'>) => new Promise((resolve, reject) => {
     const { baseURL, method, headers, query, onResponse, onResponseError } = options
-    const body = options.body as MailChannelsEmailBody
+    const payload = options.body as MailChannelsEmailPayload
 
     const apiKey = (headers as Record<string, string>)?.['X-API-Key']
 
@@ -26,7 +26,7 @@ export const stubSendAPI = () => {
       isError = true
     }
 
-    if (!body) {
+    if (!payload) {
       response.status = 400
       response.statusText = 'Bad Request'
       isError = true
@@ -43,8 +43,8 @@ export const stubSendAPI = () => {
       response.status = 200
       response.statusText = 'OK'
       let dryRunResponse = 'dry-run response'
-      if (body.personalizations[0].dynamic_template_data) {
-        const entries = Object.entries(body.personalizations[0].dynamic_template_data)
+      if (payload.personalizations[0].dynamic_template_data) {
+        const entries = Object.entries(payload.personalizations[0].dynamic_template_data)
         for (const [key, value] of entries) {
           dryRunResponse = dryRunResponse + ` {{ ${key} }}`
           dryRunResponse = dryRunResponse.replace(`{{ ${key} }}`, value as string)
