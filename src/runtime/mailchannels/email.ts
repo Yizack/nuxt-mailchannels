@@ -46,7 +46,7 @@ export class Email {
         value: options.html,
         template_type: options.mustaches ? 'mustache' : undefined,
       }],
-    } satisfies MailChannelsEmailPayload
+    }
 
     const response = await $fetch<{ data: string[] }>('/tx/v1/send', {
       baseURL: this.mailchannels['baseURL'],
