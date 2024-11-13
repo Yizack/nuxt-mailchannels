@@ -275,8 +275,11 @@ export default defineEventHandler(async (event) => {
 })
 ```
 
-# Development
+## Contribution
 
+<details>
+  <summary>Local development</summary>
+  
 ```sh
 # Install dependencies
 npm install
@@ -303,6 +306,8 @@ npm run test:types
 # Release new version
 npm run release
 ```
+
+</details>
 
 <!-- Badges -->
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-mailchannels/latest.svg?style=flat&colorA=020420&colorB=00DC82
