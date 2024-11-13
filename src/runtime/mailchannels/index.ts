@@ -4,7 +4,7 @@ import { Email } from './email'
 
 export class MailChannels {
   protected readonly headers: Record<string, string>
-  protected readonly baseUrl = 'https://api.mailchannels.net'
+  protected readonly baseURL = 'https://api.mailchannels.net'
 
   private readonly emailAPI = new Email(this)
   readonly send = this.emailAPI.send.bind(this.emailAPI)
