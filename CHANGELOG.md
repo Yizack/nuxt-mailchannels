@@ -1,6 +1,39 @@
 # Changelog
 
 
+## v0.1.0
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.0.3...v0.1.0)
+
+### 💅 Refactors
+
+- **types:** Refactor mailchannels body type name ([119b6c9](https://github.com/Yizack/nuxt-mailchannels/commit/119b6c9))
+- ⚠️  Return `success`, `payload`, `data`  for the `send` method ([cdf5b35](https://github.com/Yizack/nuxt-mailchannels/commit/cdf5b35))
+
+### 📖 Documentation
+
+- Add content and improve readme ([52144e8](https://github.com/Yizack/nuxt-mailchannels/commit/52144e8))
+- Add playground link ([0a47db2](https://github.com/Yizack/nuxt-mailchannels/commit/0a47db2))
+- Contribution info ([6e44dc2](https://github.com/Yizack/nuxt-mailchannels/commit/6e44dc2))
+- Improve readme ([9bfde9a](https://github.com/Yizack/nuxt-mailchannels/commit/9bfde9a))
+
+### 🏡 Chore
+
+- Use normalize method for array of recipients ([85f1124](https://github.com/Yizack/nuxt-mailchannels/commit/85f1124))
+
+### ✅ Tests
+
+- Add tests ([b9de273](https://github.com/Yizack/nuxt-mailchannels/commit/b9de273))
+- Add mustaches data test ([88814fd](https://github.com/Yizack/nuxt-mailchannels/commit/88814fd))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Return `success`, `payload`, `data`  for the `send` method ([cdf5b35](https://github.com/Yizack/nuxt-mailchannels/commit/cdf5b35))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.0.3
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.0.2...v0.0.3)
