@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.1.1
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.0...v0.1.1)
+
+### 🩹 Fixes
+
+- **types:** Export options type as it is ([e8896be](https://github.com/Yizack/nuxt-mailchannels/commit/e8896be))
+
+### 💅 Refactors
+
+- **types:** Rename send argument to options ([2081395](https://github.com/Yizack/nuxt-mailchannels/commit/2081395))
+
+### 📖 Documentation
+
+- Fix dryRun jsdoc description ([84c2862](https://github.com/Yizack/nuxt-mailchannels/commit/84c2862))
+
+### 🏡 Chore
+
+- Updates ([931ab68](https://github.com/Yizack/nuxt-mailchannels/commit/931ab68))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.1.0
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.0.3...v0.1.0)
