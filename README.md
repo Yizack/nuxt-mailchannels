@@ -137,7 +137,7 @@ await mailchannels.send({
 
 ## Send method
 
-The `send` method sends an email using the MailChannels API. It returns a promise that resolves to a boolean indicating the success or failure of the email sending operation.
+The `send` method sends an email using the MailChannels API.
 
 > [!IMPORTANT]
 > If you set the `from` property in the `send` method, it will override the default global sender email and name set in the `nuxt.config.ts` file.
@@ -171,7 +171,7 @@ The `send` method returns a promise that resolves to an object with the followin
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `success` | `boolean` | Indicates if the email was sent successfully. |
+| `success` | `boolean` | Indicates the success or failure of the email sending operation. |
 | `payload` | `object` | The payload sent to the MailChannels Email API. In production, DKIM data (`dkim_domain`, `dkim_private_key`, `dkim_selector`) is redacted for security reasons. |
 | `data` | `string[]` or `undefined` | The fully rendered message if the `dryRun` argument is set to `true`. |
 
