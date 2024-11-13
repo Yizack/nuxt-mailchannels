@@ -1,3 +1,5 @@
+![nuxt-mailchanneñs](https://github.com/user-attachments/assets/e166777a-8279-4167-946f-fbf8a0c76b16)
+
 # Nuxt MailChannels
 
 [![npm version][npm-version-src]][npm-version-href]
