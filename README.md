@@ -142,10 +142,10 @@ The `send` method sends an email using the MailChannels API. It returns a promis
 
 ### Arguments
 
-| Argument | Type | Description |
-| --- | --- | --- |
-| `options` | [`Options`](#send-options) | The email options to send |
-| `dryRun` | `boolean` | When set to `true`, the message will not be sent. Instead, the fully rendered message will be returned in the `data` property of the response. The default value is `false`. |
+| Argument | Type | Description | Required |
+| --- | --- | --- | --- |
+| `options` | [`Options`](#send-options) | The email options to send | ✅ |
+| `dryRun` | `boolean` | When set to `true`, the message will not be sent. Instead, the fully rendered message will be returned in the `data` property of the response. The default value is `false`. | ❌ |
 
 ### Options
 
@@ -157,7 +157,7 @@ Available options for the `send` method.
 | `bcc` | The BCC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ❌ |
 | `cc` | The CC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ❌ |
 | `to` | The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ✅ |
-| `from` | The sender of the email. Can be a string or an object with `email` and `name` properties. | ❌ |
+| `from` | The sender of the email. Can be a string or an object with `email` and `name` properties. Required when the default global sender is not set. | 🟡 |
 | `replyTo` | The email address to reply to. Can be a string or an object with `email` and `name` properties. | ❌ |
 | `subject` | The subject of the email. | ✅ |
 | `html` | The content of the email. | ✅ |
