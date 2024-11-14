@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
 import { useMailChannels } from '../src/runtime/server/utils/mailchannels'
-import { stubSendAPI } from './stubs'
+import { stubSendAPI } from './stubs/send'
 import nuxtConfig from './fixtures/basic/nuxt.config'
 
 describe('useMailChannels send', () => {
@@ -42,6 +42,8 @@ describe('useMailChannels send', () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
+    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
+    expect(response.data).toBeUndefined()
   })
 
   it('array recipients', async () => {
@@ -51,6 +53,8 @@ describe('useMailChannels send', () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
+    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
+    expect(response.data).toBeUndefined()
   })
 
   it('string recipients', async () => {
@@ -60,6 +64,8 @@ describe('useMailChannels send', () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
+    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
+    expect(response.data).toBeUndefined()
   })
 
   it('override from', async () => {
@@ -74,13 +80,14 @@ describe('useMailChannels send', () => {
     expect(response.data).toBeUndefined()
   })
 
-  it('dr-run', async () => {
+  it('dry run', async () => {
     const response = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     }, true)
     expect(response.success).toBe(true)
+    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data).toStrictEqual(['dry-run response'])
   })
 
@@ -92,6 +99,26 @@ describe('useMailChannels send', () => {
       mustaches: fake.mustaches.data,
     }, true)
     expect(response.success).toBe(true)
+    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data![0]).toContain(fake.mustaches.data.world)
+  })
+
+  it('empty html bad request', async () => {
+    const response = await mailchannels.send({
+      to: fake.to.string,
+      subject: fake.subject,
+      html: '',
+    })
+    expect(response.success).toBe(false)
+    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
+    expect(response.data).toBeUndefined()
+  })
+
+  it('expected throw error', async () => {
+    // @ts-expect-error expect to throw error
+    await expect(() => mailchannels.send({
+      subject: fake.subject,
+      html: fake.html,
+    })).rejects.toThrowError()
   })
 })

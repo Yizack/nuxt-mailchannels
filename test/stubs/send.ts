@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions, ResponseType } from 'ofetch'
-import type { MailChannelsEmailPayload } from '../src/runtime/mailchannels/types/email'
+import type { MailChannelsEmailPayload } from '../../src/runtime/mailchannels/types/email'
 
 export const stubSendAPI = () => {
   vi.stubGlobal('$fetch', (url: FetchRequest, options: FetchOptions<Partial<ResponseType>, 'json'>) => new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ export const stubSendAPI = () => {
     const response = {
       status: 202,
       statusText: 'Success',
-      data: undefined as string[] | undefined,
+      data: undefined as string[] | undefined | null,
     }
 
     let isError = false
@@ -26,7 +26,7 @@ export const stubSendAPI = () => {
       isError = true
     }
 
-    if (!payload) {
+    if (!payload || !payload.content[0].value) {
       response.status = 400
       response.statusText = 'Bad Request'
       isError = true
@@ -57,8 +57,10 @@ export const stubSendAPI = () => {
       onResponse({ response } as never)
     }
 
-    return resolve({
-      data: response.data,
-    })
+    return response.status === 202
+      ? resolve(null)
+      : resolve({
+        data: response.data,
+      })
   }))
 }
