@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.1.4
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.3...v0.1.4)
+
+### 🏡 Chore
+
+- Custom logger ([5c5436e](https://github.com/Yizack/nuxt-mailchannels/commit/5c5436e))
+- Use private hash setup name ([55d7182](https://github.com/Yizack/nuxt-mailchannels/commit/55d7182))
+
+### ✅ Tests
+
+- Add more tests expect ([e03c0b9](https://github.com/Yizack/nuxt-mailchannels/commit/e03c0b9))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.1.3
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.2...v0.1.3)
