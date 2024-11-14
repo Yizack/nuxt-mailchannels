@@ -1,12 +1,12 @@
 import { ModuleLogger } from './utils/logger'
 import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './utils/helpers'
 import type { MailChannelsEmailOptions, MailChannelsEmailPayload } from './types/email'
-import type { MailChannels } from './index'
+import type { MailChannelsSetup } from './index'
 
 export class Email {
   private readonly name = 'Email'
 
-  constructor(private readonly mailchannels: MailChannels) {}
+  constructor(private readonly _setup: MailChannelsSetup) {}
 
   /**
    * Send an email using MailChannels Email API
@@ -30,7 +30,7 @@ export class Email {
   async send(options: MailChannelsEmailOptions, dryRun = false) {
     const logger = new ModuleLogger(this.name, 'send')
 
-    const { from, to } = ensureToAndFrom(this.mailchannels, options.from, options.to)
+    const { from, to } = ensureToAndFrom(this._setup.config, options.from, options.to)
 
     const payload: MailChannelsEmailPayload = {
       attachments: options.attachments,
@@ -38,9 +38,9 @@ export class Email {
         bcc: normalizeArrayRecipients(options.bcc),
         cc: normalizeArrayRecipients(options.cc),
         to,
-        dkim_domain: this.mailchannels['config'].dkim.domain || undefined,
-        dkim_private_key: this.mailchannels['config'].dkim.privateKey || undefined,
-        dkim_selector: this.mailchannels['config'].dkim.selector || undefined,
+        dkim_domain: this._setup.config.dkim.domain || undefined,
+        dkim_private_key: this._setup.config.dkim.privateKey || undefined,
+        dkim_selector: this._setup.config.dkim.selector || undefined,
         dynamic_template_data: options.mustaches,
       }],
       reply_to: normalizeRecipient(options.replyTo),
@@ -56,8 +56,8 @@ export class Email {
     let success = true
 
     const res = await $fetch<{ data: string[] }>('/tx/v1/send', {
-      baseURL: this.mailchannels['baseURL'],
-      headers: this.mailchannels['headers'],
+      baseURL: this._setup.baseURL,
+      headers: this._setup.headers,
       method: 'POST',
       query: { 'dry-run': dryRun },
       body: payload,
@@ -80,7 +80,7 @@ export class Email {
     }).catch(() => null)
 
     // Redact DKIM values in production to prevent leaks
-    if (!import.meta.dev && this.mailchannels['config'].dkim) {
+    if (!import.meta.dev && this._setup.config.dkim) {
       payload.personalizations[0].dkim_domain = 'REDACTED'
       payload.personalizations[0].dkim_private_key = 'REDACTED'
       payload.personalizations[0].dkim_selector = 'REDACTED'

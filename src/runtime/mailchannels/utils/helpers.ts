@@ -1,5 +1,5 @@
 import type { MailChannelsEmailRecipient } from '../types/email'
-import type { MailChannels } from '../index'
+import type { MailChannelsSetup } from '../index'
 
 export const normalizeRecipient = (recipient?: Partial<MailChannelsEmailRecipient> | string) => {
   if (typeof recipient === 'string') {
@@ -26,14 +26,14 @@ export const normalizeArrayRecipients = (recipients: MailChannelsEmailRecipient[
 }
 
 export const ensureToAndFrom = (
-  context: MailChannels,
+  config: MailChannelsSetup['config'],
   from: Partial<MailChannelsEmailRecipient> | string | undefined,
   to: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string | undefined,
 ) => {
   const normalizedFrom = normalizeRecipient(from)
   const fromDefaults = {
-    email: normalizedFrom?.email || context['config'].from.email || '',
-    name: normalizedFrom?.name || context['config'].from.name,
+    email: normalizedFrom?.email || config.from.email || '',
+    name: normalizedFrom?.name || config.from.name,
   }
   const toRecipients = normalizeArrayRecipients(to)
 

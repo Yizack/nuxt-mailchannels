@@ -2,20 +2,31 @@ import type { RuntimeConfig } from '@nuxt/schema'
 import type { NuxtMailChannelsOptions } from '../../types'
 import { Email } from './email'
 
+export interface MailChannelsSetup {
+  headers: Record<string, string>
+  baseURL: string
+  config: RuntimeConfig['mailchannels'] & NuxtMailChannelsOptions
+}
+
 export class MailChannels {
-  protected readonly headers: Record<string, string>
-  protected readonly baseURL = 'https://api.mailchannels.net'
+  #setup: MailChannelsSetup
 
-  private readonly emailAPI = new Email(this)
-  readonly send: Email['send'] = this.emailAPI.send.bind(this.emailAPI)
+  constructor(config: MailChannelsSetup['config']) {
+    if (!config.apiKey) throw new Error('Missing MailChannels API key.')
 
-  constructor(protected readonly config: RuntimeConfig['mailchannels'] & NuxtMailChannelsOptions) {
-    if (!this.config.apiKey) throw new Error('Missing MailChannels API key.')
-
-    this.headers = {
-      'X-API-Key': this.config.apiKey,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+    this.#setup = {
+      baseURL: 'https://api.mailchannels.net',
+      headers: {
+        'X-API-Key': config.apiKey,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      config,
     }
+  }
+
+  get send(): Email['send'] {
+    const email = new Email(this.#setup)
+    return email.send.bind(email)
   }
 }
