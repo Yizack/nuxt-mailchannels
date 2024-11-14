@@ -1,8 +1,11 @@
-import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './helpers'
+import { ModuleLogger } from './utils/logger'
+import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './utils/helpers'
 import type { MailChannelsEmailOptions, MailChannelsEmailPayload } from './types/email'
 import type { MailChannels } from './index'
 
 export class Email {
+  private readonly name = 'Email'
+
   constructor(private readonly mailchannels: MailChannels) {}
 
   /**
@@ -25,6 +28,8 @@ export class Email {
    * ```
    */
   async send(options: MailChannelsEmailOptions, dryRun = false) {
+    const logger = new ModuleLogger(this.name, 'send')
+
     const { from, to } = ensureToAndFrom(this.mailchannels, options.from, options.to)
 
     const payload: MailChannelsEmailPayload = {
@@ -50,7 +55,7 @@ export class Email {
 
     let success = true
 
-    const response = await $fetch<{ data: string[] }>('/tx/v1/send', {
+    const res = await $fetch<{ data: string[] }>('/tx/v1/send', {
       baseURL: this.mailchannels['baseURL'],
       headers: this.mailchannels['headers'],
       method: 'POST',
@@ -58,18 +63,18 @@ export class Email {
       body: payload,
       onResponse: ({ response }) => {
         if (response.status === 200) {
-          console.info(`[MailChannels] [${response.status}] Send:`, response.statusText)
+          logger.info(response.status, response.statusText)
         }
       },
       onResponseError: async ({ response }) => {
         success = false
         if (response.status !== 500 && response.status !== 502) {
-          console.error(`[MailChannels] [${response.status}] Send:`, response.statusText)
+          logger.info(response.status, response.statusText)
           return
         }
         const body = await response.json() as { errors: string[] }
         if (body && Array.isArray(body.errors)) {
-          console.error(`[MailChannels] [${response.status}] Send:`, response.statusText, body.errors.join(', '))
+          logger.error(response.status, response.statusText, body.errors)
         }
       },
     }).catch(() => null)
@@ -84,7 +89,7 @@ export class Email {
     return {
       success,
       payload,
-      data: response?.data,
+      data: res?.data,
     }
   }
 }

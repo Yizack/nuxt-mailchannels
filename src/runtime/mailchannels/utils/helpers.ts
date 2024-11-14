@@ -1,5 +1,5 @@
-import type { MailChannelsEmailRecipient } from './types/email'
-import type { MailChannels } from './index'
+import type { MailChannelsEmailRecipient } from '../types/email'
+import type { MailChannels } from '../index'
 
 export const normalizeRecipient = (recipient?: Partial<MailChannelsEmailRecipient> | string) => {
   if (typeof recipient === 'string') {
