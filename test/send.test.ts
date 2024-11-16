@@ -21,6 +21,7 @@ describe('useMailChannels send', () => {
         name: 'To Override',
       },
       string: 'to_override@example.com',
+      pairString: 'To Override <to_override@example.com>',
     },
     replyTo: { email: 'replyTo@example.com', name: 'ReplyTo Test' },
     subject: 'Test',
@@ -89,6 +90,17 @@ describe('useMailChannels send', () => {
     expect(response.success).toBe(true)
     expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data![0]).toContain(fake.mustaches.data.world)
+  })
+
+  it('name-address pair string', async () => {
+    const response = await mailchannels.send({
+      to: fake.to.pairString,
+      subject: fake.subject,
+      html: fake.html,
+    })
+    expect(response.success).toBe(true)
+    expect(response.payload.personalizations[0].to).toStrictEqual([fake.to.object])
+    expect(response.data).toBeUndefined()
   })
 
   it('replyTo', async () => {

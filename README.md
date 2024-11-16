@@ -29,8 +29,9 @@ Simple MailChannels Email API integration for Nuxt.
   - [Using object recipients (recommended)](#using-object-recipients-recommended)
   - [Using string recipients](#using-string-recipients)
   - [Array of recipients](#array-of-recipients)
-  - [Using mustache templates](#using-mustache-templates)
+  - [Mustache templates](#using-mustache-templates)
   - [Dry run](#dry-run)
+  - [Name-address pairs](#name-address-pairs)
 
 ## Features
 
@@ -332,6 +333,24 @@ export default defineEventHandler(async (event) => {
   }, true) // <-- `true` = dryRun enabled
 
   return response
+})
+```
+
+### Name-address pairs
+
+You can use name-address pairs string format.
+
+```ts
+export default defineEventHandler(async (event) => {
+  const mailchannels = useMailChannels(event)
+  const { success } = await mailchannels.send({
+    from: 'Sender Name <sender@example.com>',
+    to: 'Recipient Name <recipient@example.com>',
+    subject: 'Your subject',
+    html: '<p>Your email content</p>',
+  })
+
+  return { success }
 })
 ```
 
