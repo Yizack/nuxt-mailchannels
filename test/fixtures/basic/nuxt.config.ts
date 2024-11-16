@@ -16,9 +16,9 @@ export default defineNuxtConfig({
   serverDir: '../../../playground/server',
   future: { compatibilityVersion: 4 },
   mailchannels: {
-    from: {
-      email: 'test@example.com',
-      name: 'Test',
-    },
+    bcc: { email: 'bcc@example.com', name: 'BCC Test' },
+    cc: { email: 'cc@example.com', name: 'CC Test' },
+    from: { email: 'from@example.com', name: 'From Test' },
+    to: { email: 'to@example.com', name: 'To Test' },
   },
 })
