@@ -19,6 +19,8 @@ Simple MailChannels Email API integration for Nuxt.
 - [Quick setup](#quick-setup)
 - [Configuration](#configuration)
 - [Server utils](#server-utils)
+  - [TypeScript signature](#typescript-signature)
+  - [Simple usage](#simple-usage)
 - [Send method](#send-method)
   - [Arguments](#arguments)
   - [Options](#options)
@@ -130,6 +132,19 @@ The following helpers are auto-imported in your `server/` directory.
 // initialize a MailChannels instance
 const mailchannels = useMailChannels(event)
 ```
+
+### TypeScript signature
+  
+```ts
+declare const useMailChannels: (event?: H3Event) => MailChannels;
+
+MailChannels.send(options: MailChannelsEmailOptions, dryRun?: boolean): Promise<{
+  success: boolean;
+  payload: MailChannelsEmailPayload;
+  data: string[] | undefined;
+}>;
+```
+
 
 ### Simple usage
 
