@@ -13,9 +13,21 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {
+    bcc: {
+      email: process.env.NUXT_MAILCHANNELS_BCC_EMAIL,
+      name: process.env.NUXT_MAILCHANNELS_BCC_NAME,
+    },
+    cc: {
+      email: process.env.NUXT_MAILCHANNELS_CC_EMAIL,
+      name: process.env.NUXT_MAILCHANNELS_CC_NAME,
+    },
     from: {
       email: process.env.NUXT_MAILCHANNELS_FROM_EMAIL,
       name: process.env.NUXT_MAILCHANNELS_FROM_NAME,
+    },
+    to: {
+      email: process.env.NUXT_MAILCHANNELS_TO_EMAIL,
+      name: process.env.NUXT_MAILCHANNELS_TO_NAME,
     },
   },
   setup(options, nuxt) {

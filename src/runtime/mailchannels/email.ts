@@ -1,5 +1,5 @@
 import { ModuleLogger } from './utils/logger'
-import { normalizeRecipient, normalizeArrayRecipients, ensureToAndFrom } from './utils/helpers'
+import { normalizeRecipient, getOverrides } from './utils/helpers'
 import type { MailChannelsEmailOptions, MailChannelsEmailPayload } from './types/email'
 import type { MailChannelsSetup } from './index'
 
@@ -30,13 +30,13 @@ export class Email {
   async send(options: MailChannelsEmailOptions, dryRun = false) {
     const logger = new ModuleLogger(this.name, 'send')
 
-    const { from, to } = ensureToAndFrom(this._setup.config, options.from, options.to)
+    const { from, to, cc, bcc } = getOverrides(this._setup.config, options)
 
     const payload: MailChannelsEmailPayload = {
       attachments: options.attachments,
       personalizations: [{
-        bcc: normalizeArrayRecipients(options.bcc),
-        cc: normalizeArrayRecipients(options.cc),
+        bcc,
+        cc,
         to,
         dkim_domain: this._setup.config.dkim.domain || undefined,
         dkim_private_key: this._setup.config.dkim.privateKey || undefined,

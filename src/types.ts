@@ -1,25 +1,22 @@
+import type { MailChannelsEmailRecipient } from './runtime/mailchannels/types/email'
+
 export interface NuxtMailChannelsOptions {
   /**
-   * Sender settings
+   * Set default BCC
    */
-  from: {
-    /**
-     * Default email address
-     *
-     * Default email address to use when sending emails
-     *
-     * @default undefined
-     */
-    email?: string
-    /**
-     * Default sender name
-     *
-     * Default name to use when sending emails
-     *
-     * @default undefined
-     */
-    name?: string
-  }
+  bcc: Partial<MailChannelsEmailRecipient> | MailChannelsEmailRecipient[] | string | string[] | undefined
+  /**
+   * Set default CC
+   */
+  cc: Partial<MailChannelsEmailRecipient> | MailChannelsEmailRecipient[] | string | string[] | undefined
+  /**
+   * Set a default sender
+   */
+  from: Partial<MailChannelsEmailRecipient> | string | undefined
+  /**
+   * Set default recipient
+   */
+  to: Partial<MailChannelsEmailRecipient> | MailChannelsEmailRecipient[] | string | string[] | undefined
 }
 
 export type ModuleOptions = NuxtMailChannelsOptions

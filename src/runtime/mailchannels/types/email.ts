@@ -118,7 +118,7 @@ export interface MailChannelsEmailOptions {
    * @example
    * to: 'email@example.com'
    */
-  to: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string
+  to?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string
   /**
    * A single `replyTo` recipient object, or a single email address.
    * @example

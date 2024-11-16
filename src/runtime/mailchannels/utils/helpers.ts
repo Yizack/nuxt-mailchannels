@@ -1,4 +1,4 @@
-import type { MailChannelsEmailRecipient } from '../types/email'
+import type { MailChannelsEmailRecipient, MailChannelsEmailOptions } from '../types/email'
 import type { MailChannelsSetup } from '../index'
 
 export const normalizeRecipient = (recipient?: Partial<MailChannelsEmailRecipient> | string) => {
@@ -13,7 +13,7 @@ export const normalizeRecipient = (recipient?: Partial<MailChannelsEmailRecipien
   return undefined
 }
 
-export const normalizeArrayRecipients = (recipients: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string | undefined) => {
+export const normalizeArrayRecipients = (recipients?: Partial<MailChannelsEmailRecipient> | MailChannelsEmailRecipient[] | string[] | string) => {
   if (!recipients) {
     return undefined
   }
@@ -22,28 +22,51 @@ export const normalizeArrayRecipients = (recipients: MailChannelsEmailRecipient[
     return [{ email: recipients }]
   }
 
-  return Array.isArray(recipients) ? recipients.map(recipient => normalizeRecipient(recipient)!) : [recipients]
+  return Array.isArray(recipients) ? recipients.map(recipient => normalizeRecipient(recipient)!) : [recipients as MailChannelsEmailRecipient]
 }
 
-export const ensureToAndFrom = (
-  config: MailChannelsSetup['config'],
-  from: Partial<MailChannelsEmailRecipient> | string | undefined,
-  to: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string | undefined,
+const overrideRecipient = (
+  target: Partial<MailChannelsEmailRecipient> | string | undefined,
+  source?: MailChannelsEmailRecipient | string,
 ) => {
-  const normalizedFrom = normalizeRecipient(from)
-  const fromDefaults = {
-    email: normalizedFrom?.email || config.from.email || '',
-    name: normalizedFrom?.name || config.from.name,
-  }
-  const toRecipients = normalizeArrayRecipients(to)
+  const normalizedTarget = normalizeRecipient(target)
+  const normalizedSource = normalizeRecipient(source)
 
-  if (!fromDefaults?.email) {
-    throw new Error('No MailChannels sender provided. Use the `from` option to specify a sender.')
+  return {
+    email: normalizedSource?.email || normalizedTarget?.email,
+    name: normalizedSource?.name || normalizedTarget?.name,
   }
+}
 
-  if (!toRecipients?.length) {
-    throw new Error('No MailChannels recipients provided. Use the `to` option to specify at least one recipient.')
+const overrideArrayRecipients = (
+  target: Partial<MailChannelsEmailRecipient> | MailChannelsEmailRecipient[] | string | string[] | undefined,
+  source?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string | string[],
+) => {
+  const normalizedTarget = normalizeArrayRecipients(target)
+  const normalizedSource = normalizeArrayRecipients(source)
+
+  const overridedArray = normalizedSource ? normalizedSource : normalizedTarget
+  const overrided = overridedArray?.filter(recipient => recipient.email)
+  return overrided?.length ? overrided : undefined
+}
+
+export const getOverrides = (
+  config: MailChannelsSetup['config'],
+  sources: Pick<MailChannelsEmailOptions, 'from' | 'to' | 'cc' | 'bcc'>,
+) => {
+  const from = overrideRecipient(config.from, sources.from)
+  if (!from.email) throw new Error('No MailChannels sender provided. Use the `from` option to specify a sender.')
+
+  const to = overrideArrayRecipients(config.to, sources.to)
+  if (!to?.length) throw new Error('No MailChannels recipients provided. Use the `to` option to specify at least one recipient.')
+
+  const cc = overrideArrayRecipients(config.cc, sources.cc)
+  const bcc = overrideArrayRecipients(config.bcc, sources.bcc)
+
+  return {
+    from: { email: from.email ?? '', name: from.name },
+    to,
+    cc,
+    bcc,
   }
-
-  return { from: fromDefaults, to: toRecipients }
 }

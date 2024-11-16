@@ -84,28 +84,42 @@ export default defineNuxtConfig({
       },
     },
   },
-  // Set the default sender email and name for all your email transactions
+  // Set the default settings for all your email transactions
   mailchannels: {
-    from: {
-      email: 'custom@example.com',
-      name: 'Custom Name',
-    },
+    bcc: { email: '',  name: '' },
+    cc: { email: '', name: '' },
+    from: { email: '', name: '' },
+    to: { email: '', name: '' }
   },
 })
 ```
 
+> [!NOTE]
+> `bcc`, `cc`, and `to` can be an object with `email` and `name` properties or a single email address string or an array of them.
+
+
 Use the environment variables to set your API key, DKIM settings and default global sender.
 
 ```sh
-# .env
+# Runtime config
 NUXT_MAILCHANNELS_API_KEY=
 
 NUXT_MAILCHANNELS_DKIM_DOMAIN=
 NUXT_MAILCHANNELS_DKIM_PRIVATE_KEY=
 NUXT_MAILCHANNELS_DKIM_SELECTOR=
 
+# App config
+NUXT_MAILCHANNELS_BCC_EMAIL=
+NUXT_MAILCHANNELS_BCC_NAME=
+
+NUXT_MAILCHANNELS_CC_EMAIL=
+NUXT_MAILCHANNELS_CC_NAME=
+
 NUXT_MAILCHANNELS_FROM_EMAIL=
 NUXT_MAILCHANNELS_FROM_NAME=
+
+NUXT_MAILCHANNELS_TO_EMAIL=
+NUXT_MAILCHANNELS_TO_NAME=
 ```
 
 ## Server utils
@@ -122,13 +136,13 @@ const mailchannels = useMailChannels(event)
 ```ts
 const mailchannels = useMailChannels(event)
 await mailchannels.send({
-  to: {
-    email: 'to@example.com',
-    name: 'Example 1'
-  },
   from: {
     email: 'from@example.com',
     name: 'Example 2'
+  },
+  to: {
+    email: 'to@example.com',
+    name: 'Example 1'
   },
   subject: 'Your subject',
   html: '<p>Your email content</p>',
@@ -140,7 +154,7 @@ await mailchannels.send({
 The `send` method sends an email using the MailChannels API.
 
 > [!IMPORTANT]
-> If you set the `from` property in the `send` method, it will override the default global sender email and name set in the `nuxt.config.ts` file.
+> If you set the `bcc`, `cc`, `from`, `to` properties in the `send` method, they will override the default global settings set in the `nuxt.config.ts` file.
 
 ### Arguments
 
@@ -156,10 +170,10 @@ Available options for the `send` method.
 | Property | Description | Required |
 | --- | --- | --- |
 | `attachments` | An array of attachments to add to the email. Each attachment should be an object with `filename`, `content`, and `type` properties. | ❌ |
-| `bcc` | The BCC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ❌ |
-| `cc` | The CC recipients of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ❌ |
-| `to` | The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties. | ✅ |
+| `bcc` | The BCC recipients of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. | ❌ |
+| `cc` | The CC recipients of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. | ❌ |
 | `from` | The sender of the email. Can be a string or an object with `email` and `name` properties. Required when the default global sender is not set. | 🟡 |
+| `to` | The recipient of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. Required when the default global recipient is not set. | 🟡 |
 | `replyTo` | The email address to reply to. Can be a string or an object with `email` and `name` properties. | ❌ |
 | `subject` | The subject of the email. | ✅ |
 | `html` | The content of the email. | ✅ |
@@ -190,13 +204,13 @@ This is the best way to add names to the recipients.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
   const { success } = await mailchannels.send({
-    to: {
-      email: 'to@example.com',
-      name: 'Example 1'
-    },
     from: {
       email: 'from@example.com',
       name: 'Example 2'
+    },
+    to: {
+      email: 'to@example.com',
+      name: 'Example 1'
     },
     subject: 'Your subject',
     html: '<p>Your email content</p>',
@@ -214,8 +228,8 @@ This is the simplest way to send an email.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
   const { success } = await mailchannels.send({
-    to: 'to@example.com',
     from: 'from@example.com',
+    to: 'to@example.com',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
@@ -231,6 +245,10 @@ You can also send an email to multiple recipients.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
   const { success } = await mailchannels.send({
+    from: {
+      email: 'from@example.com',
+      name: 'Example 3'
+    },
     to: [
       {
         email: 'to1@example.com',
@@ -241,10 +259,6 @@ export default defineEventHandler(async (event) => {
         name: 'Example 2'
       }
     ],
-    from: {
-      email: 'from@example.com',
-      name: 'Example 3'
-    },
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
@@ -258,8 +272,8 @@ or
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
   const { success } = await mailchannels.send({
-    to: ['to1@example.com', 'to2@example.com'],
     from: 'from@example.com',
+    to: ['to1@example.com', 'to2@example.com'],
     subject: 'Your subject',
     html: '<p>Your email content</p>',
   })
@@ -275,8 +289,8 @@ You can use the `mustaches` property to render mustache templates.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
   const { success } = await mailchannels.send({
-    to: 'to@example.com',
     from: 'from@example.com',
+    to: 'to@example.com',
     subject: 'Mustaches test',
     html: '<p>Hello {{ world }}</p>',
     mustaches: {
@@ -296,8 +310,8 @@ You can set the `dryRun` argument to test your email without sending it. It will
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
   const response = await mailchannels.send({
-    to: 'to@example.com',
     from: 'from@example.com',
+    to: 'to@example.com',
     subject: 'Test',
     html: '<p>Test</p>',
   }, true) // <-- `true` = dryRun enabled
