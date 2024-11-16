@@ -38,7 +38,7 @@ Simple MailChannels Email API integration for Nuxt.
 - Works on the edge
 - Exposed server utils
 - Email DKIM signing
-- Default global sender email and name
+- Default global settings
 - Supports mustache templates
 
 ## Requirements
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
 
 You can add the MailChannels **API key** and **DKIM** settings to the `runtimeConfig` property in `nuxt.config.ts` file.
 
-If you want to use a default global sender email and name for all your email transactions, you can set it in the `mailchannels` app options property in your `nuxt.config.ts` file.
+If you want to use default global settings for all your email transactions, you can set it in the `mailchannels` app options property in your `nuxt.config.ts` file.
 
 ```ts
 export default defineNuxtConfig({
@@ -100,7 +100,7 @@ export default defineNuxtConfig({
 > `bcc`, `cc`, and `to` can be an object with `email` and `name` properties or a single email address string or an array of them.
 
 
-Use the environment variables to set your API key, DKIM settings and default global sender.
+Use the environment variables to set your API key, DKIM settings and default global settings.
 
 ```sh
 # Runtime config
