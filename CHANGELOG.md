@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.1.6
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.5...v0.1.6)
+
+### 🚀 Enhancements
+
+- Allow name-address pair string format ([b78e9f1](https://github.com/Yizack/nuxt-mailchannels/commit/b78e9f1))
+
+### 📖 Documentation
+
+- Fix default global settings info ([31a9242](https://github.com/Yizack/nuxt-mailchannels/commit/31a9242))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.1.5
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.4...v0.1.5)
