@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.1.5
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.4...v0.1.5)
+
+### 🚀 Enhancements
+
+- Allow `bcc`, `cc`, and `to` defaults ([9011bd3](https://github.com/Yizack/nuxt-mailchannels/commit/9011bd3))
+
+### 📖 Documentation
+
+- Add typescript signature ([ad6cab9](https://github.com/Yizack/nuxt-mailchannels/commit/ad6cab9))
+
+### 🏡 Chore
+
+- Update lock ([fe1f2ad](https://github.com/Yizack/nuxt-mailchannels/commit/fe1f2ad))
+
+### ✅ Tests
+
+- Add more tests ([d213e21](https://github.com/Yizack/nuxt-mailchannels/commit/d213e21))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v0.1.4
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.3...v0.1.4)
