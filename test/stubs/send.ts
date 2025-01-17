@@ -57,10 +57,6 @@ export const stubSendAPI = () => {
       onResponse({ response } as never)
     }
 
-    return response.status === 202
-      ? resolve(null)
-      : resolve({
-        data: response.data,
-      })
+    return response.status === 202 ? resolve(null) : resolve({ data: response.data })
   }))
 }
