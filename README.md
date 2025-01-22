@@ -176,7 +176,7 @@ The `send` method sends an email using the MailChannels API.
 
 | Argument | Type | Description | Required |
 | --- | --- | --- | --- |
-| `options` | [`Options`](#send-options) | The email options to send | ✅ |
+| `options` | [`Options`](#options) | The email options to send | ✅ |
 | `dryRun` | `boolean` | When set to `true`, the message will not be sent. Instead, the fully rendered message will be returned in the `data` property of the response. The default value is `false`. | ❌ |
 
 ### Options
