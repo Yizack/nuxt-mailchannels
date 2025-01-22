@@ -202,7 +202,7 @@ The `send` method returns a promise that resolves to an object with the followin
 | Property | Type | Description |
 | --- | --- | --- |
 | `success` | `boolean` | Indicates the success or failure of the email sending operation. |
-| `payload` | `object` | The payload sent to the MailChannels Email API. In production, DKIM data (`dkim_domain`, `dkim_private_key`, `dkim_selector`) is redacted for security reasons. |
+| `payload` | `object` | The payload sent to the MailChannels Email API. DKIM data (`dkim_domain`, `dkim_private_key`, `dkim_selector`) is redacted in production for security reasons. |
 | `data` | `string[]` or `undefined` | The fully rendered message if the `dryRun` argument is set to `true`. |
 
 
