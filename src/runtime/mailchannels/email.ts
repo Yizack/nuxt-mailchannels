@@ -1,3 +1,4 @@
+import { createError } from 'h3'
 import { ModuleLogger } from './utils/logger'
 import { parseRecipient, getOverrides } from './utils/helpers'
 import type { MailChannelsEmailOptions, MailChannelsEmailPayload, MailChannelsEmailContent } from './types/email'
@@ -39,7 +40,12 @@ export class Email {
     // Plain text must come first if provided
     if (text) content.push({ type: 'text/plain', value: text, template_type })
     if (html) content.push({ type: 'text/html', value: html, template_type })
-    if (!content.length) throw new Error('No email content provided. Please provide either `html` or `text` content.')
+    if (!content.length) {
+      throw createError({
+        statusCode: 500,
+        message: 'No email content provided.',
+      })
+    }
 
     const payload: MailChannelsEmailPayload = {
       attachments: options.attachments,

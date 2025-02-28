@@ -115,15 +115,22 @@ describe('useMailChannels send', () => {
     expect(response.data).toBeUndefined()
   })
 
-  it('empty html bad request', async () => {
-    const response = await mailchannels.send({
+  it('empty html error', async () => {
+    const response = mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: '',
     })
-    expect(response.success).toBe(false)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
-    expect(response.data).toBeUndefined()
+    await expect(response).rejects.toThrowError('No email content provided.')
+  })
+
+  it('empty text error', async () => {
+    const response = mailchannels.send({
+      to: fake.to.string,
+      subject: fake.subject,
+      text: '',
+    })
+    await expect(response).rejects.toThrowError('No email content provided.')
   })
 
   it ('default bcc', async () => {

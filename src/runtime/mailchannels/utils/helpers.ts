@@ -1,3 +1,4 @@
+import { createError } from 'h3'
 import type { MailChannelsEmailRecipient, MailChannelsEmailOptions } from '../types/email'
 import type { MailChannelsSetup } from '../index'
 
@@ -83,10 +84,20 @@ export const getOverrides = (
   sources: Pick<MailChannelsEmailOptions, 'from' | 'to' | 'cc' | 'bcc'>,
 ) => {
   const from = overrideRecipient(config.from, sources.from)
-  if (!from.email) throw new Error('No MailChannels sender provided. Use the `from` option to specify a sender.')
+  if (!from.email) {
+    throw createError({
+      statusCode: 500,
+      message: 'No MailChannels sender provided. Use the `from` option to specify a sender.',
+    })
+  }
 
   const to = overrideArrayRecipients(config.to, sources.to)
-  if (!to?.length) throw new Error('No MailChannels recipients provided. Use the `to` option to specify at least one recipient.')
+  if (!to?.length) {
+    throw createError({
+      statusCode: 500,
+      message: 'No MailChannels recipients provided. Use the `to` option to specify at least one recipient.',
+    })
+  }
 
   const cc = overrideArrayRecipients(config.cc, sources.cc)
   const bcc = overrideArrayRecipients(config.bcc, sources.bcc)
