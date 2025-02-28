@@ -61,7 +61,7 @@ export interface MailChannelsEmailPayload {
   tracking_settings?: MailChannelsEmailTrackingSettings
 }
 
-export interface MailChannelsEmailOptions {
+export interface MailChannelsEmailOptionsBase {
   /**
    * An array of attachments to be sent with the email
    */
@@ -69,72 +69,68 @@ export interface MailChannelsEmailOptions {
   /**
    * The BCC recipients of the email. Can be an array of email addresses or an array of objects with email and name properties or a single email address string or an object with email and name properties.
    * @example
-   * bcc: [
+   * [
    *   { email: 'email1@example.com', name: 'Example1' },
    *   { email: 'email2@example.com', name: 'Example2' },
    * ]
    * @example
-   * bcc: { email: 'email@example.com', name: 'Example' }
+   * { email: 'email@example.com', name: 'Example' }
    * @example
-   * bcc: ['email1@example.com', 'email2@example.com']
+   * ['email1@example.com', 'email2@example.com']
    * @example
-   * bcc: 'email@example.com'
+   * 'email@example.com'
    */
   bcc?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string
   /**
    * The CC recipients of the email. Can be an array of email addresses or an array of objects with email and name properties or a single email address string or an object with email and name properties.
    * @example
-   * cc: [
+   * [
    *   { email: 'email1@example.com', name: 'Example1' },
    *   { email: 'email2@example.com', name: 'Example2' },
    * ]
    * @example
-   * cc: { email: 'email@example.com', name: 'Example' }
+   * { email: 'email@example.com', name: 'Example' }
    * @example
-   * cc: ['email1@example.com', 'email2@example.com']
+   * ['email1@example.com', 'email2@example.com']
    * @example
-   * cc: 'email@example.com'
+   * 'email@example.com'
    */
   cc?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string
   /**
    * The sender of the email. Can be a string or an object with email and name properties.
    * @example
-   * from: { email: 'email@example.com', name: 'Example' }
+   * { email: 'email@example.com', name: 'Example' }
    * @example
-   * from: 'email@example.com'
+   * 'email@example.com'
    */
   from?: MailChannelsEmailRecipient | string
   /**
    * The recipient of the email. Can be an array of email addresses or an array of objects with `email` and `name` properties or a single email address string or an object with `email` and `name` properties.
    * @example
-   * to: [
+   * [
    *   { email: 'email1@example.com', name: 'Example1' },
    *   { email: 'email2@example.com', name: 'Example2' },
    * ]
    * @example
-   * to: { email: 'email@example.com', name: 'Example' }
+   * { email: 'email@example.com', name: 'Example' }
    * @example
-   * to: ['email1@example.com', 'email2@example.com']
+   * ['email1@example.com', 'email2@example.com']
    * @example
-   * to: 'email@example.com'
+   * 'email@example.com'
    */
   to?: MailChannelsEmailRecipient[] | MailChannelsEmailRecipient | string[] | string
   /**
    * A single `replyTo` recipient object, or a single email address.
    * @example
-   * replyTo: { email: 'email@example.com', name: 'Example' }
+   * { email: 'email@example.com', name: 'Example' }
    * @example
-   * replyTo: 'email@example.com'
+   * 'email@example.com'
    */
   replyTo?: MailChannelsEmailRecipient | string
   /**
    * The subject of the email
    */
   subject: string
-  /**
-   * The content of the email
-   */
-  html: string
   /**
    * Data to be used if the email is a mustache template, key-value pairs of variables to set for template rendering. Keys must be strings
    *
@@ -147,3 +143,34 @@ export interface MailChannelsEmailOptions {
    */
   mustaches?: Record<string, unknown>
 }
+
+export type MailChannelsEmailOptions = MailChannelsEmailOptionsBase & (
+  | {
+    /**
+     * The HTML content of the email
+     * @example
+     * '<p>Hello World</p>'
+     */
+    html: string
+    /**
+     * The plain text content of the email (optional when html is provided)
+     * @example
+     * 'Hello World'
+     */
+    text?: string
+  }
+  | {
+    /**
+     * The HTML content of the email (optional when text is provided)
+     * @example
+     * '<p>Hello World</p>'
+     */
+    html?: string
+    /**
+     * The plain text content of the email
+     * @example
+     * 'Hello World'
+     */
+    text: string
+  }
+)

@@ -111,7 +111,7 @@ NUXT_MAILCHANNELS_DKIM_DOMAIN=
 NUXT_MAILCHANNELS_DKIM_PRIVATE_KEY=
 NUXT_MAILCHANNELS_DKIM_SELECTOR=
 
-# App config
+# App config (additional)
 NUXT_MAILCHANNELS_BCC_EMAIL=
 NUXT_MAILCHANNELS_BCC_NAME=
 
@@ -192,7 +192,8 @@ Available options for the `send` method.
 | `to` | The recipient of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. Required when the default global recipient is not set. | 🟡 |
 | `replyTo` | The email address to reply to. Can be a string or an object with `email` and `name` properties. | ❌ |
 | `subject` | The subject of the email. | ✅ |
-| `html` | The content of the email. | ✅ |
+| `html` | The HTML content of the email. Required if `text` is not set. | 🟡 |
+| `text` | The plain text content of the email. Required if `html` is not set. | 🟡 |
 | `mustaches` | Data to be used if the email is a mustache template, key-value pairs of variables to set for template rendering. Keys must be strings. | ❌ |
 
 ### Response

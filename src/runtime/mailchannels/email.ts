@@ -1,6 +1,6 @@
 import { ModuleLogger } from './utils/logger'
 import { parseRecipient, getOverrides } from './utils/helpers'
-import type { MailChannelsEmailOptions, MailChannelsEmailPayload } from './types/email'
+import type { MailChannelsEmailOptions, MailChannelsEmailPayload, MailChannelsEmailContent } from './types/email'
 import type { MailChannelsSetup } from './index'
 
 export class Email {
@@ -30,7 +30,16 @@ export class Email {
   async send(options: MailChannelsEmailOptions, dryRun = false) {
     const logger = new ModuleLogger(this.name, 'send')
 
+    const { html, text, mustaches } = options
     const { cc, bcc, from, to } = getOverrides(this._setup.config, options)
+
+    const content: MailChannelsEmailContent[] = []
+    const template_type = mustaches ? 'mustache' : undefined
+
+    // Plain text must come first if provided
+    if (text) content.push({ type: 'text/plain', value: text, template_type })
+    if (html) content.push({ type: 'text/html', value: html, template_type })
+    if (!content.length) throw new Error('No email content provided. Please provide either `html` or `text` content.')
 
     const payload: MailChannelsEmailPayload = {
       attachments: options.attachments,
@@ -46,11 +55,7 @@ export class Email {
       reply_to: parseRecipient(options.replyTo),
       from,
       subject: options.subject,
-      content: [{
-        type: 'text/html',
-        value: options.html,
-        template_type: options.mustaches ? 'mustache' : undefined,
-      }],
+      content,
     }
 
     let success = true
