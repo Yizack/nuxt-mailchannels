@@ -1,6 +1,37 @@
 # Changelog
 
 
+## v0.1.7
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.6...v0.1.7)
+
+### 🚀 Enhancements
+
+- Add `text` option for plain text version emails ([ffef94f](https://github.com/Yizack/nuxt-mailchannels/commit/ffef94f))
+
+### 📖 Documentation
+
+- Change redacted info ([03bf9f1](https://github.com/Yizack/nuxt-mailchannels/commit/03bf9f1))
+- Fix send options anchor tag ([3a87468](https://github.com/Yizack/nuxt-mailchannels/commit/3a87468))
+
+### 🏡 Chore
+
+- Update deps ([541f47d](https://github.com/Yizack/nuxt-mailchannels/commit/541f47d))
+- Update dependencies ([e84c94f](https://github.com/Yizack/nuxt-mailchannels/commit/e84c94f))
+- Adjust error handling ([bdc3409](https://github.com/Yizack/nuxt-mailchannels/commit/bdc3409))
+
+### ✅ Tests
+
+- Lint ([2044dde](https://github.com/Yizack/nuxt-mailchannels/commit/2044dde))
+
+### 🤖 CI
+
+- Use node 22 ([b575bc6](https://github.com/Yizack/nuxt-mailchannels/commit/b575bc6))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.6
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.5...v0.1.6)
