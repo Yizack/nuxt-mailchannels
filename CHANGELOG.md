@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.1.8
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.7...v0.1.8)
+
+### 🩹 Fixes
+
+- Set name undefined if empty ([ac019e0](https://github.com/Yizack/nuxt-mailchannels/commit/ac019e0))
+
+### 💅 Refactors
+
+- Module options refactor ([7cf7214](https://github.com/Yizack/nuxt-mailchannels/commit/7cf7214))
+- **errors:** Throw `createError` on key missing ([d92f47c](https://github.com/Yizack/nuxt-mailchannels/commit/d92f47c))
+
+### 📖 Documentation
+
+- Add text to examples and optional envs ([914ff89](https://github.com/Yizack/nuxt-mailchannels/commit/914ff89))
+- Add plain text tip ([d38ed29](https://github.com/Yizack/nuxt-mailchannels/commit/d38ed29))
+
+### ✅ Tests
+
+- Fix send test ([5a18389](https://github.com/Yizack/nuxt-mailchannels/commit/5a18389))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.7
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.6...v0.1.7)
