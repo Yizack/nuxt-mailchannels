@@ -43,7 +43,7 @@ export class Email {
     if (!content.length) {
       throw createError({
         statusCode: 500,
-        message: 'No email content provided.',
+        message: 'No email content provided',
       })
     }
 

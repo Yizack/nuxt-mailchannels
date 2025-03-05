@@ -1,3 +1,4 @@
+import { createError } from 'h3'
 import type { RuntimeConfig } from '@nuxt/schema'
 import type { NuxtMailChannelsOptions } from '../../types'
 import { Email } from './email'
@@ -12,7 +13,12 @@ export class MailChannels {
   #setup: MailChannelsSetup
 
   constructor(config: MailChannelsSetup['config']) {
-    if (!config.apiKey) throw new Error('Missing MailChannels API key.')
+    if (!config.apiKey) {
+      throw createError({
+        statusCode: 500,
+        message: 'Missing MailChannels API key',
+      })
+    }
 
     this.#setup = {
       baseURL: 'https://api.mailchannels.net',

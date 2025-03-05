@@ -24,7 +24,7 @@ export const parseRecipient = (recipient?: Partial<MailChannelsEmailRecipient> |
   }
 
   if (recipient?.email) {
-    return { email: recipient.email, name: recipient.name }
+    return { email: recipient.email, name: recipient.name || undefined }
   }
 }
 
@@ -87,7 +87,7 @@ export const getOverrides = (
   if (!from.email) {
     throw createError({
       statusCode: 500,
-      message: 'No MailChannels sender provided. Use the `from` option to specify a sender.',
+      message: 'No MailChannels sender provided. Use the `from` option to specify a sender',
     })
   }
 
@@ -95,7 +95,7 @@ export const getOverrides = (
   if (!to?.length) {
     throw createError({
       statusCode: 500,
-      message: 'No MailChannels recipients provided. Use the `to` option to specify at least one recipient.',
+      message: 'No MailChannels recipients provided. Use the `to` option to specify at least one recipient',
     })
   }
 
