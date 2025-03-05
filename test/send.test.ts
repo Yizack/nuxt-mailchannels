@@ -5,8 +5,12 @@ import nuxtConfig from './fixtures/basic/nuxt.config'
 
 describe('useMailChannels send', () => {
   vi.mock('#imports', () => ({
-    useRuntimeConfig: vi.fn(() => ({ mailchannels: nuxtConfig.runtimeConfig?.mailchannels })),
-    useAppConfig: vi.fn(() => ({ mailchannels: nuxtConfig.mailchannels })),
+    useRuntimeConfig: vi.fn(() => ({
+      mailchannels: {
+        ...nuxtConfig.runtimeConfig?.mailchannels,
+        ...nuxtConfig.mailchannels,
+      },
+    })),
   }))
 
   stubSendAPI()
@@ -121,7 +125,7 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       html: '',
     })
-    await expect(response).rejects.toThrowError('No email content provided.')
+    await expect(response).rejects.toThrowError('No email content provided')
   })
 
   it('empty text error', async () => {
@@ -130,7 +134,7 @@ describe('useMailChannels send', () => {
       subject: fake.subject,
       text: '',
     })
-    await expect(response).rejects.toThrowError('No email content provided.')
+    await expect(response).rejects.toThrowError('No email content provided')
   })
 
   it ('default bcc', async () => {
