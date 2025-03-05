@@ -72,7 +72,11 @@ const overrideArrayRecipients = (
   const parsedSource = parseArrayRecipients(source)
 
   const overridedArray = parsedSource ? parsedSource : parsedTarget
-  const overrided = overridedArray?.filter(recipient => recipient.email)
+  const overrided = overridedArray?.filter(recipient => recipient.email).map(recipient => ({
+    email: recipient.email,
+    name: recipient.name || undefined,
+  }))
+  console.log(overrided)
   return overrided?.length ? overrided : undefined
 }
 
