@@ -41,6 +41,7 @@ Simple MailChannels Email API integration for Nuxt.
 - Email DKIM signing
 - Default global settings
 - Supports mustache templates
+- Text and HTML content types
 
 ## Requirements
 
@@ -87,19 +88,18 @@ export default defineNuxtConfig({
       },
     },
   },
-  // Set the default settings for all your email transactions
+  // Set the default settings for all your email transactions (optional)
   mailchannels: {
-    bcc: { email: '',  name: '' },
+    bcc: { email: '', name: '' },
     cc: { email: '', name: '' },
     from: { email: '', name: '' },
-    to: { email: '', name: '' }
+    to: { email: '', name: '' },
   },
 })
 ```
 
 > [!NOTE]
 > `bcc`, `cc`, and `to` can be an object with `email` and `name` properties or a single email address string or an array of them.
-
 
 Use the environment variables to set your API key, DKIM settings and default global settings.
 
@@ -111,18 +111,24 @@ NUXT_MAILCHANNELS_DKIM_DOMAIN=
 NUXT_MAILCHANNELS_DKIM_PRIVATE_KEY=
 NUXT_MAILCHANNELS_DKIM_SELECTOR=
 
-# App config (additional)
+# App config (optional)
+
+# NUXT_MAILCHANNELS_BCC=
 NUXT_MAILCHANNELS_BCC_EMAIL=
 NUXT_MAILCHANNELS_BCC_NAME=
 
+# NUXT_MAILCHANNELS_CC=
 NUXT_MAILCHANNELS_CC_EMAIL=
 NUXT_MAILCHANNELS_CC_NAME=
 
+# NUXT_MAILCHANNELS_FROM=
 NUXT_MAILCHANNELS_FROM_EMAIL=
 NUXT_MAILCHANNELS_FROM_NAME=
 
+# NUXT_MAILCHANNELS_TO=
 NUXT_MAILCHANNELS_TO_EMAIL=
 NUXT_MAILCHANNELS_TO_NAME=
+
 ```
 
 ## Server utils
@@ -146,7 +152,6 @@ MailChannels.send(options: MailChannelsEmailOptions, dryRun?: boolean): Promise<
 }>;
 ```
 
-
 ### Simple usage
 
 ```ts
@@ -162,6 +167,7 @@ await mailchannels.send({
   },
   subject: 'Your subject',
   html: '<p>Your email content</p>',
+  text: 'Your email content',
 })
 ```
 
@@ -231,11 +237,11 @@ export default defineEventHandler(async (event) => {
     },
     subject: 'Your subject',
     html: '<p>Your email content</p>',
+    text: 'Your email content',
   })
   return { success }
 })
 ```
-
 
 ### Using string recipients
 
@@ -249,6 +255,7 @@ export default defineEventHandler(async (event) => {
     to: 'to@example.com',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
+    text: 'Your email content',
   })
   return { success }
 })
@@ -278,6 +285,7 @@ export default defineEventHandler(async (event) => {
     ],
     subject: 'Your subject',
     html: '<p>Your email content</p>',
+    text: 'Your email content',
   })
   return { success }
 })
@@ -293,6 +301,7 @@ export default defineEventHandler(async (event) => {
     to: ['to1@example.com', 'to2@example.com'],
     subject: 'Your subject',
     html: '<p>Your email content</p>',
+    text: 'Your email content',
   })
   return { success }
 })
@@ -310,6 +319,7 @@ export default defineEventHandler(async (event) => {
     to: 'to@example.com',
     subject: 'Mustaches test',
     html: '<p>Hello {{ world }}</p>',
+    text: 'Hello {{ world }}',
     mustaches: {
       world: 'World',
     },
@@ -331,6 +341,7 @@ export default defineEventHandler(async (event) => {
     to: 'to@example.com',
     subject: 'Test',
     html: '<p>Test</p>',
+    text: 'Test',
   }, true) // <-- `true` = dryRun enabled
 
   return response
@@ -349,6 +360,7 @@ export default defineEventHandler(async (event) => {
     to: 'Recipient Name <recipient@example.com>',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
+    text: 'Your email content',
   })
 
   return { success }
