@@ -176,7 +176,7 @@ await mailchannels.send({
 The `send` method sends an email using the MailChannels API.
 
 > [!IMPORTANT]
-> If you set the `bcc`, `cc`, `from`, `to` properties in the `send` method, they will override the default global settings set in the `nuxt.config.ts` file.
+> If you set the `bcc`, `cc`, `from`, `to` properties in the `send` method, they will override the default global settings set in the `nuxt.config.ts` or `.env` file.
 
 ### Arguments
 
@@ -201,6 +201,11 @@ Available options for the `send` method.
 | `html` | The HTML content of the email. Required if `text` is not set. | 🟡 |
 | `text` | The plain text content of the email. Required if `html` is not set. | 🟡 |
 | `mustaches` | Data to be used if the email is a mustache template, key-value pairs of variables to set for template rendering. Keys must be strings. | ❌ |
+
+> [!TIP]
+> Including a plain text version of your email ensures that all recipients can read your message, including those with email clients that lack HTML support.
+>
+> You can use the [`html-to-text`](https://www.npmjs.com/package/html-to-text) package to convert your HTML content to plain text.
 
 ### Response
 
