@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.1.9
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.8...v0.1.9)
+
+### 🩹 Fixes
+
+- App config regression ([97485e1](https://github.com/Yizack/nuxt-mailchannels/commit/97485e1))
+
+### 🏡 Chore
+
+- **playground:** Uncomment recipients ([595fd13](https://github.com/Yizack/nuxt-mailchannels/commit/595fd13))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.8
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.7...v0.1.8)
