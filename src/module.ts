@@ -39,5 +39,11 @@ export default defineNuxtModule<ModuleOptions>({
     runtimeConfig.mailchannels.cc = defu(runtimeConfig.mailchannels.cc, options.cc)
     runtimeConfig.mailchannels.from = defu(runtimeConfig.mailchannels.from, options.from)
     runtimeConfig.mailchannels.to = defu(runtimeConfig.mailchannels.to, options.to)
+
+    // App config options
+    nuxt.options.appConfig.mailchannels = Object.assign(
+      nuxt.options.appConfig.mailchannels || {},
+      options,
+    )
   },
 })
