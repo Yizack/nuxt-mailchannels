@@ -143,13 +143,13 @@ const mailchannels = useMailChannels(event)
 ### TypeScript signature
   
 ```ts
-declare const useMailChannels: (event?: H3Event) => MailChannels;
-
-MailChannels.send(options: MailChannelsEmailOptions, dryRun?: boolean): Promise<{
-  success: boolean;
-  payload: MailChannelsEmailPayload;
-  data: string[] | undefined;
-}>;
+const useMailChannels: (event?: H3Event) => {
+  send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<{
+    success: boolean,
+    payload: MailChannelsEmailPayload,
+    data: string[] | undefined,
+  }>
+}
 ```
 
 ### Simple usage
@@ -214,7 +214,7 @@ The `send` method returns a promise that resolves to an object with the followin
 | Property | Type | Description |
 | --- | --- | --- |
 | `success` | `boolean` | Indicates the success or failure of the email sending operation. |
-| `payload` | `object` | The payload sent to the MailChannels Email API. DKIM data (`dkim_domain`, `dkim_private_key`, `dkim_selector`) is redacted in production for security reasons. |
+| `payload` | `object` | The payload sent to the MailChannels Email API. DKIM data (`dkim_domain`, `dkim_private_key`, `dkim_selector`) is stripped in production for security reasons. |
 | `data` | `string[]` or `undefined` | The fully rendered message if the `dryRun` argument is set to `true`. |
 
 

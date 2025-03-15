@@ -1,9 +1,33 @@
+/* eslint-disable import/order */
 import { describe, it, expect, vi } from 'vitest'
-import { useMailChannels } from '../src/runtime/server/utils/mailchannels'
-import { stubSendAPI } from './stubs/send'
+import { mockSendAPI } from './mocks/send'
+import { useMailChannels } from '../src/runtime/server/composables/mailchannels'
 import nuxtConfig from './fixtures/basic/nuxt.config'
 
-describe('useMailChannels send', () => {
+const fake = {
+  bcc: { email: 'bcc_override@example.com', name: 'BCC Override' },
+  cc: { email: 'cc_override@example.com', name: 'CC Override' },
+  from: { email: 'from_override@example.com', name: 'From Override' },
+  to: {
+    object: {
+      email: 'to_override@example.com',
+      name: 'To Override',
+    },
+    string: 'to_override@example.com',
+    pairString: 'To Override <to_override@example.com>',
+  },
+  replyTo: { email: 'replyTo@example.com', name: 'ReplyTo Test' },
+  subject: 'Test',
+  html: '<p>Hello World</p>',
+  mustaches: {
+    html: '<p>Hello {{ world }}</p>',
+    data: {
+      world: 'World',
+    },
+  },
+}
+
+describe('useMailChannels send', async () => {
   vi.mock('#imports', () => ({
     useRuntimeConfig: vi.fn(() => ({
       mailchannels: {
@@ -13,31 +37,7 @@ describe('useMailChannels send', () => {
     })),
   }))
 
-  stubSendAPI()
-
-  const fake = {
-    bcc: { email: 'bcc_override@example.com', name: 'BCC Override' },
-    cc: { email: 'cc_override@example.com', name: 'CC Override' },
-    from: { email: 'from_override@example.com', name: 'From Override' },
-    to: {
-      object: {
-        email: 'to_override@example.com',
-        name: 'To Override',
-      },
-      string: 'to_override@example.com',
-      pairString: 'To Override <to_override@example.com>',
-    },
-    replyTo: { email: 'replyTo@example.com', name: 'ReplyTo Test' },
-    subject: 'Test',
-    html: '<p>Hello World</p>',
-    mustaches: {
-      html: '<p>Hello {{ world }}</p>',
-      data: {
-        world: 'World',
-      },
-    },
-  }
-
+  mockSendAPI()
   const mailchannels = useMailChannels()
 
   it('object recipients', async () => {

@@ -1,4 +1,4 @@
-import type { MailChannelsEmailRecipient } from './runtime/mailchannels/types/email'
+import type { MailChannelsEmailRecipient } from '@yizack/mailchannels'
 
 export interface NuxtMailChannelsOptions {
   /**

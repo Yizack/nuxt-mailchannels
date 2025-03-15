@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "mailchannels-playground",
+  "name": "nuxt-mailchannels-playground",
   "type": "module",
   "scripts": {
     "dev": "nuxi dev",

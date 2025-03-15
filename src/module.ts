@@ -20,25 +20,23 @@ export default defineNuxtModule<ModuleOptions>({
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    addServerImportsDir(resolve('./runtime/server/utils'))
+    addServerImportsDir(resolve('./runtime/server/composables'))
 
     const runtimeConfig = nuxt.options.runtimeConfig
     runtimeConfig.mailchannels = defu(runtimeConfig.mailchannels, {
       apiKey: '',
+      // MailChannels DKIM
+      dkim: {
+        domain: '',
+        privateKey: '',
+        selector: '',
+      },
+      // MailChannels defaults
+      bcc: options.bcc,
+      cc: options.cc,
+      from: options.from,
+      to: options.to,
     })
-
-    // MailChannels DKIM
-    runtimeConfig.mailchannels.dkim = defu(runtimeConfig.mailchannels.dkim, {
-      domain: '',
-      privateKey: '',
-      selector: '',
-    })
-
-    // MailChannels defaults
-    runtimeConfig.mailchannels.bcc = defu(runtimeConfig.mailchannels.bcc, options.bcc)
-    runtimeConfig.mailchannels.cc = defu(runtimeConfig.mailchannels.cc, options.cc)
-    runtimeConfig.mailchannels.from = defu(runtimeConfig.mailchannels.from, options.from)
-    runtimeConfig.mailchannels.to = defu(runtimeConfig.mailchannels.to, options.to)
 
     // App config options
     nuxt.options.appConfig.mailchannels = Object.assign(
