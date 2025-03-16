@@ -1,6 +1,6 @@
 {
   "name": "nuxt-mailchannels",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "MailChannels Email API integration for nuxt",
   "keywords": [
     "nuxt",

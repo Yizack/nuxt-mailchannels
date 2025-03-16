@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.10
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.9...v0.1.10)
+
+### 💅 Refactors
+
+- Migrated main logic to `@yizack/mailchannels` ([4198f3c](https://github.com/Yizack/nuxt-mailchannels/commit/4198f3c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.9
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.8...v0.1.9)
