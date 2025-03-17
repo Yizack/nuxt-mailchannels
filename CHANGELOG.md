@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.1.11
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.10...v0.1.11)
+
+### 🏡 Chore
+
+- Upgrade `@yizack/mailchannels` ([9f65284](https://github.com/Yizack/nuxt-mailchannels/commit/9f65284))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.10
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.9...v0.1.10)
