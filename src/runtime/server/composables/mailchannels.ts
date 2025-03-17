@@ -1,4 +1,4 @@
-import { MailChannels, type MailChannelsEmailOptions } from '@yizack/mailchannels'
+import { MailChannels, type SendOptions } from '@yizack/mailchannels'
 import { createError, type H3Event } from 'h3'
 import { overrideRecipient } from '../utils/helpers'
 import { useRuntimeConfig } from '#imports'
@@ -34,8 +34,8 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const send = async (options: MailChannelsEmailOptions, dryRun?: boolean) => {
-    const overrides: MailChannelsEmailOptions = {
+  const send = async (options: SendOptions, dryRun?: boolean) => {
+    const overrides: SendOptions = {
       ...options,
       to: overrideRecipient(config.to, options.to),
       from: overrideRecipient(config.from, options.from),

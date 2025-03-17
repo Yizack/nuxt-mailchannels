@@ -1,10 +1,10 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
-import type { MailChannelsEmailPayload } from '@yizack/mailchannels'
+import type { SendPayload } from '@yizack/mailchannels'
 
 const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) => new Promise((resolve, reject) => {
   const { method, query, onResponse, onResponseError } = options
-  const payload = options.body as MailChannelsEmailPayload
+  const payload = options.body as SendPayload
   const path = `/tx/v1/send`
 
   const response = {

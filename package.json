@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.16.0",
-    "@yizack/mailchannels": "^0.0.3",
+    "@yizack/mailchannels": "^0.1.1",
     "defu": "^6.1.4"
   },
   "devDependencies": {
