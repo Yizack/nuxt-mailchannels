@@ -1,4 +1,5 @@
-import { MailChannels, type SendOptions } from '@yizack/mailchannels'
+import { MailChannelsClient } from '@yizack/mailchannels'
+import { Emails, type EmailsSendOptions } from '@yizack/mailchannels/modules'
 import { createError, type H3Event } from 'h3'
 import { overrideRecipient } from '../utils/helpers'
 import { useRuntimeConfig } from '#imports'
@@ -13,7 +14,8 @@ export const useMailChannels = (event?: H3Event) => {
     })
   }
 
-  const mailchannels = new MailChannels(config.apiKey)
+  const mailchannels = new MailChannelsClient(config.apiKey)
+  const emails = new Emails(mailchannels)
 
   /**
    * Send an email using MailChannels Email API
@@ -34,8 +36,8 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const send = async (options: SendOptions, dryRun?: boolean) => {
-    const overrides: SendOptions = {
+  const send = async (options: EmailsSendOptions, dryRun?: boolean) => {
+    const overrides: EmailsSendOptions = {
       ...options,
       to: overrideRecipient(config.to, options.to),
       from: overrideRecipient(config.from, options.from),
@@ -44,7 +46,7 @@ export const useMailChannels = (event?: H3Event) => {
       dkim: config.dkim,
     }
 
-    const response = await mailchannels.emails.send(overrides, dryRun).catch((error: Error) => {
+    const response = await emails.send(overrides, dryRun).catch((error: Error) => {
       throw createError({
         statusCode: 500,
         message: error.message,

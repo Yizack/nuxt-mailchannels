@@ -1,22 +1,22 @@
-import type { SendRecipient } from '@yizack/mailchannels'
+import type { EmailsSendRecipient } from '@yizack/mailchannels/modules'
 
 export interface NuxtMailChannelsOptions {
   /**
    * Set default BCC
    */
-  bcc: Partial<SendRecipient> | SendRecipient[] | string | string[] | undefined
+  bcc: Partial<EmailsSendRecipient> | EmailsSendRecipient[] | string | string[] | undefined
   /**
    * Set default CC
    */
-  cc: Partial<SendRecipient> | SendRecipient[] | string | string[] | undefined
+  cc: Partial<EmailsSendRecipient> | EmailsSendRecipient[] | string | string[] | undefined
   /**
    * Set a default sender
    */
-  from: Partial<SendRecipient> | string | undefined
+  from: Partial<EmailsSendRecipient> | string | undefined
   /**
    * Set default recipient
    */
-  to: Partial<SendRecipient> | SendRecipient[] | string | string[] | undefined
+  to: Partial<EmailsSendRecipient> | EmailsSendRecipient[] | string | string[] | undefined
 }
 
 export type ModuleOptions = NuxtMailChannelsOptions

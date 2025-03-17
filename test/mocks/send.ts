@@ -1,10 +1,10 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
-import type { SendPayload } from '@yizack/mailchannels'
+import type { EmailsSendPayload } from '@yizack/mailchannels/modules'
 
 const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) => new Promise((resolve, reject) => {
   const { method, query, onResponse, onResponseError } = options
-  const payload = options.body as SendPayload
+  const payload = options.body as EmailsSendPayload
   const path = `/tx/v1/send`
 
   const response = {
@@ -59,16 +59,14 @@ export const mockSendAPI = () => {
   vi.mock(import('@yizack/mailchannels'), async (importOriginal) => {
     const original = await importOriginal()
     // Override the internal _fetch method
-    const originalMailChannels = original.MailChannels
-    const mockedMailchannels = class extends originalMailChannels {
+    const mockedMailchannels = class extends original.MailChannelsClient {
       protected override async _fetch<T>(path: string, options: FetchOptions<'json'>): Promise<T> {
         return mockedImplementation(path, options) as unknown as T
       }
     }
 
     return {
-      ...original,
-      MailChannels: mockedMailchannels,
+      MailChannelsClient: mockedMailchannels,
     }
   })
 }
