@@ -36,10 +36,18 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const send = async (options: EmailsSendOptions, dryRun?: boolean) => {
+  const send = async (
+    options: Omit<EmailsSendOptions, 'to' | 'from'> & Partial<{
+      to: EmailsSendOptions['to']
+      from: EmailsSendOptions['from']
+    }>,
+    dryRun?: boolean,
+  ) => {
     const overrides: EmailsSendOptions = {
       ...options,
+      // @ts-expect-error optional since can receive a default value and package will handle the error
       to: overrideRecipient(config.to, options.to),
+      // @ts-expect-error optional since can receive a default value and package will handle the error
       from: overrideRecipient(config.from, options.from),
       cc: overrideRecipient(config.cc, options.cc),
       bcc: overrideRecipient(config.bcc, options.bcc),
