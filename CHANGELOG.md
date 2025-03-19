@@ -1,6 +1,37 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.11...v0.2.0)
+
+### 🩹 Fixes
+
+- **types:** To and from should be optional ([c7d5f23](https://github.com/Yizack/nuxt-mailchannels/commit/c7d5f23))
+
+### 💅 Refactors
+
+- ⚠️  Removed payload from response ([94d0a78](https://github.com/Yizack/nuxt-mailchannels/commit/94d0a78))
+
+### 📖 Documentation
+
+- Fix playground link ([e5c5d1d](https://github.com/Yizack/nuxt-mailchannels/commit/e5c5d1d))
+- Fix typo in cover image ([536dd6d](https://github.com/Yizack/nuxt-mailchannels/commit/536dd6d))
+- Add info about the mailchannels sdk ([e2eda58](https://github.com/Yizack/nuxt-mailchannels/commit/e2eda58))
+
+### 🏡 Chore
+
+- Use emails module ([adce0e6](https://github.com/Yizack/nuxt-mailchannels/commit/adce0e6))
+- Update mailchannels sdk ([78aa645](https://github.com/Yizack/nuxt-mailchannels/commit/78aa645))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Removed payload from response ([94d0a78](https://github.com/Yizack/nuxt-mailchannels/commit/94d0a78))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.1.11
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.10...v0.1.11)
