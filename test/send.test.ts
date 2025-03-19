@@ -47,7 +47,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data).toBeUndefined()
   })
 
@@ -58,7 +57,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data).toBeUndefined()
   })
 
@@ -69,7 +67,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data).toBeUndefined()
   })
 
@@ -80,7 +77,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     }, true)
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data).toStrictEqual(['dry-run response'])
   })
 
@@ -92,7 +88,6 @@ describe('useMailChannels send', async () => {
       mustaches: fake.mustaches.data,
     }, true)
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data![0]).toContain(fake.mustaches.data.world)
   })
 
@@ -103,7 +98,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].to).toStrictEqual([fake.to.object])
     expect(response.data).toBeUndefined()
   })
 
@@ -115,7 +109,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.reply_to).toStrictEqual(fake.replyTo)
     expect(response.data).toBeUndefined()
   })
 
@@ -144,7 +137,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].bcc).toStrictEqual([nuxtConfig.mailchannels?.bcc])
     expect(response.data).toBeUndefined()
   })
 
@@ -155,7 +147,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].cc).toStrictEqual([nuxtConfig.mailchannels?.cc])
     expect(response.data).toBeUndefined()
   })
 
@@ -166,7 +157,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(nuxtConfig.mailchannels?.from)
     expect(response.data).toBeUndefined()
   })
 
@@ -176,7 +166,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].to).toStrictEqual([nuxtConfig.mailchannels?.to])
     expect(response.data).toBeUndefined()
   })
 
@@ -188,7 +177,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].bcc).toStrictEqual([fake.bcc])
     expect(response.data).toBeUndefined()
   })
 
@@ -200,7 +188,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].cc).toStrictEqual([fake.cc])
     expect(response.data).toBeUndefined()
   })
 
@@ -212,7 +199,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.from).toStrictEqual(fake.from)
     expect(response.data).toBeUndefined()
   })
 
@@ -223,7 +209,6 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.payload.personalizations[0].to).toStrictEqual([fake.to.object])
     expect(response.data).toBeUndefined()
   })
 })

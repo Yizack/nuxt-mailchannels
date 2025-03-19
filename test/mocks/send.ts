@@ -1,15 +1,14 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
-import type { EmailsSendPayload } from '@yizack/mailchannels/modules'
 
 const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) => new Promise((resolve, reject) => {
-  const { method, query, onResponse, onResponseError } = options
-  const payload = options.body as EmailsSendPayload
+  const { method, query, body } = options
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const payload = body as any
   const path = `/tx/v1/send`
 
   const response = {
     status: 202,
-    statusText: 'Success',
     data: undefined as string[] | undefined | null,
   }
 
@@ -17,26 +16,20 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
 
   if (method !== 'POST' || url !== path) {
     response.status = 401
-    response.statusText = 'Authorization Required'
     isError = true
   }
 
   if (!payload || !payload.content[0].value) {
     response.status = 400
-    response.statusText = 'Bad Request'
     isError = true
   }
 
   if (isError) {
-    if (typeof onResponseError === 'function') {
-      onResponseError({ response } as never)
-    }
     return reject(void 0)
   }
 
   if (query && query['dry-run']) {
     response.status = 200
-    response.statusText = 'OK'
     let dryRunResponse = 'dry-run response'
     if (payload.personalizations[0].dynamic_template_data) {
       const entries = Object.entries(payload.personalizations[0].dynamic_template_data)
@@ -46,10 +39,6 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
       }
     }
     response.data = [dryRunResponse]
-  }
-
-  if (typeof onResponse === 'function') {
-    onResponse({ response } as never)
   }
 
   return response.status === 202 ? resolve(null) : resolve({ data: response.data })

@@ -53,13 +53,6 @@ export const useMailChannels = (event?: H3Event) => {
       })
     })
 
-    // DKIM data is stripped in production to prevent leaks
-    if (!import.meta.dev && config.dkim) {
-      delete response.payload.personalizations[0].dkim_domain
-      delete response.payload.personalizations[0].dkim_private_key
-      delete response.payload.personalizations[0].dkim_selector
-    }
-
     return response
   }
 
