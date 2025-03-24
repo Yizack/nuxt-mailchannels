@@ -1,31 +1,29 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
+import type { EmailsSendResponse } from '@yizack/mailchannels'
 
 const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) => new Promise((resolve, reject) => {
   const { method, query, body } = options
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const payload = body as any
   const path = `/tx/v1/send`
+  const onResponse = options.onResponse as unknown as (hook: { response: { status: number, ok: boolean } }) => void
 
-  const response = {
-    status: 202,
-    data: undefined as string[] | undefined | null,
-  }
-
-  let isError = false
+  let data: EmailsSendResponse['data'] = undefined
+  const response = { status: 202, ok: true }
 
   if (method !== 'POST' || url !== path) {
-    response.status = 401
-    isError = true
+    response.status = 404
+    response.ok = false
+    onResponse({ response })
+    reject()
   }
 
   if (!payload || !payload.content[0].value) {
     response.status = 400
-    isError = true
-  }
-
-  if (isError) {
-    return reject(void 0)
+    response.ok = false
+    onResponse({ response })
+    reject()
   }
 
   if (query && query['dry-run']) {
@@ -38,10 +36,11 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
         dryRunResponse = dryRunResponse.replace(`{{ ${key} }}`, value as string)
       }
     }
-    response.data = [dryRunResponse]
+    data = [dryRunResponse]
   }
 
-  return response.status === 202 ? resolve(null) : resolve({ data: response.data })
+  onResponse({ response })
+  resolve({ data })
 })
 
 export const mockSendAPI = () => {
