@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.2.0...v0.2.1)
+
+### 🚀 Enhancements
+
+- Handle send error messages ([9815b93](https://github.com/Yizack/nuxt-mailchannels/commit/9815b93))
+
+### 🏡 Chore
+
+- Fix test ([366e2c3](https://github.com/Yizack/nuxt-mailchannels/commit/366e2c3))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.0
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.1.11...v0.2.0)
