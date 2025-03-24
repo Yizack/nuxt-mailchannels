@@ -54,14 +54,21 @@ export const useMailChannels = (event?: H3Event) => {
       dkim: config.dkim,
     }
 
-    const response = await emails.send(overrides, dryRun).catch((error: Error) => {
+    const { success, data, error } = await emails.send(overrides, dryRun).catch((error: Error) => {
       throw createError({
         statusCode: 500,
         message: error.message,
       })
     })
 
-    return response
+    if (!success && error) {
+      throw createError({
+        statusCode: 500,
+        message: error,
+      })
+    }
+
+    return { success, data }
   }
 
   return { send }
