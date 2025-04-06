@@ -6,6 +6,7 @@
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
+[![Modules][modules-src]][modules-href]
 
 Simple MailChannels Email Send API integration for Nuxt.
 
@@ -416,8 +417,8 @@ npm run release
 [license-src]: https://img.shields.io/npm/l/nuxt-mailchannels.svg?style=flat&colorA=020420&colorB=00DC82
 [license-href]: LICENSE
 
-[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt.js
+[nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt
 [nuxt-href]: https://nuxt.com
 
-[modules-src]: https://img.shields.io/badge/Modules-020420?logo=nuxt.js
+[modules-src]: https://img.shields.io/badge/Modules-020420?logo=nuxt
 [modules-href]: https://nuxt.com/modules/mailchannels
