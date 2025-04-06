@@ -58,7 +58,7 @@ Leverages [`@yizack/mailchannels`](https://github.com/Yizack/mailchannels) packa
 1. Add `nuxt-mailchannels` dependency to your project
 
 ```sh
-pnpm add nuxt-mailchannels -D
+npx nuxi@latest module add mailchannels
 ```
 
 2. Add the module in your `nuxt.config.ts`
