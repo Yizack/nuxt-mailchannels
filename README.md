@@ -1,4 +1,4 @@
-![nuxt-mailchannels](https://github.com/user-attachments/assets/e166777a-8279-4167-946f-fbf8a0c76b16)
+![nuxt-mailchannels](https://github.com/user-attachments/assets/8d7d8822-915c-43cd-893e-4531b70817a5)
 
 # Nuxt MailChannels
 
