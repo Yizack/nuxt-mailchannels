@@ -1,6 +1,32 @@
 # Changelog
 
 
+## v0.3.0
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.2.1...v0.3.0)
+
+### 📖 Documentation
+
+- Add module badge and fix nuxt logo ([b3c9347](https://github.com/Yizack/nuxt-mailchannels/commit/b3c9347))
+- Add community module og image ([7baf96b](https://github.com/Yizack/nuxt-mailchannels/commit/7baf96b))
+
+### 📦 Build
+
+- ⚠️  Remove `.cjs` and update module builder + deps ([e2ff238](https://github.com/Yizack/nuxt-mailchannels/commit/e2ff238))
+
+### 🤖 CI
+
+- Remove pnpm action workaround not needed anymore ([7220286](https://github.com/Yizack/nuxt-mailchannels/commit/7220286))
+- **auto-fix:** Update auto-fix action version hash ([e79a58e](https://github.com/Yizack/nuxt-mailchannels/commit/e79a58e))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Remove `.cjs` and update module builder + deps ([e2ff238](https://github.com/Yizack/nuxt-mailchannels/commit/e2ff238))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.2.1
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.2.0...v0.2.1)
