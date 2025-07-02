@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import { describe, it, expect, vi } from 'vitest'
 import { mockSendAPI } from './mocks/send'
 import { useMailChannels } from '../src/runtime/server/composables/mailchannels'
