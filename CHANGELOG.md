@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.3.1
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.0...v0.3.1)
+
+### 🏡 Chore
+
+- Update nuxt and deps ([2152675](https://github.com/Yizack/nuxt-mailchannels/commit/2152675))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.0
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.2.1...v0.3.0)
