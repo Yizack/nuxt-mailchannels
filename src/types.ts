@@ -1,4 +1,4 @@
-import type { EmailsSendRecipient } from '@yizack/mailchannels/modules'
+import type { EmailsSendRecipient } from 'mailchannels-sdk/modules'
 
 export interface NuxtMailChannelsOptions {
   /**

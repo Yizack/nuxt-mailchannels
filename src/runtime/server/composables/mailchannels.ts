@@ -1,5 +1,5 @@
-import { MailChannelsClient } from '@yizack/mailchannels'
-import { Emails, type EmailsSendOptions } from '@yizack/mailchannels/modules'
+import { MailChannelsClient } from 'mailchannels-sdk'
+import { Emails, type EmailsSendOptions } from 'mailchannels-sdk/modules'
 import { createError, type H3Event } from 'h3'
 import { overrideRecipient } from '../utils/helpers'
 import { useRuntimeConfig } from '#imports'

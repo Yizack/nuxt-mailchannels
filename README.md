@@ -10,7 +10,7 @@
 
 Simple MailChannels Email Send API integration for Nuxt.
 
-Leverages [`@yizack/mailchannels`](https://github.com/Yizack/mailchannels) package, a MailChannels SDK for Node.js.
+Leverages [`mailchannels-sdk`](https://github.com/Yizack/mailchannels) package, a MailChannels SDK for Node.js.
 
 - [✨ Release Notes](CHANGELOG.md)
 - [🏀 Online playground](https://stackblitz.com/github/yizack/nuxt-mailchannels?file=playground%2Fserver%27api%27send.ts)
