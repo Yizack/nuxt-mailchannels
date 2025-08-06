@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.3.3
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.2...v0.3.3)
+
+### 🏡 Chore
+
+- Move pnpm `.npmrc` settings to `pnpm-workspace.yaml` ([d50cf64](https://github.com/Yizack/nuxt-mailchannels/commit/d50cf64))
+- Update to nuxt v4 ([e1509ef](https://github.com/Yizack/nuxt-mailchannels/commit/e1509ef))
+
+### 🤖 CI
+
+- Update autofix-ci ([a54afa2](https://github.com/Yizack/nuxt-mailchannels/commit/a54afa2))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.2
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.1...v0.3.2)
