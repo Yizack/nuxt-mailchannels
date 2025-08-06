@@ -16,8 +16,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  future: { compatibilityVersion: 4 },
-  compatibilityDate: '2024-11-11',
+  compatibilityDate: '2025-08-06',
   mailchannels: {
     from: {
       email: 'custom@example.com',
