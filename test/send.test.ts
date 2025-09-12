@@ -210,4 +210,28 @@ describe('useMailChannels send', async () => {
     expect(response.success).toBe(true)
     expect(response.data).toBeUndefined()
   })
+
+  it('sends email when bcc is empty', async () => {
+    const response = await mailchannels.send({
+      to: fake.to.object,
+      bcc: { name: '', email: '' }, // this happen when not setting any bcc
+      subject: fake.subject,
+      html: fake.html,
+    })
+
+    expect(response.success).toBe(true)
+    expect(response.data).toBeUndefined()
+  })
+
+  it('sends email when cc is empty', async () => {
+    const response = await mailchannels.send({
+      to: fake.to.object,
+      cc: { name: '', email: '' }, // this happen when not setting any cc
+      subject: fake.subject,
+      html: fake.html,
+    })
+
+    expect(response.success).toBe(true)
+    expect(response.data).toBeUndefined()
+  })
 })
