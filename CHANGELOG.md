@@ -1,6 +1,30 @@
 # Changelog
 
 
+## v0.3.4
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.3...v0.3.4)
+
+### 🩹 Fixes
+
+- No need to set empty strings for env to work ([715c559](https://github.com/Yizack/nuxt-mailchannels/commit/715c559))
+
+### 📖 Documentation
+
+- Add env override config note ([db2d2a8](https://github.com/Yizack/nuxt-mailchannels/commit/db2d2a8))
+
+### 🏡 Chore
+
+- Remove trailing comma in json ([64cff5f](https://github.com/Yizack/nuxt-mailchannels/commit/64cff5f))
+
+### ✅ Tests
+
+- Add only-env tests ([8ec54b3](https://github.com/Yizack/nuxt-mailchannels/commit/8ec54b3))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.3
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.2...v0.3.3)
