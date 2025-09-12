@@ -8,5 +8,18 @@ export const overrideRecipient = <T>(
     )) {
     return override
   }
-  return override || config
+
+  const recipient = override || config
+
+  if (
+    typeof recipient === 'object'
+    && 'name' in recipient
+    && 'email' in recipient
+    && !recipient.name
+    && !recipient.email
+  ) {
+    return undefined
+  }
+
+  return recipient
 }
