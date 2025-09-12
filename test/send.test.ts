@@ -1,7 +1,7 @@
 import { describe, it, expect, vi } from 'vitest'
 import { mockSendAPI } from './mocks/send'
 import { useMailChannels } from '../src/runtime/server/composables/mailchannels'
-import nuxtConfig from './fixtures/basic/nuxt.config'
+import nuxtConfig from './fixtures/full/nuxt.config'
 
 const fake = {
   bcc: { email: 'bcc_override@example.com', name: 'BCC Override' },

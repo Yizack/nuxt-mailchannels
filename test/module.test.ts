@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import { describe, it, expect } from 'vitest'
 import { $fetch, setup } from '@nuxt/test-utils/e2e'
 
-await setup({ rootDir: fileURLToPath(new URL('./fixtures/basic', import.meta.url)) })
+await setup({ rootDir: fileURLToPath(new URL('./fixtures/full', import.meta.url)) })
 
 describe('ssr', () => {
   it('renders the index page', async () => {
