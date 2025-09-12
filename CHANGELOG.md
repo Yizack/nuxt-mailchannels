@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.3.5
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.4...v0.3.5)
+
+### 🩹 Fixes
+
+- Return undefined recipient if name and emails is empty ([d2fdec5](https://github.com/Yizack/nuxt-mailchannels/commit/d2fdec5))
+
+### 🤖 CI
+
+- Update v5 `actions/checkout` and `actions/setup-node` ([6b80d26](https://github.com/Yizack/nuxt-mailchannels/commit/6b80d26))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.4
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.3...v0.3.4)
