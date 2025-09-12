@@ -131,8 +131,10 @@ NUXT_MAILCHANNELS_FROM_NAME=
 # NUXT_MAILCHANNELS_TO=
 NUXT_MAILCHANNELS_TO_EMAIL=
 NUXT_MAILCHANNELS_TO_NAME=
-
 ```
+
+> [!NOTE]
+> Setting environment variables will override the settings in `nuxt.config.ts` file.
 
 ## Server utils
 
