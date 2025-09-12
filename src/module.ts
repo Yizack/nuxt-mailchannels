@@ -13,10 +13,10 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: {
-    bcc: '',
-    cc: '',
-    from: '',
-    to: '',
+    bcc: { name: '', email: '' },
+    cc: { name: '', email: '' },
+    from: { name: '', email: '' },
+    to: { name: '', email: '' },
   },
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
