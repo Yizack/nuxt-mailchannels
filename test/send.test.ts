@@ -24,6 +24,11 @@ const fake = {
       world: 'World',
     },
   },
+  dkim: {
+    domain: 'example.com',
+    privateKey: 'private_key',
+    selector: 'selector',
+  },
 }
 
 describe('useMailChannels send', async () => {
@@ -46,7 +51,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('array recipients', async () => {
@@ -56,7 +61,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('string recipients', async () => {
@@ -66,7 +71,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('dry run', async () => {
@@ -76,7 +81,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     }, true)
     expect(response.success).toBe(true)
-    expect(response.data).toStrictEqual(['dry-run response'])
+    expect(response.data?.rendered).toStrictEqual(['dry-run response'])
   })
 
   it('mustaches data', async () => {
@@ -87,7 +92,7 @@ describe('useMailChannels send', async () => {
       mustaches: fake.mustaches.data,
     }, true)
     expect(response.success).toBe(true)
-    expect(response.data![0]).toContain(fake.mustaches.data.world)
+    expect(response.data!.rendered).toStrictEqual(['dry-run response ' + fake.mustaches.data.world])
   })
 
   it('name-address pair string', async () => {
@@ -97,7 +102,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('replyTo', async () => {
@@ -108,7 +113,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('empty html error', async () => {
@@ -136,7 +141,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('default cc', async () => {
@@ -146,7 +151,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('default from', async () => {
@@ -156,7 +161,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('default to', async () => {
@@ -165,7 +170,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('overrides bcc', async () => {
@@ -176,7 +181,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('overrides cc', async () => {
@@ -187,7 +192,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('overrides from', async () => {
@@ -198,7 +203,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('overrides to', async () => {
@@ -208,7 +213,7 @@ describe('useMailChannels send', async () => {
       html: fake.html,
     })
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('sends email when bcc is empty', async () => {
@@ -220,7 +225,7 @@ describe('useMailChannels send', async () => {
     })
 
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 
   it('sends email when cc is empty', async () => {
@@ -232,6 +237,6 @@ describe('useMailChannels send', async () => {
     })
 
     expect(response.success).toBe(true)
-    expect(response.data).toBeUndefined()
+    expect(response.data).toBeDefined()
   })
 })

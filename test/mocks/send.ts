@@ -1,6 +1,6 @@
 import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
-import type { EmailsSendResponse, EmailsSendRecipient } from 'mailchannels-sdk'
+import type { EmailsSendRecipient } from 'mailchannels-sdk'
 
 // https://github.com/Yizack/mailchannels/blob/main/src/types/emails/internal.d.ts#L24
 interface EmailsSendPayload {
@@ -25,7 +25,15 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
   const path = `/tx/v1/send`
   const onResponse = options.onResponse as unknown as (hook: { response: { status: number, ok: boolean } }) => void
 
-  let data: EmailsSendResponse['data'] = undefined
+  const mockedResponse = {
+    data: undefined as string[] | undefined,
+    request_id: 'mocked-request-id',
+    results: [{
+      message_id: 'mocked-message-id',
+      status: 'sent',
+    }],
+  }
+
   const response = { status: 202, ok: true }
 
   if (method !== 'POST' || url !== path) {
@@ -52,7 +60,7 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
         dryRunResponse = dryRunResponse.replace(`{{ ${key} }}`, value as string)
       }
     }
-    data = [dryRunResponse]
+    mockedResponse.data = [dryRunResponse]
   }
 
   const ensureValidRecipient = <T>(recipient?: NonNullable<T>) => {
@@ -82,7 +90,7 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
   ensureValidRecipient(payload.personalizations[0]?.bcc)
 
   onResponse({ response })
-  resolve({ data })
+  resolve({ ...mockedResponse })
 })
 
 export const mockSendAPI = () => {
