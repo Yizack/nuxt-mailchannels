@@ -3,6 +3,7 @@ import { Emails, type EmailsSendOptions } from 'mailchannels-sdk/modules'
 import { createError, type H3Event } from 'h3'
 import { overrideRecipient } from '../utils/helpers'
 import { useRuntimeConfig } from '#imports'
+import defu from 'defu'
 
 export const useMailChannels = (event?: H3Event) => {
   const config = useRuntimeConfig(event).mailchannels
@@ -51,7 +52,7 @@ export const useMailChannels = (event?: H3Event) => {
       from: overrideRecipient(config.from, options.from),
       cc: overrideRecipient(config.cc, options.cc),
       bcc: overrideRecipient(config.bcc, options.bcc),
-      dkim: config.dkim,
+      dkim: defu(options.dkim, config.dkim),
     }
 
     const { success, data, error } = await emails.send(overrides, dryRun).catch((error: Error) => {
