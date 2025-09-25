@@ -1,6 +1,31 @@
 # Changelog
 
 
+## v0.3.6
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.5...v0.3.6)
+
+### 🩹 Fixes
+
+- Properly override dkim options ([69d8b54](https://github.com/Yizack/nuxt-mailchannels/commit/69d8b54))
+
+### 🏡 Chore
+
+- Update all deps ([cc7bd3e](https://github.com/Yizack/nuxt-mailchannels/commit/cc7bd3e))
+
+### ✅ Tests
+
+- Empty recipient + simulate empty recipient bad request ([31e2348](https://github.com/Yizack/nuxt-mailchannels/commit/31e2348))
+- Fix tests from send update ([82eedd7](https://github.com/Yizack/nuxt-mailchannels/commit/82eedd7))
+
+### 🤖 CI
+
+- Use npm trusted publishing ([e0e3e5c](https://github.com/Yizack/nuxt-mailchannels/commit/e0e3e5c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.5
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.4...v0.3.5)
