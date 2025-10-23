@@ -1,5 +1,4 @@
-import { MailChannelsClient } from 'mailchannels-sdk'
-import { Emails, type EmailsSendOptions } from 'mailchannels-sdk/modules'
+import { MailChannelsClient, Emails, type EmailsSendOptions } from 'mailchannels-sdk'
 import { createError, type H3Event } from 'h3'
 import { overrideRecipient } from '../utils/helpers'
 import { useRuntimeConfig } from '#imports'

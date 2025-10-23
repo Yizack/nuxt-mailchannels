@@ -105,6 +105,7 @@ export const mockSendAPI = () => {
 
     return {
       MailChannelsClient: mockedMailchannels,
+      Emails: original.Emails,
     }
   })
 }
