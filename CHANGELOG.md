@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.3.7
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.6...v0.3.7)
+
+### 🏡 Chore
+
+- Update all deps and fix new `mailchannels-sdk` modular usage ([63c3d03](https://github.com/Yizack/nuxt-mailchannels/commit/63c3d03))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.6
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.5...v0.3.6)
