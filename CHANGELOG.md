@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.3.8
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.7...v0.3.8)
+
+### 🏡 Chore
+
+- Remove redundant app config assignment ([62c2cc3](https://github.com/Yizack/nuxt-mailchannels/commit/62c2cc3))
+
+### ✅ Tests
+
+- Add tests for runtimeConfig defaults ([b947dd8](https://github.com/Yizack/nuxt-mailchannels/commit/b947dd8))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.7
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.6...v0.3.7)
