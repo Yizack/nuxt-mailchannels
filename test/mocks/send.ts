@@ -2,7 +2,7 @@ import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
 import type { EmailsSendRecipient } from 'mailchannels-sdk'
 
-// https://github.com/Yizack/mailchannels/blob/main/src/types/emails/internal.d.ts#L24
+// https://github.com/Yizack/mailchannels/blob/main/src/types/emails/internal.d.ts#L25
 interface EmailsSendPayload {
   content: {
     template_type?: 'mustache'
