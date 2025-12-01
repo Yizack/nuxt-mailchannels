@@ -37,11 +37,5 @@ export default defineNuxtModule<ModuleOptions>({
       from: options.from,
       to: options.to,
     })
-
-    // App config options
-    nuxt.options.appConfig.mailchannels = Object.assign(
-      nuxt.options.appConfig.mailchannels || {},
-      options,
-    )
   },
 })
