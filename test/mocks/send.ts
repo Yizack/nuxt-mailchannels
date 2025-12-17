@@ -23,7 +23,7 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
 
   const payload = body as EmailsSendPayload
   const path = `/tx/v1/send`
-  const onResponse = options.onResponse as unknown as (hook: { response: { status: number, ok: boolean } }) => void
+  const onResponseError = options.onResponseError as unknown as (hook: { response: { status: number } }) => void
 
   const mockedResponse = {
     data: undefined as string[] | undefined,
@@ -38,15 +38,13 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
 
   if (method !== 'POST' || url !== path) {
     response.status = 404
-    response.ok = false
-    onResponse({ response })
+    onResponseError({ response })
     reject()
   }
 
   if (!payload || !payload.content[0]?.value) {
     response.status = 400
-    response.ok = false
-    onResponse({ response })
+    onResponseError({ response })
     reject()
   }
 
@@ -76,9 +74,8 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
         && !recipient.name
         && !recipient.email
       ) {
-        response.ok = false
         response.status = 400
-        onResponse({ response })
+        onResponseError({ response })
         reject()
       }
     }
@@ -89,7 +86,7 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
   ensureValidRecipient(payload.personalizations[0]?.cc)
   ensureValidRecipient(payload.personalizations[0]?.bcc)
 
-  onResponse({ response })
+  onResponseError({ response })
   resolve({ ...mockedResponse })
 })
 
