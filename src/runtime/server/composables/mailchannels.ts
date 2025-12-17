@@ -63,8 +63,8 @@ export const useMailChannels = (event?: H3Event) => {
 
     if (!success && error) {
       throw createError({
-        statusCode: 500,
-        message: error,
+        statusCode: error.statusCode ?? 500,
+        message: error.message,
       })
     }
 

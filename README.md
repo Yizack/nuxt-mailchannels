@@ -151,7 +151,7 @@ const mailchannels = useMailChannels(event)
 const useMailChannels: (event?: H3Event) => {
   send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<{
     success: boolean,
-    data: string[] | undefined,
+    data: EmailsSendResponse["data"] | null,
   }>
 }
 ```
@@ -218,7 +218,7 @@ The `send` method returns a promise that resolves to an object with the followin
 | Property | Type | Description |
 | --- | --- | --- |
 | `success` | `boolean` | Indicates the success or failure of the email sending operation. |
-| `data` | `string[]` or `undefined` | The fully rendered message if the `dryRun` argument is set to `true`. |
+| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.d.ts#L207) or `null` | Read more in the [MailChannels Node.js SDK documentation](http://localhost:5173/modules/emails#response) |
 
 
 ## Examples
@@ -339,7 +339,7 @@ export default defineEventHandler(async (event) => {
 
 ### Dry run
 
-You can set the `dryRun` argument to test your email without sending it. It will return the fully rendered message in the `data` property of the response.
+You can set the `dryRun` argument to test your email without sending it. It will return the fully rendered message in the `data.rendered` property of the response.
 
 ```ts
 export default defineEventHandler(async (event) => {
@@ -385,26 +385,26 @@ export default defineEventHandler(async (event) => {
 npm install
 
 # Generate type stubs
-npm run dev:prepare
+pnpm dev:prepare
 
 # Develop with the playground
-npm run dev
+pnpm dev
 
 # Build the playground
-npm run dev:build
+pnpm dev:build
 
 # Run ESLint
-npm run lint
+pnpm lint
 
 # Run Vitest
-npm run test
-npm run test:watch
+pnpm test
+pnpm test:watch
 
 # Run typecheck
-npm run test:types
+pnpm test:types
 
 # Release new version
-npm run release
+pnpm release
 ```
 
 </details>
