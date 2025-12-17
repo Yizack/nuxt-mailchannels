@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.3.9
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.8...v0.3.9)
+
+### 🏡 Chore
+
+- Mailchannels-sdk + other dependencies ([1cc6aaa](https://github.com/Yizack/nuxt-mailchannels/commit/1cc6aaa))
+
+### ✅ Tests
+
+- Refactor send mock to use onResponseError callback ([2ad6354](https://github.com/Yizack/nuxt-mailchannels/commit/2ad6354))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.8
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.7...v0.3.8)
