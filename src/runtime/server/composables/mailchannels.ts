@@ -26,12 +26,14 @@ export const useMailChannels = (event?: H3Event) => {
    * // Inside an API route handler
    * export default defineEventHandler(async (event) => {
    *   const mailchannels = useMailChannels(event)
-   *   const { success } = await mailchannels.send({
+   *
+   *   const { success, data, error } = await mailchannels.send({
    *     to: 'to@example.com',
    *     from: 'from@example.com',
    *     subject: 'Test',
    *     html: 'Test',
    *   })
+   *
    *   return { success }
    * })
    * ```
@@ -54,21 +56,7 @@ export const useMailChannels = (event?: H3Event) => {
       dkim: defu(options.dkim, config.dkim),
     }
 
-    const { success, data, error } = await emails.send(overrides, dryRun).catch((error: Error) => {
-      throw createError({
-        statusCode: 500,
-        message: error.message,
-      })
-    })
-
-    if (!success && error) {
-      throw createError({
-        statusCode: error.statusCode ?? 500,
-        message: error.message,
-      })
-    }
-
-    return { success, data }
+    return emails.send(overrides, dryRun)
   }
 
   return { send }

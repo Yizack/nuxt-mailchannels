@@ -149,10 +149,7 @@ const mailchannels = useMailChannels(event)
   
 ```ts
 const useMailChannels: (event?: H3Event) => {
-  send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<{
-    success: boolean,
-    data: EmailsSendResponse["data"] | null,
-  }>
+  send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<EmailsSendResponse>
 }
 ```
 
@@ -218,7 +215,8 @@ The `send` method returns a promise that resolves to an object with the followin
 | Property | Type | Description |
 | --- | --- | --- |
 | `success` | `boolean` | Indicates the success or failure of the email sending operation. |
-| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.d.ts#L207) or `null` | Read more in the [MailChannels Node.js SDK documentation](http://localhost:5173/modules/emails#response) |
+| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.d.ts#L208-L233) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails#response) |
+| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.d.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
 
 
 ## Examples
