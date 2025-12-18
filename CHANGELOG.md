@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.3.10
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.9...v0.3.10)
+
+### 💅 Refactors
+
+- Send method to return full response object ([1baf2fc](https://github.com/Yizack/nuxt-mailchannels/commit/1baf2fc))
+
+### 🏡 Chore
+
+- Improve playground ([976ac0f](https://github.com/Yizack/nuxt-mailchannels/commit/976ac0f))
+
+### ✅ Tests
+
+- Refactor tests to use destructured response ([5d3f838](https://github.com/Yizack/nuxt-mailchannels/commit/5d3f838))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.9
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.8...v0.3.9)
