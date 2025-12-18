@@ -45,198 +45,217 @@ describe('useMailChannels send', async () => {
   const mailchannels = useMailChannels()
 
   it('object recipients', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.object,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('array recipients', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: [fake.to.object, fake.to.object],
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('string recipients', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('dry run', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     }, true)
-    expect(response.success).toBe(true)
-    expect(response.data?.rendered).toStrictEqual(['dry-run response'])
+    expect(success).toBe(true)
+    expect(data?.rendered).toStrictEqual(['dry-run response'])
+    expect(error).toBeNull()
   })
 
   it('mustaches data', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.mustaches.html,
       mustaches: fake.mustaches.data,
     }, true)
-    expect(response.success).toBe(true)
-    expect(response.data!.rendered).toStrictEqual(['dry-run response ' + fake.mustaches.data.world])
+    expect(success).toBe(true)
+    expect(data!.rendered).toStrictEqual(['dry-run response ' + fake.mustaches.data.world])
+    expect(error).toBeNull()
   })
 
   it('name-address pair string', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.pairString,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('replyTo', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       replyTo: fake.replyTo,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('empty html error', async () => {
-    const response = mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: '',
     })
-    await expect(response).rejects.toThrowError('No email content provided')
+    expect(success).toBe(false)
+    expect(data).toBeNull()
+    expect(error?.message).toBe('No email content provided')
   })
 
   it('empty text error', async () => {
-    const response = mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       text: '',
     })
-    await expect(response).rejects.toThrowError('No email content provided')
+    expect(success).toBe(false)
+    expect(data).toBeNull()
+    expect(error?.message).toBe('No email content provided')
   })
 
   it ('default bcc', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('default cc', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('default from', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('default to', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('overrides bcc', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       bcc: fake.bcc,
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('overrides cc', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       cc: fake.cc,
       to: fake.to.string,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('overrides from', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.string,
       from: fake.from,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('overrides to', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.object,
       subject: fake.subject,
       html: fake.html,
     })
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('sends email when bcc is empty', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.object,
       bcc: { name: '', email: '' }, // this happen when not setting any bcc
       subject: fake.subject,
       html: fake.html,
     })
-
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 
   it('sends email when cc is empty', async () => {
-    const response = await mailchannels.send({
+    const { success, data, error } = await mailchannels.send({
       to: fake.to.object,
       cc: { name: '', email: '' }, // this happen when not setting any cc
       subject: fake.subject,
       html: fake.html,
     })
-
-    expect(response.success).toBe(true)
-    expect(response.data).toBeDefined()
+    expect(success).toBe(true)
+    expect(data).toBeDefined()
+    expect(error).toBeNull()
   })
 })

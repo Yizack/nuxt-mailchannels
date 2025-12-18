@@ -34,7 +34,7 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
     }],
   }
 
-  const response = { status: 202, ok: true }
+  const response = { status: 202 }
 
   if (method !== 'POST' || url !== path) {
     response.status = 404
