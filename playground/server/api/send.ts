@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+  const { success, data, error } = await mailchannels.send({
     from: 'Name From <from@example.com>',
     to: 'to@example.com',
     subject: 'Test',
@@ -11,5 +11,14 @@ export default defineEventHandler(async (event) => {
     },
   }, true)
 
-  return response
+  if (error) {
+    throw createError({
+      statusCode: error.statusCode || 500,
+      message: `Failed to send email: ${error.message}`,
+    })
+  }
+
+  console.info({ data })
+
+  return { success }
 })
