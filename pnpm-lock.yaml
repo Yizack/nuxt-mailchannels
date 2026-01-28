@@ -15,8 +15,8 @@ importers:
         specifier: ^6.1.4
         version: 6.1.4
       mailchannels-sdk:
-        specifier: ^0.7.2
-        version: 0.7.2
+        specifier: ^0.7.3
+        version: 0.7.3
     devDependencies:
       '@nuxt/devtools':
         specifier: ^3.1.1
@@ -3068,8 +3068,8 @@ packages:
   magicast@0.5.1:
     resolution: {integrity: sha512-xrHS24IxaLrvuo613F719wvOIv9xPHFWQHuvGUBmPnCA/3MQxKI3b+r7n1jAoDHmsbC5bRhTZYR77invLAxVnw==}
 
-  mailchannels-sdk@0.7.2:
-    resolution: {integrity: sha512-HgippVr0YZsvPafNYXGHyPoN/fJKQM2nB40NEYLGMfMWalbmnbxtASje5goXsKkMft1List+hT6BtjVFvwkTEQ==}
+  mailchannels-sdk@0.7.3:
+    resolution: {integrity: sha512-TVX0cFNhnySZm4j+FORugcWZFXSIckB3m+nT256fm4Gq101VkzhDWhiOKI6wo+gqTmr13S8jJWCfa3+SctcPkQ==}
 
   mdn-data@2.0.28:
     resolution: {integrity: sha512-aylIc7Z9y4yzHYAJNuESG3hfhC+0Ibp/MAMiaOZgNv4pmEdFyfZhhhny4MNiAfWdBQ1RQ2mfDWmM1x8SvGyp8g==}
@@ -7514,7 +7514,7 @@ snapshots:
       '@babel/types': 7.28.6
       source-map-js: 1.2.1
 
-  mailchannels-sdk@0.7.2:
+  mailchannels-sdk@0.7.3:
     dependencies:
       ofetch: 2.0.0-alpha.3
 
