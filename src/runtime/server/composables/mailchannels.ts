@@ -4,6 +4,11 @@ import { overrideRecipient } from '../utils/helpers'
 import { useRuntimeConfig } from '#imports'
 import defu from 'defu'
 
+interface EmailsSendOptionsWithOverrides extends Omit<EmailsSendOptions, 'to' | 'from'> {
+  to?: EmailsSendOptions['to']
+  from?: EmailsSendOptions['from']
+}
+
 export const useMailChannels = (event?: H3Event) => {
   const config = useRuntimeConfig(event).mailchannels
 
@@ -16,11 +21,6 @@ export const useMailChannels = (event?: H3Event) => {
 
   const mailchannels = new MailChannelsClient(config.apiKey)
   const emails = new Emails(mailchannels)
-
-  interface EmailsSendOptionsWithOverrides extends Omit<EmailsSendOptions, 'to' | 'from'> {
-    to?: EmailsSendOptions['to']
-    from?: EmailsSendOptions['from']
-  }
 
   const getOverrides = (options: EmailsSendOptionsWithOverrides) => (<EmailsSendOptions>{
     ...options,
@@ -52,7 +52,10 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const send = async (options: EmailsSendOptionsWithOverrides, dryRun?: boolean) => emails.send(getOverrides(options), dryRun)
+  const send = async (
+    options: EmailsSendOptionsWithOverrides,
+    dryRun?: boolean,
+  ) => emails.send(getOverrides(options), dryRun)
 
   /**
    * Queues an email message for asynchronous processing and returns immediately with a request ID.
@@ -78,7 +81,9 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const sendAsync = async (options: EmailsSendOptionsWithOverrides) => emails.sendAsync(getOverrides(options))
+  const sendAsync = async (
+    options: EmailsSendOptionsWithOverrides,
+  ) => emails.sendAsync(getOverrides(options))
 
   return { send, sendAsync }
 }
