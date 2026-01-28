@@ -17,6 +17,20 @@ export const useMailChannels = (event?: H3Event) => {
   const mailchannels = new MailChannelsClient(config.apiKey)
   const emails = new Emails(mailchannels)
 
+  interface EmailsSendOptionsWithOverrides extends Omit<EmailsSendOptions, 'to' | 'from'> {
+    to?: EmailsSendOptions['to']
+    from?: EmailsSendOptions['from']
+  }
+
+  const getOverrides = (options: EmailsSendOptionsWithOverrides) => (<EmailsSendOptions>{
+    ...options,
+    to: overrideRecipient(config.to, options.to),
+    from: overrideRecipient(config.from, options.from),
+    cc: overrideRecipient(config.cc, options.cc),
+    bcc: overrideRecipient(config.bcc, options.bcc),
+    dkim: defu(options.dkim, config.dkim),
+  })
+
   /**
    * Send an email using MailChannels Email API
    * @param options - The email options to send
@@ -38,26 +52,33 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const send = async (
-    options: Omit<EmailsSendOptions, 'to' | 'from'> & Partial<{
-      to: EmailsSendOptions['to']
-      from: EmailsSendOptions['from']
-    }>,
-    dryRun?: boolean,
-  ) => {
-    const overrides: EmailsSendOptions = {
-      ...options,
-      // @ts-expect-error optional since can receive a default value and package will handle the error
-      to: overrideRecipient(config.to, options.to),
-      // @ts-expect-error optional since can receive a default value and package will handle the error
-      from: overrideRecipient(config.from, options.from),
-      cc: overrideRecipient(config.cc, options.cc),
-      bcc: overrideRecipient(config.bcc, options.bcc),
-      dkim: defu(options.dkim, config.dkim),
-    }
+  const send = async (options: EmailsSendOptionsWithOverrides, dryRun?: boolean) => emails.send(getOverrides(options), dryRun)
 
-    return emails.send(overrides, dryRun)
-  }
+  /**
+   * Queues an email message for asynchronous processing and returns immediately with a request ID.
+   *
+   * The email will be processed in the background, and you'll receive webhook events for all delivery status updates (e.g. `dropped`, `processed`, `delivered`, `hard-bounced`). These webhook events are identical to those sent for the synchronous /send endpoint.
+   *
+   * Use this endpoint when you need to send emails without waiting for processing to complete. This can improve your application's response time, especially when sending to multiple recipients.
+   * @param options - The email options to send.
+   * @example
+   * ```ts
+   * // Inside an API route handler
+   * export default defineEventHandler(async (event) => {
+   *   const mailchannels = useMailChannels(event)
+   *
+   *   const { data, error } = await mailchannels.sendAsync({
+   *     to: 'to@example.com',
+   *     from: 'from@example.com',
+   *     subject: 'Test',
+   *     html: 'Test',
+   *   })
+   *
+   *   return { data }
+   * })
+   * ```
+   */
+  const sendAsync = async (options: EmailsSendOptionsWithOverrides) => emails.sendAsync(getOverrides(options))
 
-  return { send }
+  return { send, sendAsync }
 }
