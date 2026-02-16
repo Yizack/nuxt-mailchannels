@@ -215,8 +215,31 @@ The `send` method returns a promise that resolves to an object with the followin
 | Property | Type | Description |
 | --- | --- | --- |
 | `success` | `boolean` | Indicates the success or failure of the email sending operation. |
-| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.d.ts#L208-L233) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails#response) |
-| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.d.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.ts#L223-L248) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
+| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
+
+## Send Async method
+
+The `sendAsync` method queues an email message for asynchronous processing and returns immediately with a request ID.
+
+Use this method when you need to send emails without waiting for processing to complete. This can improve your application's response time, especially when sending to multiple recipients.
+
+### Arguments
+
+| Argument | Type | Description | Required |
+| --- | --- | --- | --- |
+| `options` | [`Options`](#options) | The email options to send | ✅ |
+
+### Options
+
+The options for the `sendAsync` method are the same as the `send` method.
+
+### Response
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `data` | [`EmailsSendAsyncResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send-async.ts#L4-L11) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send-async#response) |
+| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
 
 
 ## Examples
@@ -232,7 +255,8 @@ This is the best way to add names to the recipients.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success } = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: {
       email: 'from@example.com',
       name: 'Example 2'
@@ -245,6 +269,7 @@ export default defineEventHandler(async (event) => {
     html: '<p>Your email content</p>',
     text: 'Your email content',
   })
+
   return { success }
 })
 ```
@@ -256,13 +281,15 @@ This is the simplest way to send an email.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success } = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: 'to@example.com',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
     text: 'Your email content',
   })
+
   return { success }
 })
 ```
@@ -274,7 +301,8 @@ You can also send an email to multiple recipients.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success } = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: {
       email: 'from@example.com',
       name: 'Example 3'
@@ -293,6 +321,7 @@ export default defineEventHandler(async (event) => {
     html: '<p>Your email content</p>',
     text: 'Your email content',
   })
+
   return { success }
 })
 ```
@@ -302,13 +331,15 @@ or
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success } = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: ['to1@example.com', 'to2@example.com'],
     subject: 'Your subject',
     html: '<p>Your email content</p>',
     text: 'Your email content',
   })
+
   return { success }
 })
 ```
@@ -320,7 +351,8 @@ You can use the `mustaches` property to render mustache templates.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success } = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: 'to@example.com',
     subject: 'Mustaches test',
@@ -342,7 +374,8 @@ You can set the `dryRun` argument to test your email without sending it. It will
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const response = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: 'to@example.com',
     subject: 'Test',
@@ -350,7 +383,7 @@ export default defineEventHandler(async (event) => {
     text: 'Test',
   }, true) // <-- `true` = dryRun enabled
 
-  return response
+  return { success }
 })
 ```
 
@@ -361,7 +394,8 @@ You can use name-address pairs string format.
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success } = await mailchannels.send({
+
+  const { success, data, error } = await mailchannels.send({
     from: 'Sender Name <sender@example.com>',
     to: 'Recipient Name <recipient@example.com>',
     subject: 'Your subject',
@@ -370,6 +404,32 @@ export default defineEventHandler(async (event) => {
   })
 
   return { success }
+})
+```
+
+### Async sending
+
+You can use the `sendAsync` method to queue an email message for asynchronous processing.
+
+```ts
+export default defineEventHandler(async (event) => {
+  const mailchannels = useMailChannels(event)
+
+  const { data, error } = await mailchannels.sendAsync({
+    from: {
+      email: 'from@example.com',
+      name: 'Example 2'
+    },
+    to: {
+      email: 'to@example.com',
+      name: 'Example 1'
+    },
+    subject: 'Your subject',
+    html: '<p>Your email content</p>',
+    text: 'Your email content',
+  })
+
+  return { data }
 })
 ```
 
