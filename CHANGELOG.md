@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.3.13
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.12...v0.3.13)
+
+### 📖 Documentation
+
+- Add `sendAsync` docs and update examples ([c9bff65](https://github.com/Yizack/nuxt-mailchannels/commit/c9bff65))
+
+### 🏡 Chore
+
+- Update `mailchannels-sdk` and all deps ([9e88d1c](https://github.com/Yizack/nuxt-mailchannels/commit/9e88d1c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.12
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.11...v0.3.12)
