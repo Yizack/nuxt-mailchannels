@@ -241,7 +241,6 @@ The options for the `sendAsync` method are the same as the `send` method.
 | `data` | [`EmailsSendAsyncResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send-async.ts#L4-L11) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send-async#response) |
 | `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
 
-
 ## Examples
 
 Use the `send` method inside your API routes to send emails.
