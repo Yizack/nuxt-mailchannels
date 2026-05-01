@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.3.14
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.13...v0.3.14)
+
+### 📖 Documentation
+
+- **readme:** Lint ([5ae383a](https://github.com/Yizack/nuxt-mailchannels/commit/5ae383a))
+
+### 🏡 Chore
+
+- Update all deps ([8e3f40a](https://github.com/Yizack/nuxt-mailchannels/commit/8e3f40a))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.13
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.12...v0.3.13)
