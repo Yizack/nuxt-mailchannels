@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
   if (error) {
     throw createError({
-      statusCode: error.statusCode || 500,
+      status: error.statusCode || 500,
       message: `Failed to send email: ${error.message}`,
     })
   }

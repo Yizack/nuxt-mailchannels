@@ -14,7 +14,7 @@ export const useMailChannels = (event?: H3Event) => {
 
   if (!config.apiKey) {
     throw createError({
-      statusCode: 500,
+      status: 500,
       message: 'Missing MailChannels API key',
     })
   }
