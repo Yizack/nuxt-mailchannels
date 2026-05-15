@@ -1,6 +1,26 @@
 # Changelog
 
 
+## v0.4.0
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.14...v0.4.0)
+
+### 💅 Refactors
+
+- ⚠️  Bump mailchannels-sdk and update examples ([804d2f8](https://github.com/Yizack/nuxt-mailchannels/commit/804d2f8))
+
+### 🏡 Chore
+
+- Use 'status' property in createError ([2e0501c](https://github.com/Yizack/nuxt-mailchannels/commit/2e0501c))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Bump mailchannels-sdk and update examples ([804d2f8](https://github.com/Yizack/nuxt-mailchannels/commit/804d2f8))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.3.14
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.13...v0.3.14)
