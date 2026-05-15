@@ -214,9 +214,8 @@ The `send` method returns a promise that resolves to an object with the followin
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `success` | `boolean` | Indicates the success or failure of the email sending operation. |
-| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.ts#L223-L248) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
-| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.ts#L355-L382) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
+| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L12) or `null` | Contains error information if the email sending operation fails. |
 
 ## Send Async method
 
@@ -255,7 +254,7 @@ This is the best way to add names to the recipients.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: {
       email: 'from@example.com',
       name: 'Example 2'
@@ -266,10 +265,10 @@ export default defineEventHandler(async (event) => {
     },
     subject: 'Your subject',
     html: '<p>Your email content</p>',
-    text: 'Your email content',
+    text: 'Your email content'
   })
 
-  return { success }
+  return { data }
 })
 ```
 
@@ -281,15 +280,15 @@ This is the simplest way to send an email.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: 'to@example.com',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
-    text: 'Your email content',
+    text: 'Your email content'
   })
 
-  return { success }
+  return { data }
 })
 ```
 
@@ -301,7 +300,7 @@ You can also send an email to multiple recipients.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: {
       email: 'from@example.com',
       name: 'Example 3'
@@ -318,10 +317,10 @@ export default defineEventHandler(async (event) => {
     ],
     subject: 'Your subject',
     html: '<p>Your email content</p>',
-    text: 'Your email content',
+    text: 'Your email content'
   })
 
-  return { success }
+  return { data }
 })
 ```
 
@@ -331,38 +330,41 @@ or
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: ['to1@example.com', 'to2@example.com'],
     subject: 'Your subject',
     html: '<p>Your email content</p>',
-    text: 'Your email content',
+    text: 'Your email content'
   })
 
-  return { success }
+  return { data }
 })
 ```
 
 ### Using mustache templates
 
-You can use the `mustaches` property to render mustache templates.
+You can use the `template` property to render mustache templates.
 
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: 'to@example.com',
     subject: 'Mustaches test',
     html: '<p>Hello {{ world }}</p>',
     text: 'Hello {{ world }}',
-    mustaches: {
-      world: 'World',
-    },
+    template: {
+      type: 'mustache',
+      data: {
+        world: 'World'
+      }
+    }
   })
 
-  return { success }
+  return { data }
 })
 ```
 
@@ -374,7 +376,7 @@ You can set the `dryRun` argument to test your email without sending it. It will
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: 'from@example.com',
     to: 'to@example.com',
     subject: 'Test',
@@ -382,7 +384,7 @@ export default defineEventHandler(async (event) => {
     text: 'Test',
   }, true) // <-- `true` = dryRun enabled
 
-  return { success }
+  return { data }
 })
 ```
 
@@ -394,7 +396,7 @@ You can use name-address pairs string format.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: 'Sender Name <sender@example.com>',
     to: 'Recipient Name <recipient@example.com>',
     subject: 'Your subject',
@@ -402,7 +404,7 @@ export default defineEventHandler(async (event) => {
     text: 'Your email content',
   })
 
-  return { success }
+  return { data }
 })
 ```
 

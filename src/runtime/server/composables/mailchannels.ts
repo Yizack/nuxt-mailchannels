@@ -41,14 +41,14 @@ export const useMailChannels = (event?: H3Event) => {
    * export default defineEventHandler(async (event) => {
    *   const mailchannels = useMailChannels(event)
    *
-   *   const { success, data, error } = await mailchannels.send({
+   *   const { data, error } = await mailchannels.send({
    *     to: 'to@example.com',
    *     from: 'from@example.com',
    *     subject: 'Test',
    *     html: 'Test',
    *   })
    *
-   *   return { success }
+   *   return { data }
    * })
    * ```
    */

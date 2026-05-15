@@ -1,13 +1,16 @@
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
-  const { success, data, error } = await mailchannels.send({
+  const { data, error } = await mailchannels.send({
     from: 'Name From <from@example.com>',
     to: 'to@example.com',
     subject: 'Test',
     html: '<p>Hello {{ world }}</p>',
     text: 'Hello {{ world }}',
-    mustaches: {
-      world: 'World',
+    template: {
+      type: 'mustache',
+      data: {
+        world: 'World',
+      },
     },
   }, true)
 
@@ -20,5 +23,5 @@ export default defineEventHandler(async (event) => {
 
   console.info({ data })
 
-  return { success }
+  return { data }
 })
