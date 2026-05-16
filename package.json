@@ -46,7 +46,7 @@
   "dependencies": {
     "@nuxt/kit": "^4.4.5",
     "defu": "^6.1.7",
-    "mailchannels-sdk": "^0.8.0-0"
+    "mailchannels-sdk": "^0.8.0-1"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.4",
