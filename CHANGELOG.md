@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.4.1
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.0...v0.4.1)
+
+### 💅 Refactors
+
+- Deprecate `sendAsync` in favor of `queue` ([d04d9c4](https://github.com/Yizack/nuxt-mailchannels/commit/d04d9c4))
+
+### 🏡 Chore
+
+- Bump `mailchannels-sdk` and all deps ([781aa0c](https://github.com/Yizack/nuxt-mailchannels/commit/781aa0c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.0
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.3.14...v0.4.0)
