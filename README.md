@@ -150,6 +150,7 @@ const mailchannels = useMailChannels(event)
 ```ts
 const useMailChannels: (event?: H3Event) => {
   send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<EmailsSendResponse>
+  queue: (options: MailChannelsEmailOptions) => Promise<EmailsQueueResponse>
 }
 ```
 
@@ -214,12 +215,12 @@ The `send` method returns a promise that resolves to an object with the followin
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.ts#L355-L382) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
-| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L12) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.ts#L363-L390) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
+| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L15-L32) or `null` | Contains error information if the email sending operation fails. |
 
-## Send Async method
+## Queue method
 
-The `sendAsync` method queues an email message for asynchronous processing and returns immediately with a request ID.
+The `queue` method queues an email message for asynchronous processing and returns immediately with a request ID.
 
 Use this method when you need to send emails without waiting for processing to complete. This can improve your application's response time, especially when sending to multiple recipients.
 
@@ -231,14 +232,14 @@ Use this method when you need to send emails without waiting for processing to c
 
 ### Options
 
-The options for the `sendAsync` method are the same as the `send` method.
+The options for the `queue` method are the same as the `send` method.
 
 ### Response
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `data` | [`EmailsSendAsyncResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send-async.ts#L4-L11) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send-async#response) |
-| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L1-L4) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsQueueResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/queue.ts#L3-L12) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/queue#response) |
+| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L15-L32) or `null` | Contains error information if the email sending operation fails. |
 
 ## Examples
 
@@ -410,13 +411,13 @@ export default defineEventHandler(async (event) => {
 
 ### Async sending
 
-You can use the `sendAsync` method to queue an email message for asynchronous processing.
+You can use the `queue` method to queue an email message for asynchronous processing.
 
 ```ts
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels(event)
 
-  const { data, error } = await mailchannels.sendAsync({
+  const { data, error } = await mailchannels.queue({
     from: {
       email: 'from@example.com',
       name: 'Example 2'

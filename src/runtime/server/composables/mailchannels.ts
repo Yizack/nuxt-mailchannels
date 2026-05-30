@@ -70,7 +70,7 @@ export const useMailChannels = (event?: H3Event) => {
    * export default defineEventHandler(async (event) => {
    *   const mailchannels = useMailChannels(event)
    *
-   *   const { data, error } = await mailchannels.sendAsync({
+   *   const { data, error } = await mailchannels.queue({
    *     to: 'to@example.com',
    *     from: 'from@example.com',
    *     subject: 'Test',
@@ -81,9 +81,14 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const sendAsync = async (
+  const queue = async (
     options: EmailsSendOptionsWithOverrides,
-  ) => emails.sendAsync(getOverrides(options))
+  ) => emails.queue(getOverrides(options))
 
-  return { send, sendAsync }
+  /**
+   * @deprecated Use `queue` instead.
+   */
+  const sendAsync = send
+
+  return { send, queue, sendAsync }
 }
