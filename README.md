@@ -194,15 +194,25 @@ Available options for the `send` method.
 | Property | Description | Required |
 | --- | --- | --- |
 | `attachments` | An array of attachments to add to the email. Each attachment should be an object with `filename`, `content`, and `type` properties. | ❌ |
+| `campaignId` | The campaign identifier. If specified, this ID will be included in all relevant webhooks. It can be up to 48 UTF-8 characters long and must not contain spaces. | ❌ |
 | `bcc` | The BCC recipients of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. | ❌ |
+| `dkim` | The DKIM settings for the email. | ❌ |
+| `envelopeFrom` | Optional envelope sender address. If not set, the envelope sender defaults to the `from.email` field. Can be overridden per-personalization. Only the email portion is used; the name field is ignored. | ❌ |
 | `cc` | The CC recipients of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. | ❌ |
 | `from` | The sender of the email. Can be a string or an object with `email` and `name` properties. Required when the default global sender is not set. | 🟡 |
+| `headers` | An object containing key-value pairs, where both keys (header names) and values must be strings. These pairs represent custom headers to be substituted. | ❌ |
 | `to` | The recipient of the email. Can be an object with `email` and `name` properties or a single email address string or an array of them. Required when the default global recipient is not set. | 🟡 |
+| `tracking` | Adjust open and click tracking for the message. | ❌ |
 | `replyTo` | The email address to reply to. Can be a string or an object with `email` and `name` properties. | ❌ |
 | `subject` | The subject of the email. | ✅ |
 | `html` | The HTML content of the email. Required if `text` is not set. | 🟡 |
 | `text` | The plain text content of the email. Required if `html` is not set. | 🟡 |
-| `mustaches` | Data to be used if the email is a mustache template, key-value pairs of variables to set for template rendering. Keys must be strings. | ❌ |
+| `content` | Send the body of your message in multiple different formats. The recipient's email client will render the message using the content type that best fits their environment. | ❌ |
+| `template` | Template configuration for rendering email content with a template engine. | ❌ |
+| `personalizations` | Explicit personalization objects for advanced payloads with multiple recipient groups or per-personalization overrides. | ❌ |
+| `transactional` | Mark these messages as transactional or non-transactional. In order for a message to be marked as non-transactional, it must have exactly one recipient per personalization, and it must be DKIM signed. 400 Bad Request will be returned if there are more than one recipient in any personalization for non-transactional messages. If a message is marked as non-transactional, it changes the sending process as follows: List-Unsubscribe headers will be added. | ❌ |
+
+More details about the options can be found in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#params).
 
 > [!TIP]
 > Including a plain text version of your email ensures that all recipients can read your message, including those with email clients that lack HTML support.
