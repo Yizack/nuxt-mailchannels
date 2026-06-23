@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.4.2
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.1...v0.4.2)
+
+### 📖 Documentation
+
+- **readme:** Document additional send options ([bf9aabf](https://github.com/Yizack/nuxt-mailchannels/commit/bf9aabf))
+- Update `mailchannels-sdk` repository url ([faef37b](https://github.com/Yizack/nuxt-mailchannels/commit/faef37b))
+- Update types repo url ([c380462](https://github.com/Yizack/nuxt-mailchannels/commit/c380462))
+- Update send types repo url ([92b0a86](https://github.com/Yizack/nuxt-mailchannels/commit/92b0a86))
+
+### 🏡 Chore
+
+- Update `mailchannels-sdk` and all deps ([44b982c](https://github.com/Yizack/nuxt-mailchannels/commit/44b982c))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.1
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.0...v0.4.1)
