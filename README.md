@@ -248,8 +248,8 @@ The options for the `queue` method are the same as the `send` method.
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `data` | [`EmailsQueueResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/queue.ts#L3-L12) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/queue#response) |
-| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L15-L32) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsQueueResponse["data"]`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/emails/queue.ts#lines-3:12) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/queue#response) |
+| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:32) or `null` | Contains error information if the email sending operation fails. |
 
 ## Examples
 
