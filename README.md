@@ -225,8 +225,8 @@ The `send` method returns a promise that resolves to an object with the followin
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `data` | [`EmailsSendResponse["data"]`](https://github.com/Yizack/mailchannels/blob/main/src/types/emails/send.ts#L363-L390) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
-| `error` | [`ErrorResponse`](https://github.com/Yizack/mailchannels/blob/main/src/types/responses.ts#L15-L32) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsSendResponse["data"]`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/emails/send.ts#lines-363:390) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
+| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:32) or `null` | Contains error information if the email sending operation fails. |
 
 ## Queue method
 
