@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.3
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.2...v0.4.3)
+
+### 🏡 Chore
+
+- Bump all dependencies ([c78889d](https://github.com/Yizack/nuxt-mailchannels/commit/c78889d))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.2
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.1...v0.4.2)
