@@ -46,7 +46,7 @@
   "dependencies": {
     "@nuxt/kit": "^4.4.8",
     "defu": "^6.1.7",
-    "mailchannels-sdk": "^1.1.0"
+    "mailchannels-sdk": "^1.2.0"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.2.4",
@@ -54,13 +54,13 @@
     "@nuxt/module-builder": "^1.0.2",
     "@nuxt/schema": "^4.4.8",
     "@nuxt/test-utils": "^4.0.3",
-    "@types/node": "^26.0.0",
+    "@types/node": "^26.1.1",
     "changelogen": "^0.6.2",
-    "eslint": "^10.5.0",
+    "eslint": "^10.7.0",
     "nuxt": "^4.4.8",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9",
-    "vue-tsc": "^3.3.5"
+    "vitest": "^4.1.10",
+    "vue-tsc": "^3.3.7"
   },
   "packageManager": "pnpm@11.8.0"
 }

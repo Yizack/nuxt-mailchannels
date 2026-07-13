@@ -226,7 +226,7 @@ The `send` method returns a promise that resolves to an object with the followin
 | Property | Type | Description |
 | --- | --- | --- |
 | `data` | [`EmailsSendResponse["data"]`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/emails/send.ts#lines-363:390) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
-| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:32) or `null` | Contains error information if the email sending operation fails. |
+| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:37) or `null` | Contains error information if the email sending operation fails. |
 
 ## Queue method
 
@@ -249,7 +249,7 @@ The options for the `queue` method are the same as the `send` method.
 | Property | Type | Description |
 | --- | --- | --- |
 | `data` | [`EmailsQueueResponse["data"]`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/emails/queue.ts#lines-3:12) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/queue#response) |
-| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:32) or `null` | Contains error information if the email sending operation fails. |
+| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:37) or `null` | Contains error information if the email sending operation fails. |
 
 ## Examples
 
