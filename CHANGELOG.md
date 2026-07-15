@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.4
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.3...v0.4.4)
+
+### 🩹 Fixes
+
+- SendAsync to alias queue ([6e20f2c](https://github.com/Yizack/nuxt-mailchannels/commit/6e20f2c))
+- Inline composable methods to keep jsdoc comments in build ([157fe5d](https://github.com/Yizack/nuxt-mailchannels/commit/157fe5d))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.3
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.2...v0.4.3)
