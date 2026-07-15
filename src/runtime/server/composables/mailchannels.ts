@@ -88,7 +88,7 @@ export const useMailChannels = (event?: H3Event) => {
   /**
    * @deprecated Use `queue` instead.
    */
-  const sendAsync = send
+  const sendAsync = queue
 
   return { send, queue, sendAsync }
 }
