@@ -31,6 +31,7 @@ export const useMailChannels = (event?: H3Event) => {
     dkim: defu(options.dkim, config.dkim),
   })
 
+  return {
   /**
    * Send an email using MailChannels Email API
    * @param options - The email options to send
@@ -52,43 +53,42 @@ export const useMailChannels = (event?: H3Event) => {
    * })
    * ```
    */
-  const send = async (
-    options: EmailsSendOptionsWithOverrides,
-    dryRun?: boolean,
-  ) => emails.send(getOverrides(options), dryRun)
-
-  /**
-   * Queues an email message for asynchronous processing and returns immediately with a request ID.
-   *
-   * The email will be processed in the background, and you'll receive webhook events for all delivery status updates (e.g. `dropped`, `processed`, `delivered`, `hard-bounced`). These webhook events are identical to those sent for the synchronous /send endpoint.
-   *
-   * Use this endpoint when you need to send emails without waiting for processing to complete. This can improve your application's response time, especially when sending to multiple recipients.
-   * @param options - The email options to send.
-   * @example
-   * ```ts
-   * // Inside an API route handler
-   * export default defineEventHandler(async (event) => {
-   *   const mailchannels = useMailChannels(event)
-   *
-   *   const { data, error } = await mailchannels.queue({
-   *     to: 'to@example.com',
-   *     from: 'from@example.com',
-   *     subject: 'Test',
-   *     html: 'Test',
-   *   })
-   *
-   *   return { data }
-   * })
-   * ```
-   */
-  const queue = async (
-    options: EmailsSendOptionsWithOverrides,
-  ) => emails.queue(getOverrides(options))
-
-  /**
-   * @deprecated Use `queue` instead.
-   */
-  const sendAsync = queue
-
-  return { send, queue, sendAsync }
+    send: async (
+      options: EmailsSendOptionsWithOverrides,
+      dryRun?: boolean,
+    ) => emails.send(getOverrides(options), dryRun),
+    /**
+     * Queues an email message for asynchronous processing and returns immediately with a request ID.
+     *
+     * The email will be processed in the background, and you'll receive webhook events for all delivery status updates (e.g. `dropped`, `processed`, `delivered`, `hard-bounced`). These webhook events are identical to those sent for the synchronous /send endpoint.
+     *
+     * Use this endpoint when you need to send emails without waiting for processing to complete. This can improve your application's response time, especially when sending to multiple recipients.
+     * @param options - The email options to send.
+     * @example
+     * ```ts
+     * // Inside an API route handler
+     * export default defineEventHandler(async (event) => {
+     *   const mailchannels = useMailChannels(event)
+     *
+     *   const { data, error } = await mailchannels.queue({
+     *     to: 'to@example.com',
+     *     from: 'from@example.com',
+     *     subject: 'Test',
+     *     html: 'Test',
+     *   })
+     *
+     *   return { data }
+     * })
+     * ```
+     */
+    queue: async (
+      options: EmailsSendOptionsWithOverrides,
+    ) => emails.queue(getOverrides(options)),
+    /**
+     * @deprecated Use `queue` instead.
+     */
+    sendAsync: async (
+      options: EmailsSendOptionsWithOverrides,
+    ) => emails.queue(getOverrides(options)),
+  }
 }
