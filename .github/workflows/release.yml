@@ -28,5 +28,10 @@ jobs:
       - name: 📦 Install dependencies
         run: pnpm i
 
-      - name: 🚀 Publish package
+      - name: 🚀 Publish npm package
         run: pnpm publish --access public --no-git-checks
+      
+      - name: 📝 Publish GitHub release notes
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm release:github
