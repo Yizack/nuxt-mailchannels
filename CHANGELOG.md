@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.4.5
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.4...v0.4.5)
+
+### 🤖 CI
+
+- **release:** Automate github release ([9369da9](https://github.com/Yizack/nuxt-mailchannels/commit/9369da9))
+- Update actioins and prefer node --run ([b22e2c7](https://github.com/Yizack/nuxt-mailchannels/commit/b22e2c7))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.4
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.3...v0.4.4)
