@@ -32,11 +32,11 @@
   ],
   "scripts": {
     "build": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt-module-build build",
-    "prepack": "pnpm build",
+    "prepack": "node --run build",
     "dev": "nuxt dev playground",
     "dev:build": "nuxt build playground",
     "dev:prepare": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt prepare playground",
-    "release": "pnpm lint && pnpm build && pnpm test && changelogen --release && git push --follow-tags",
+    "release": "node --run checks && changelogen --release --push --no-github",
     "release:github": "changelogen gh release",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

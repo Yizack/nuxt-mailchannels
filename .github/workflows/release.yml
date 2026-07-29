@@ -34,4 +34,4 @@ jobs:
       - name: 📝 Publish GitHub release notes
         env: 
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm release:github
+        run: node --run release:github

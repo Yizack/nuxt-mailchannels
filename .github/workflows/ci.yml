@@ -40,7 +40,7 @@ jobs:
         run: pnpm install
 
       - name: 🔎 Lint
-        run: pnpm lint
+        run: node --run lint
 
   test:
     runs-on: ubuntu-latest
@@ -57,10 +57,10 @@ jobs:
         run: pnpm install
 
       - name: 🚧 Prepare module environment
-        run: pnpm dev:prepare
+        run: node --run dev:prepare
 
       - name: 🧪 Run test suite
-        run: pnpm test
+        run: node --run test
 
       - name: 🧪 Test types
-        run: pnpm test:types
+        run: node --run test:types
