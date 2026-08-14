@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.7
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.6...v0.4.7)
+
+### 🏡 Chore
+
+- Update `mailchannels-sdk` ([98e4f10](https://github.com/Yizack/nuxt-mailchannels/commit/98e4f10))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.6
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.5...v0.4.6)
