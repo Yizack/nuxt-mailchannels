@@ -1,4 +1,3 @@
-import { vi } from 'vitest'
 import type { FetchRequest, FetchOptions } from 'ofetch'
 import type { EmailsSendRecipient } from 'mailchannels-sdk'
 
@@ -18,7 +17,7 @@ interface EmailsSendPayload {
   }[]
 }
 
-const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) => new Promise((resolve, reject) => {
+export const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) => new Promise((resolve, reject) => {
   const { method, query, body } = options
 
   const payload = body as EmailsSendPayload
@@ -89,20 +88,3 @@ const mockedImplementation = (url: FetchRequest, options: FetchOptions<'json'>) 
   onResponseError({ response })
   resolve({ ...mockedResponse })
 })
-
-export const mockSendAPI = () => {
-  vi.mock(import('mailchannels-sdk'), async (importOriginal) => {
-    const original = await importOriginal()
-    // Override the internal _fetch method
-    const mockedMailchannels = class extends original.MailChannelsClient {
-      protected override async _fetch<T>(path: string, options: FetchOptions<'json'>): Promise<T> {
-        return mockedImplementation(path, options) as unknown as T
-      }
-    }
-
-    return {
-      MailChannelsClient: mockedMailchannels,
-      Emails: original.Emails,
-    }
-  })
-}

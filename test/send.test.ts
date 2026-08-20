@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest'
-import { mockSendAPI } from './mocks/send'
+import type { FetchOptions } from 'ofetch'
+import { mockedImplementation } from './mocks/send'
 import { useMailChannels } from '../src/runtime/server/composables/mailchannels'
 import nuxtConfig from './fixtures/full/nuxt.config'
 
@@ -31,17 +32,31 @@ const fake = {
   },
 }
 
-describe('useMailChannels send', async () => {
-  vi.mock('#imports', () => ({
-    useRuntimeConfig: vi.fn(() => ({
-      mailchannels: {
-        ...nuxtConfig.runtimeConfig?.mailchannels,
-        ...nuxtConfig.mailchannels,
-      },
-    })),
-  }))
+vi.mock(import('mailchannels-sdk'), async (importOriginal) => {
+  const original = await importOriginal()
+  // Override the internal _fetch method
+  const mockedMailchannels = class extends original.MailChannelsClient {
+    protected override async _fetch<T>(path: string, options: FetchOptions<'json'>): Promise<T> {
+      return mockedImplementation(path, options) as unknown as T
+    }
+  }
 
-  mockSendAPI()
+  return {
+    MailChannelsClient: mockedMailchannels,
+    Emails: original.Emails,
+  }
+})
+
+vi.mock('#imports', () => ({
+  useRuntimeConfig: vi.fn(() => ({
+    mailchannels: {
+      ...nuxtConfig.runtimeConfig?.mailchannels,
+      ...nuxtConfig.mailchannels,
+    },
+  })),
+}))
+
+describe('useMailChannels send', async () => {
   const mailchannels = useMailChannels()
 
   it('object recipients', async () => {
