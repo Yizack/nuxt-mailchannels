@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.9
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.8...v0.4.9)
+
+### 🤖 CI
+
+- Fix release ([918544a](https://github.com/Yizack/nuxt-mailchannels/commit/918544a))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.8
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.7...v0.4.8)
