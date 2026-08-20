@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.4.8
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.7...v0.4.8)
+
+### 🏡 Chore
+
+- Update all dependencies ([60d2759](https://github.com/Yizack/nuxt-mailchannels/commit/60d2759))
+
+### ✅ Tests
+
+- Move `vi.mock` calls to top module ([42d2609](https://github.com/Yizack/nuxt-mailchannels/commit/42d2609))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.7
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.6...v0.4.7)
