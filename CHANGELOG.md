@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.4.10
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.9...v0.4.10)
+
+### 🏡 Chore
+
+- Update all deps ([1d9326c](https://github.com/Yizack/nuxt-mailchannels/commit/1d9326c))
+
+### 🤖 CI
+
+- Remove redundant pnpm install steps + update pnpm ([73765cc](https://github.com/Yizack/nuxt-mailchannels/commit/73765cc))
+- Update `pnpm/setup` ([1ec91b5](https://github.com/Yizack/nuxt-mailchannels/commit/1ec91b5))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.9
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.8...v0.4.9)
