@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.11
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.10...v0.4.11)
+
+### 🚀 Enhancements
+
+- Support nuxt v5 ([77e99fa](https://github.com/Yizack/nuxt-mailchannels/commit/77e99fa))
+
+### ❤️ Contributors
+
+- Yizack Rangel <yizackr@gmail.com>
+
 ## v0.4.10
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.9...v0.4.10)
