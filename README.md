@@ -142,13 +142,13 @@ The following helpers are auto-imported in your `server/` directory.
 
 ```ts
 // initialize a MailChannels instance
-const mailchannels = useMailChannels(event)
+const mailchannels = useMailChannels()
 ```
 
 ### TypeScript signature
   
 ```ts
-const useMailChannels: (event?: H3Event) => {
+const useMailChannels: () => {
   send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<EmailsSendResponse>
   queue: (options: MailChannelsEmailOptions) => Promise<EmailsQueueResponse>
 }
@@ -157,7 +157,7 @@ const useMailChannels: (event?: H3Event) => {
 ### Simple usage
 
 ```ts
-const mailchannels = useMailChannels(event)
+const mailchannels = useMailChannels()
 await mailchannels.send({
   from: {
     email: 'from@example.com',
@@ -263,7 +263,7 @@ This is the best way to add names to the recipients.
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: {
@@ -289,7 +289,7 @@ This is the simplest way to send an email.
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: 'from@example.com',
@@ -309,7 +309,7 @@ You can also send an email to multiple recipients.
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: {
@@ -339,7 +339,7 @@ or
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: 'from@example.com',
@@ -359,7 +359,7 @@ You can use the `template` property to render mustache templates.
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: 'from@example.com',
@@ -385,7 +385,7 @@ You can set the `dryRun` argument to test your email without sending it. It will
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: 'from@example.com',
@@ -405,7 +405,7 @@ You can use name-address pairs string format.
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.send({
     from: 'Sender Name <sender@example.com>',
@@ -425,7 +425,7 @@ You can use the `queue` method to queue an email message for asynchronous proces
 
 ```ts
 export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+  const mailchannels = useMailChannels()
 
   const { data, error } = await mailchannels.queue({
     from: {
