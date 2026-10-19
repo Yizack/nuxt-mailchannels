@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.4.12
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.11...v0.4.12)
+
+### 📖 Documentation
+
+- Update `useMailChannels` in examples ([8204f77](https://github.com/Yizack/nuxt-mailchannels/commit/8204f77))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.11
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.10...v0.4.11)
