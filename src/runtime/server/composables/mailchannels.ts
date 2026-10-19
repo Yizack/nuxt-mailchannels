@@ -1,7 +1,6 @@
 import { MailChannelsClient, Emails, type EmailsSendOptions } from 'mailchannels-sdk'
-import { createError, type H3Event } from 'h3'
+import { createError, useRuntimeConfig } from 'nuxt/server'
 import { overrideRecipient } from '../utils/helpers'
-import { useRuntimeConfig } from '#imports'
 import defu from 'defu'
 
 interface EmailsSendOptionsWithOverrides extends Omit<EmailsSendOptions, 'to' | 'from'> {
@@ -9,8 +8,8 @@ interface EmailsSendOptionsWithOverrides extends Omit<EmailsSendOptions, 'to' | 
   from?: EmailsSendOptions['from']
 }
 
-export const useMailChannels = (event?: H3Event) => {
-  const config = useRuntimeConfig(event).mailchannels
+export const useMailChannels = () => {
+  const config = useRuntimeConfig().mailchannels
 
   if (!config.apiKey) {
     throw createError({

@@ -1,6 +1,5 @@
-import { defineEventHandler } from 'h3'
-import { useRuntimeConfig } from '#imports'
+import { useRuntimeConfig, defineEventHandler } from 'nuxt/server'
 
-export default defineEventHandler((event) => {
-  return useRuntimeConfig(event).mailchannels
+export default defineEventHandler(() => {
+  return useRuntimeConfig().mailchannels
 })

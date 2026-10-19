@@ -47,7 +47,7 @@ vi.mock(import('mailchannels-sdk'), async (importOriginal) => {
   }
 })
 
-vi.mock('#imports', () => ({
+vi.mock('nuxt/server', () => ({
   useRuntimeConfig: vi.fn(() => ({
     mailchannels: {
       ...nuxtConfig.runtimeConfig?.mailchannels,

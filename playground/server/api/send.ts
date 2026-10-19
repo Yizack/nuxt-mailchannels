@@ -1,5 +1,5 @@
-export default defineEventHandler(async (event) => {
-  const mailchannels = useMailChannels(event)
+export default defineEventHandler(async () => {
+  const mailchannels = useMailChannels()
   const { data, error } = await mailchannels.send({
     from: 'Name From <from@example.com>',
     to: 'to@example.com',
