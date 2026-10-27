@@ -10,7 +10,8 @@
 
 Simple MailChannels Email Send API integration for Nuxt.
 
-Leverages [`@mailchannels/sdk`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js) package, a MailChannels SDK for Node.js.
+Leverages [`@mailchannels/sdk`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js)
+package, the Official MailChannels Email API SDK for Node.js.
 
 - [✨ Release Notes](CHANGELOG.md)
 - [🏀 Online playground](https://stackblitz.com/github/yizack/nuxt-mailchannels?file=playground%2Fserver%27api%27send.ts)
@@ -52,7 +53,8 @@ Leverages [`@mailchannels/sdk`](https://bitbucket.org/mailchannels/mailchannels-
 - MailChannels account and Email API key
 
 > [!WARNING]
-> This module only works with a Nuxt server running as it uses utils for server API routes (`nuxt build`). This means that you cannot use this module with `nuxt generate`.
+> This module only works with a Nuxt server running as it uses utils for server API routes
+> (`nuxt build`). This means that you cannot use this module with `nuxt generate`.
 
 ## Quick setup
 
@@ -74,9 +76,11 @@ export default defineNuxtConfig({
 
 ## Configuration
 
-You can add the MailChannels **API key** and **DKIM** settings to the `runtimeConfig` property in `nuxt.config.ts` file.
+You can add the MailChannels **API key** and **DKIM** settings to the `runtimeConfig` property in
+`nuxt.config.ts` file.
 
-If you want to use default global settings for all your email transactions, you can set it in the `mailchannels` app options property in your `nuxt.config.ts` file.
+If you want to use default global settings for all your email transactions, you can set it in the
+`mailchannels` app options property in your `nuxt.config.ts` file.
 
 ```ts
 export default defineNuxtConfig({
@@ -178,7 +182,8 @@ await mailchannels.send({
 The `send` method sends an email using the MailChannels API.
 
 > [!IMPORTANT]
-> If you set the `bcc`, `cc`, `from`, `to` properties in the `send` method, they will override the default global settings set in the `nuxt.config.ts` or `.env` file.
+> If you set the `bcc`, `cc`, `from`, `to` properties in the `send` method, they will override the
+> default global settings set in the `nuxt.config.ts` or `.env` file.
 
 ### Arguments
 
@@ -215,9 +220,11 @@ Available options for the `send` method.
 More details about the options can be found in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#params).
 
 > [!TIP]
-> Including a plain text version of your email ensures that all recipients can read your message, including those with email clients that lack HTML support.
+> Including a plain text version of your email ensures that all recipients can read your message,
+> including those with email clients that lack HTML support.
 >
-> You can use the [`html-to-text`](https://www.npmjs.com/package/html-to-text) package to convert your HTML content to plain text.
+> You can use the [`html-to-text`](https://www.npmjs.com/package/html-to-text) package to convert
+> your HTML content to plain text.
 
 ### Response
 
@@ -230,9 +237,11 @@ The `send` method returns a promise that resolves to an object with the followin
 
 ## Queue method
 
-The `queue` method queues an email message for asynchronous processing and returns immediately with a request ID.
+The `queue` method queues an email message for asynchronous processing and returns immediately with
+a request ID.
 
-Use this method when you need to send emails without waiting for processing to complete. This can improve your application's response time, especially when sending to multiple recipients.
+Use this method when you need to send emails without waiting for processing to complete. This can
+improve your application's response time, especially when sending to multiple recipients.
 
 ### Arguments
 
@@ -255,7 +264,8 @@ The options for the `queue` method are the same as the `send` method.
 
 Use the `send` method inside your API routes to send emails.
 
-The recipient parameters can be either an email address string or an object with `email` and `name` properties.
+The recipient parameters can be either an email address string or an object with `email` and `name`
+properties.
 
 ### Using object recipients (recommended)
 
@@ -381,7 +391,8 @@ export default defineEventHandler(async (event) => {
 
 ### Dry run
 
-You can set the `dryRun` argument to test your email without sending it. It will return the fully rendered message in the `data.rendered` property of the response.
+You can set the `dryRun` argument to test your email without sending it. It will return the fully
+rendered message in the `data.rendered` property of the response.
 
 ```ts
 export default defineEventHandler(async (event) => {
