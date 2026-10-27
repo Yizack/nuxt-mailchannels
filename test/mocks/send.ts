@@ -1,5 +1,5 @@
 import type { FetchRequest, FetchOptions } from 'ofetch'
-import type { EmailsSendRecipient } from 'mailchannels-sdk'
+import type { EmailsSendRecipient } from '@mailchannels/sdk'
 
 // https://github.com/Yizack/mailchannels/blob/main/src/types/emails/internal.ts#L18-L44
 interface EmailsSendPayload {

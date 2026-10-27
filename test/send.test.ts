@@ -32,7 +32,7 @@ const fake = {
   },
 }
 
-vi.mock(import('mailchannels-sdk'), async (importOriginal) => {
+vi.mock(import('@mailchannels/sdk'), async (importOriginal) => {
   const original = await importOriginal()
   // Override the internal _fetch method
   const mockedMailchannels = class extends original.MailChannelsClient {

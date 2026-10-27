@@ -1,4 +1,4 @@
-import { MailChannelsClient, Emails, type EmailsSendOptions } from 'mailchannels-sdk'
+import { MailChannelsClient, Emails, type EmailsSendOptions } from '@mailchannels/sdk'
 import { createError, useRuntimeConfig } from 'nuxt/server'
 import { overrideRecipient } from '../utils/helpers'
 import defu from 'defu'

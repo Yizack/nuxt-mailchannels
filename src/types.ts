@@ -1,4 +1,4 @@
-import type { EmailsSendRecipient } from 'mailchannels-sdk'
+import type { EmailsSendRecipient } from '@mailchannels/sdk'
 
 export interface NuxtMailChannelsOptions {
   /**

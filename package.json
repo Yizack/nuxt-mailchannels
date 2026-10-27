@@ -46,9 +46,9 @@
     "checks": "node --run lint && node --run test && node --run test:types && node --run build"
   },
   "dependencies": {
+    "@mailchannels/sdk": "^1.8.0",
     "@nuxt/kit": "^4.6.2",
-    "defu": "^6.1.7",
-    "mailchannels-sdk": "^1.7.0"
+    "defu": "^6.1.7"
   },
   "devDependencies": {
     "@nuxt/devtools": "^3.4.4",
