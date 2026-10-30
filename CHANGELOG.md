@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.4.13
+
+[compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.12...v0.4.13)
+
+### 💅 Refactors
+
+- **sdk:** Migrate to `@mailchannels/sdk` ([b6e0fcc](https://github.com/Yizack/nuxt-mailchannels/commit/b6e0fcc))
+
+### 📖 Documentation
+
+- Improve README formatting ([ef9b688](https://github.com/Yizack/nuxt-mailchannels/commit/ef9b688))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.12
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.11...v0.4.12)
