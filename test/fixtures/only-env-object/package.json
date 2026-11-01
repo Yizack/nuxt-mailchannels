@@ -1,5 +1,5 @@
 {
-  "private": true,
   "name": "only-env-object",
+  "private": true,
   "type": "module"
 }

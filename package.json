@@ -3,33 +3,33 @@
   "version": "0.4.13",
   "description": "MailChannels Email API integration for Nuxt",
   "keywords": [
-    "nuxt",
-    "mailchannels",
     "email",
+    "mailchannels",
+    "nuxt",
     "transactional"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Yizack/nuxt-mailchannels.git"
-  },
   "homepage": "https://github.com/Yizack/nuxt-mailchannels",
+  "license": "MIT",
   "author": {
     "name": "Yizack Rangel",
     "email": "yizackr@gmail.com",
     "url": "https://yizack.com"
   },
-  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yizack/nuxt-mailchannels.git"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "main": "./dist/module.mjs",
   "exports": {
     ".": {
       "types": "./dist/types.d.mts",
       "import": "./dist/module.mjs"
     }
   },
-  "main": "./dist/module.mjs",
-  "files": [
-    "dist"
-  ],
   "scripts": {
     "build": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxt-module-build build",
     "prepack": "node --run build",

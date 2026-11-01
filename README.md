@@ -39,7 +39,8 @@ package, the Official MailChannels Email API SDK for Node.js.
 
 ## Features
 
-- Send emails using [MailChannels Email Send API](https://docs.mailchannels.net/email-api/api-reference/send-an-email)
+- Send emails using
+  [MailChannels Email Send API](https://docs.mailchannels.net/email-api/api-reference/send-an-email)
 - Works on the edge
 - Exposed server utils
 - Email DKIM signing
@@ -68,9 +69,7 @@ npx nuxi@latest module add mailchannels
 
 ```js
 export default defineNuxtConfig({
-  modules: [
-    'nuxt-mailchannels'
-  ],
+  modules: ['nuxt-mailchannels']
 })
 ```
 
@@ -91,22 +90,23 @@ export default defineNuxtConfig({
       dkim: {
         domain: '',
         privateKey: '',
-        selector: '',
-      },
-    },
+        selector: ''
+      }
+    }
   },
   // Set the default settings for all your email transactions (optional)
   mailchannels: {
     bcc: { email: '', name: '' },
     cc: { email: '', name: '' },
     from: { email: '', name: '' },
-    to: { email: '', name: '' },
-  },
+    to: { email: '', name: '' }
+  }
 })
 ```
 
 > [!NOTE]
-> `bcc`, `cc`, and `to` can be an object with `email` and `name` properties or a single email address string or an array of them.
+> `bcc`, `cc`, and `to` can be an object with `email` and `name` properties or a single email
+> address string or an array of them.
 
 Use the environment variables to set your API key, DKIM settings and default global settings.
 
@@ -150,7 +150,7 @@ const mailchannels = useMailChannels()
 ```
 
 ### TypeScript signature
-  
+
 ```ts
 const useMailChannels: () => {
   send: (options: MailChannelsEmailOptions, dryRun?: boolean) => Promise<EmailsSendResponse>
@@ -173,7 +173,7 @@ await mailchannels.send({
   },
   subject: 'Your subject',
   html: '<p>Your email content</p>',
-  text: 'Your email content',
+  text: 'Your email content'
 })
 ```
 
@@ -245,9 +245,9 @@ improve your application's response time, especially when sending to multiple re
 
 ### Arguments
 
-| Argument | Type | Description | Required |
-| --- | --- | --- | --- |
-| `options` | [`Options`](#options) | The email options to send | ✅ |
+| Argument  | Type                  | Description               | Required |
+| --------- | --------------------- | ------------------------- | -------- |
+| `options` | [`Options`](#options) | The email options to send | ✅       |
 
 ### Options
 
@@ -398,13 +398,16 @@ rendered message in the `data.rendered` property of the response.
 export default defineEventHandler(async (event) => {
   const mailchannels = useMailChannels()
 
-  const { data, error } = await mailchannels.send({
-    from: 'from@example.com',
-    to: 'to@example.com',
-    subject: 'Test',
-    html: '<p>Test</p>',
-    text: 'Test',
-  }, true) // <-- `true` = dryRun enabled
+  const { data, error } = await mailchannels.send(
+    {
+      from: 'from@example.com',
+      to: 'to@example.com',
+      subject: 'Test',
+      html: '<p>Test</p>',
+      text: 'Test'
+    },
+    true
+  ) // <-- `true` = dryRun enabled
 
   return { data }
 })
@@ -423,7 +426,7 @@ export default defineEventHandler(async (event) => {
     to: 'Recipient Name <recipient@example.com>',
     subject: 'Your subject',
     html: '<p>Your email content</p>',
-    text: 'Your email content',
+    text: 'Your email content'
   })
 
   return { data }
@@ -449,7 +452,7 @@ export default defineEventHandler(async (event) => {
     },
     subject: 'Your subject',
     html: '<p>Your email content</p>',
-    text: 'Your email content',
+    text: 'Your email content'
   })
 
   return { data }
@@ -460,7 +463,7 @@ export default defineEventHandler(async (event) => {
 
 <details>
   <summary>Local development</summary>
-  
+
 ```sh
 # Install dependencies
 npm install
@@ -499,9 +502,7 @@ pnpm release
 
 [license-src]: https://img.shields.io/npm/l/nuxt-mailchannels.svg?style=flat&colorA=020420&colorB=00DC82
 [license-href]: LICENSE
-
 [nuxt-src]: https://img.shields.io/badge/Nuxt-020420?logo=nuxt
 [nuxt-href]: https://nuxt.com
-
 [modules-src]: https://img.shields.io/badge/Modules-020420?logo=nuxt
 [modules-href]: https://nuxt.com/modules/mailchannels

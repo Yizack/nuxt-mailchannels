@@ -1,5 +1,5 @@
 {
-  "private": true,
   "name": "runtimeconfig-defaults",
+  "private": true,
   "type": "module"
 }
