@@ -10,7 +10,7 @@
 
 Simple MailChannels Email Send API integration for Nuxt.
 
-Leverages [`@mailchannels/sdk`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js)
+Leverages [`@mailchannels/sdk`](https://github.com/mailchannels/mailchannels-email-api-sdk-js)
 package, the Official MailChannels Email API SDK for Node.js.
 
 - [✨ Release Notes](CHANGELOG.md)
@@ -39,8 +39,7 @@ package, the Official MailChannels Email API SDK for Node.js.
 
 ## Features
 
-- Send emails using
-  [MailChannels Email Send API](https://docs.mailchannels.net/email-api/api-reference/send-an-email)
+- Send emails using [MailChannels Email Send API](https://docs.mailchannels.com/email-api/overview)
 - Works on the edge
 - Exposed server utils
 - Email DKIM signing
@@ -65,7 +64,7 @@ package, the Official MailChannels Email API SDK for Node.js.
 npx nuxi@latest module add mailchannels
 ```
 
-2. Add the module in your `nuxt.config.ts`
+1. Add the module in your `nuxt.config.ts`
 
 ```js
 export default defineNuxtConfig({
@@ -232,8 +231,8 @@ The `send` method returns a promise that resolves to an object with the followin
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `data` | [`EmailsSendResponse["data"]`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/emails/send.ts#lines-363:390) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
-| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:37) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsSendResponse["data"]`](https://github.com/mailchannels/mailchannels-email-api-sdk-js/blob/main/src/types/emails/send.ts#L392-L419) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/send#response) |
+| `error` | [`ErrorResponse`](https://github.com/mailchannels/mailchannels-email-api-sdk-js/blob/main/src/types/responses.ts#L15-L37) or `null` | Contains error information if the email sending operation fails. |
 
 ## Queue method
 
@@ -257,8 +256,8 @@ The options for the `queue` method are the same as the `send` method.
 
 | Property | Type | Description |
 | --- | --- | --- |
-| `data` | [`EmailsQueueResponse["data"]`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/emails/queue.ts#lines-3:12) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/queue#response) |
-| `error` | [`ErrorResponse`](https://bitbucket.org/mailchannels/mailchannels-email-api-sdk-js/src/main/src/types/responses.ts#lines-15:37) or `null` | Contains error information if the email sending operation fails. |
+| `data` | [`EmailsQueueResponse["data"]`](https://github.com/mailchannels/mailchannels-email-api-sdk-js/blob/main/src/types/emails/queue.ts#L3-L12) or `null` | Read more in the [MailChannels Node.js SDK documentation](https://mailchannels.yizack.com/modules/emails/queue#response) |
+| `error` | [`ErrorResponse`](https://github.com/mailchannels/mailchannels-email-api-sdk-js/blob/main/src/types/responses.ts#L15-L37) or `null` | Contains error information if the email sending operation fails. |
 
 ## Examples
 

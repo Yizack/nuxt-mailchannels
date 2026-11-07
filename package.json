@@ -8,7 +8,7 @@
     "nuxt",
     "transactional"
   ],
-  "homepage": "https://github.com/Yizack/nuxt-mailchannels",
+  "homepage": "https://github.com/mailchannels/nuxt-mailchannels",
   "license": "MIT",
   "author": {
     "name": "Yizack Rangel",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yizack/nuxt-mailchannels.git"
+    "url": "git+https://github.com/mailchannels/nuxt-mailchannels.git"
   },
   "files": [
     "dist"
