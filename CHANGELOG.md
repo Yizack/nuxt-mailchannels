@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.4.14
+
+[compare changes](https://github.com/mailchannels/nuxt-mailchannels/compare/v0.4.13...v0.4.14)
+
+### 🏡 Chore
+
+- Update GitHub repository URLs ([72fc8f9](https://github.com/mailchannels/nuxt-mailchannels/commit/72fc8f9))
+- Update all deps ([dfa5dca](https://github.com/mailchannels/nuxt-mailchannels/commit/dfa5dca))
+
+### 🎨 Styles
+
+- Format project files ([ab2901e](https://github.com/mailchannels/nuxt-mailchannels/commit/ab2901e))
+
+### ❤️ Contributors
+
+- Yizack Rangel ([@Yizack](https://github.com/Yizack))
+
 ## v0.4.13
 
 [compare changes](https://github.com/Yizack/nuxt-mailchannels/compare/v0.4.12...v0.4.13)
